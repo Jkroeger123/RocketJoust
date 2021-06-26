@@ -24,10 +24,11 @@ public class PlayerInputController : MonoBehaviour
     public event OnPress onThrusterPress;
     public event OnPress onRocketPress;
     
-    private void Awake()
+    private void Start()
     {
-        _playerInput = GetComponent<PlayerInput>();
-
+        _playerInput = GetComponentInParent<PlayerInput>();
+        
+        _playerInput.SwitchCurrentActionMap("Gameplay");
         rotateRight = _playerInput.currentActionMap.FindAction("RotateRight");
         rotateLeft = _playerInput.currentActionMap.FindAction("RotateLeft");
         thrusterPress = _playerInput.currentActionMap.FindAction("Thruster");
