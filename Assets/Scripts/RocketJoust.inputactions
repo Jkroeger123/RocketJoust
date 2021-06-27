@@ -36,20 +36,25 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "RotateRightSuper",
+                    "type": "Button",
+                    "id": "c18ebfee-b908-40eb-b670-b8373aa4755d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "RotateLeftSuper",
+                    "type": "Button",
+                    "id": "600659e2-9618-4955-810c-981b3a9fca7e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
-                {
-                    "name": "",
-                    "id": "319e9ac7-cd01-480f-907e-11c4d7fbf6fe",
-                    "path": "<Gamepad>/rightTrigger",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "RotateRight",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
                 {
                     "name": "",
                     "id": "b70d372b-0813-406d-b36f-c358e85a4a61",
@@ -76,17 +81,6 @@
                     "name": "",
                     "id": "ec087d16-95c3-48ec-8de5-3773e16932b7",
                     "path": "<Gamepad>/leftShoulder",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "RotateLeft",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "1cda7950-589d-4ad2-b40c-17ec6b89d671",
-                    "path": "<Gamepad>/leftTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -146,6 +140,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Thruster",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8e1e7e38-ddbb-4d7d-b713-727c3d1caadc",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RotateRightSuper",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "93c26e6a-f20d-4898-81f2-185282197ed1",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RotateLeftSuper",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

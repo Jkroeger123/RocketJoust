@@ -41,8 +41,22 @@ public class PlayerController : MonoBehaviour
     
     private void Update()
     {
-        if(_input.rotateLeftPressed) RotateLeft();
-        if(_input.rotateRightPressed) RotateRight();
+        if (_input.rotateRightSuperPressed)
+        {
+            RotateRightSuper();
+        }else if (_input.rotateRightPressed)
+        {
+            RotateRight();
+        }
+
+        if (_input.rotateLeftSuperPressed)
+        {
+            RotateLeftSuper();
+        } else if (_input.rotateLeftPressed)
+        {
+            RotateLeft();
+        }
+
         //clamp velocity to max velocity
         _rb.velocity = Vector2.ClampMagnitude(_rb.velocity, maxVelocity);
     }
@@ -65,8 +79,18 @@ public class PlayerController : MonoBehaviour
         _rb.rotation -= _rotationSpeed * Time.deltaTime;
     }
 
+    private void RotateRightSuper()
+    {
+        _rb.rotation -= _rotationSpeed * 1.5f * Time.deltaTime;
+    }
+
     private void RotateLeft () {
         _rb.rotation += _rotationSpeed * Time.deltaTime;
+    }
+
+    private void RotateLeftSuper()
+    {
+        _rb.rotation += _rotationSpeed * 1.5f * Time.deltaTime;
     }
 
     private IEnumerator Thoom() {

@@ -8,9 +8,12 @@ public class RocketBlaster : MonoBehaviour
 
         if (transform.IsChildOf(other.transform)) return;
 
-        if (other.tag != "Player") return;
-        
-        other.gameObject.GetComponent<PlayerDeathManager>().Die();
+        if (other.CompareTag("Player")) other.gameObject.GetComponent<PlayerDeathManager>().Die();
+
+        if (other.CompareTag("Projectile"))
+        {
+            //Thoom the projectile
+        }
 
     }
 }
