@@ -51,6 +51,13 @@ public class GameManager : MonoBehaviour
     {
         countDown.gameObject.SetActive(true);
 
+        //DisablePlayer Input
+        foreach (GameObject player in players)
+        {
+            PlayerLobbyController playLob = player.transform.GetChild(0).GetComponent<PlayerLobbyController>();
+            playLob.OnMatchStarting();
+        }
+        
         for (int i = 5; i > 0; i--)
         {
             countDown.text = "Match Starting in " + i + "...";
@@ -60,12 +67,19 @@ public class GameManager : MonoBehaviour
         countDown.gameObject.SetActive(false);
         
         SceneManager.sceneLoaded += OnSceneLoaded;
+        
+        foreach (GameObject player in players)
+        {
+            Destroy(player.transform.GetChild(0).gameObject);
+        }
+        
         SceneManager.LoadScene("SampleScene", LoadSceneMode.Single);
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        Debug.Log("GAME LOADED");
+        //Find the Battle Manager and Initialize the game
+        GameObject.FindWithTag("BattleManager").GetComponent<BattleManager>().StartMatch(players);
     }
 
 }

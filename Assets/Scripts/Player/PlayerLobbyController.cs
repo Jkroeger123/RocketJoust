@@ -51,4 +51,10 @@ public class PlayerLobbyController : MonoBehaviour
         _uiModule.GetComponent<PlayerModule>().SetReadyText(isReady);
         _gameManager.CheckPlayersReady();
     }
+
+    public void OnMatchStarting()
+    {
+        _playerInput.currentActionMap.FindAction("Ready").performed -= OnPlayerReady;
+        _playerInput.currentActionMap.FindAction("Leave").performed -= OnLeavePressed;
+    }
 }
