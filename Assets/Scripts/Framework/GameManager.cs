@@ -49,6 +49,7 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator LaunchMatch()
     {
+        GetComponent<PlayerInputManager>().DisableJoining();
         countDown.gameObject.SetActive(true);
 
         //DisablePlayer Input

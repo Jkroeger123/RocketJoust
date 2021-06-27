@@ -27,12 +27,12 @@ public class BattleManager : MonoBehaviour
 
     public void StartMatch(List<GameObject> players)
     {
-        _players = players;
+        _players = new List<GameObject>(players);
 
         for (int i = 0; i < _players.Count; i++)
         {
-            livesLeft.Add(players[i], 3);
-            GameObject spawnPref = Instantiate(playerPrefab, players[i].transform);
+            livesLeft.Add(_players[i], 3);
+            GameObject spawnPref = Instantiate(playerPrefab, _players[i].transform);
             spawnPref.transform.position = spawnPoints.transform.GetChild(i).position;
             camGroup.AddMember(spawnPref.transform, 1, 0);
         }
@@ -72,12 +72,13 @@ public class BattleManager : MonoBehaviour
     private IEnumerator Restart () {
         yield return new WaitForSeconds(1f);
 
-        Destroy(GameObject.Find("LobbyManager").gameObject);
-
-        foreach (GameObject player in _players) {
-            Destroy(player, 1f);
+        foreach (GameObject player in _players)
+        {
+            Destroy(player);
         }
         
+        Destroy(GameObject.Find("LobbyManager").gameObject);
+
         SceneManager.LoadScene("Lobby");
     }
 
