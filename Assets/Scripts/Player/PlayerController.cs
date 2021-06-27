@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using DG.Tweening;
+using MoreMountains.Feedbacks;
 using TMPro;
 using Unity.Collections;
 using UnityEngine;
@@ -12,6 +13,8 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D _rb;
     private PlayerInputController _input;
 
+    public MMFeedbacks thrustFeedback;
+    
     public float _rotationSpeed = 250f; 
     public float velocityPerThrust = 1f, thrusterMaxVelocity = 10f; 
     public float rocketMaxVelocity = 30f, thoomTime = 0.5f, thoomSlowdownDuration = 1f;
@@ -47,6 +50,7 @@ public class PlayerController : MonoBehaviour
     private void OnThruster()
     {
         _rb.velocity += (Vector2)transform.up * velocityPerThrust;
+        thrustFeedback.PlayFeedbacks();
     }
 
     private void OnRocket() {
