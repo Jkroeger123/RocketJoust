@@ -76,8 +76,8 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("SampleScene", LoadSceneMode.Single);
     }
 
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
+        if (scene.name == "Lobby") return;
         //Find the Battle Manager and Initialize the game
         GameObject.FindWithTag("BattleManager").GetComponent<BattleManager>().StartMatch(players);
     }

@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     public float _rotationSpeed = 250f; 
     public float velocityPerThrust = 1f, thrusterMaxVelocity = 10f; 
     public float rocketMaxVelocity = 30f, thoomTime = 0.5f, thoomSlowdownDuration = 1f;
+    public float blastDuration;
     private float maxVelocity;
 
     private bool isThooming = false;
@@ -74,7 +75,7 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator ShowBlast () {
         SetBlastVisibility(true);
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(blastDuration);
         SetBlastVisibility(false);
     }
     
@@ -83,7 +84,7 @@ public class PlayerController : MonoBehaviour
     }
 
     private void SetBlastVisibility (bool b) { 
-        blast.GetComponent<SpriteRenderer>().enabled = b;
+        blast.SetActive(b);
     }
 
     private void OnDestroy () {
