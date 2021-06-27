@@ -69,7 +69,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnRocket() {
         if (isThooming) return;
-        SetIsThooming(true);
+        isThooming = true;
         maxVelocity = rocketMaxVelocity;
         StartCoroutine(ShowBlast());
         StartCoroutine(Thoom());
@@ -98,17 +98,13 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(thoomTime);
         Tween tween = DOTween.To(() => 
                 maxVelocity, value => maxVelocity = value, thrusterMaxVelocity, thoomSlowdownDuration)
-            .OnComplete(() => SetIsThooming(false));
+            .OnComplete(() => isThooming = false);
     }
 
     private IEnumerator ShowBlast () {
         SetBlastVisibility(true);
         yield return new WaitForSeconds(blastDuration);
         SetBlastVisibility(false);
-    }
-    
-    private void SetIsThooming (bool b) {
-        isThooming = b;
     }
 
     private void SetBlastVisibility (bool b) { 
