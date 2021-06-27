@@ -19,6 +19,8 @@ public class PlayerController : MonoBehaviour
 
     private bool isThooming = false;
 
+    public GameObject blast;
+
     private void Awake()
     {
         _rb = gameObject.GetComponent<Rigidbody2D>();
@@ -26,6 +28,10 @@ public class PlayerController : MonoBehaviour
         _input.onRocketPress += OnRocket;
         _input.onThrusterPress += OnThruster;
         maxVelocity = thrusterMaxVelocity;
+    }
+
+    private void Start () {
+        SetBlastVisibility(false);
     }
 
     
@@ -39,20 +45,14 @@ public class PlayerController : MonoBehaviour
 
     private void OnThruster()
     {
-        //little poof
-        //tiny velocity increase on every press
-        //low velocity cieling
-        //if (_rb.velocity )
         _rb.velocity += (Vector2)transform.up * velocityPerThrust;
     }
 
     private void OnRocket() {
         if (isThooming) return;
-        //big thoom
-        //immmediately hits max velocity
-        //launches attack
         SetIsThooming(true);
         maxVelocity = rocketMaxVelocity;
+        StartCoroutine(ShowBlast());
         StartCoroutine(Thoom());
     }
 
@@ -71,9 +71,19 @@ public class PlayerController : MonoBehaviour
                 maxVelocity, value => maxVelocity = value, thrusterMaxVelocity, thoomSlowdownDuration)
             .OnComplete(() => SetIsThooming(false));
     }
+
+    private IEnumerator ShowBlast () {
+        SetBlastVisibility(true);
+        yield return new WaitForSeconds(0.2f);
+        SetBlastVisibility(false);
+    }
     
     private void SetIsThooming (bool b) {
         isThooming = b;
+    }
+
+    private void SetBlastVisibility (bool b) { 
+        blast.GetComponent<SpriteRenderer>().enabled = b;
     }
 
     private void OnDestroy () {
