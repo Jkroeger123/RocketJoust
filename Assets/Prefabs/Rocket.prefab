@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8488265178853418283}
   - component: {fileID: 8488265178853418279}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: arm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 8488265179660566752}
   - component: {fileID: 8488265179660566780}
   - component: {fileID: 8488265179660566782}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Rocket
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -199,11 +199,11 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 079cfd7ef2be6de43bc41a040f567695, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &8488265179660566780
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -216,6 +216,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 048ef5c73fab78b46973b11f985175ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _rotationSpeed: 250
+  velocityPerThrust: 1
+  thrusterMaxVelocity: 10
+  rocketMaxVelocity: 30
+  thoomTime: 0.5
+  thoomSlowdownDuration: 1
 --- !u!114 &8488265179660566782
 MonoBehaviour:
   m_ObjectHideFlags: 0
