@@ -21,7 +21,8 @@ public class PlayerController : MonoBehaviour
     public float blastDuration;
     private float maxVelocity;
 
-    private bool isThooming = false;
+    [NonSerialized]
+    public bool isThooming = false;
 
     public GameObject blast;
 
