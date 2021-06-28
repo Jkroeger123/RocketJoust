@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/TestMovement.unity
+    guid: 92dd89bf3425f6b458ead1b4b35d062e
   m_configObjects: {}

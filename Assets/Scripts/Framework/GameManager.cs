@@ -74,7 +74,7 @@ public class GameManager : MonoBehaviour
             Destroy(player.transform.GetChild(0).gameObject);
         }
         
-        SceneManager.LoadScene("SampleScene", LoadSceneMode.Single);
+        SceneManager.LoadScene("TestMovement", LoadSceneMode.Single);
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
