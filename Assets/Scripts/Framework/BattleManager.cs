@@ -22,7 +22,7 @@ public class BattleManager : MonoBehaviour
     private void Awake() {
         livesLeft = new Dictionary<GameObject, int>();
         camGroup = camGroupObj.GetComponent<CinemachineTargetGroup>();
-        PlayerDeathManager.onDeath += OnDeath;
+        PlayerController.ONDeath += OnDeath;
     }
 
     public void StartMatch(List<GameObject> players)
@@ -50,6 +50,7 @@ public class BattleManager : MonoBehaviour
     }
 
     public void OnDeath (GameObject player) {
+        
         livesLeft[player.transform.parent.gameObject] = livesLeft[player.transform.parent.gameObject] - 1;
         
         CheckGameOver();

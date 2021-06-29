@@ -6,6 +6,7 @@ TagManager:
   tags:
   - BattleManager
   - Projectile
+  - Beam
   layers:
   - Default
   - TransparentFX

@@ -29,10 +29,10 @@ public class PlayerInputController : MonoBehaviour
 
     public delegate void OnPress();
 
-    public event OnPress onThrusterPress;
-    public event OnPress onRocketPress;
+    public event OnPress ONThrusterPress;
+    public event OnPress ONRocketPress;
     
-    private void Start()
+    private void Awake()
     {
         _playerInput = GetComponentInParent<PlayerInput>();
         
@@ -57,10 +57,10 @@ public class PlayerInputController : MonoBehaviour
         rotateLeft.started += context => rotateLeftPressed = true;
         rotateLeft.canceled += context => rotateLeftPressed = false;
 
-        thrusterPress.performed += context => onThrusterPress?.Invoke();
-        rocketPress.performed += context => onRocketPress?.Invoke();
+        thrusterPress.performed += context => ONThrusterPress?.Invoke();
+        rocketPress.performed += context => ONRocketPress?.Invoke();
     }
-    
-    
+
+
 
 }

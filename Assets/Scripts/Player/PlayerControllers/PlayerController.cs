@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
 
     public MMFeedbacks thrustFeedback;
     
-    public float _rotationSpeed = 250f; 
+    public float rotationSpeed = 250f; 
     public float velocityPerThrust = 1f, thrusterMaxVelocity = 10f; 
     public float rocketMaxVelocity = 30f, thoomTime = 0.5f, thoomSlowdownDuration = 1f;
     public float blastDuration;
@@ -25,13 +25,15 @@ public class PlayerController : MonoBehaviour
     public bool isThooming = false;
 
     public GameObject blast;
+    
+    public static event Action<GameObject> ONDeath;
 
     private void Awake()
     {
         _rb = gameObject.GetComponent<Rigidbody2D>();
         _input = gameObject.GetComponent<PlayerInputController>();
-        _input.onRocketPress += OnRocket;
-        _input.onThrusterPress += OnThruster;
+        _input.ONRocketPress += OnRocket;
+        _input.ONThrusterPress += OnThruster;
         maxVelocity = thrusterMaxVelocity;
     }
 
@@ -77,21 +79,21 @@ public class PlayerController : MonoBehaviour
     }
 
     private void RotateRight () {
-        _rb.rotation -= _rotationSpeed * Time.deltaTime;
+        _rb.rotation -= rotationSpeed * Time.deltaTime;
     }
 
     private void RotateRightSuper()
     {
-        _rb.rotation -= _rotationSpeed * 1.5f * Time.deltaTime;
+        _rb.rotation -= rotationSpeed * 1.5f * Time.deltaTime;
     }
 
     private void RotateLeft () {
-        _rb.rotation += _rotationSpeed * Time.deltaTime;
+        _rb.rotation += rotationSpeed * Time.deltaTime;
     }
 
     private void RotateLeftSuper()
     {
-        _rb.rotation += _rotationSpeed * 1.5f * Time.deltaTime;
+        _rb.rotation += rotationSpeed * 1.5f * Time.deltaTime;
     }
 
     private IEnumerator Thoom() {
@@ -113,7 +115,14 @@ public class PlayerController : MonoBehaviour
     }
 
     private void OnDestroy () {
-        _input.onRocketPress -= OnRocket;
-        _input.onThrusterPress -= OnThruster;
+        _input.ONRocketPress -= OnRocket;
+        _input.ONThrusterPress -= OnThruster;
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.transform.IsChildOf(transform)) return;
+
+        if (other.CompareTag("Beam")) ONDeath?.Invoke(gameObject);
     }
 }

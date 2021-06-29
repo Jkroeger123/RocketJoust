@@ -8,7 +8,7 @@ public class GlobalJuiceHandler : MonoBehaviour {
     public MMFeedbacks _deathFeedbacks;
     
     void Start() {
-	    PlayerDeathManager.onDeath += o => _deathFeedbacks.PlayFeedbacks();
+	    PlayerController.ONDeath += o => _deathFeedbacks.PlayFeedbacks();
     }
 
 }

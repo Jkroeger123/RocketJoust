@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerModule : MonoBehaviour
+public class PlayerLobbyUI : MonoBehaviour
 {
 
     public GameObject readyText;
@@ -10,6 +10,11 @@ public class PlayerModule : MonoBehaviour
     public void SetReadyText(bool isReady)
     {
         readyText.SetActive(isReady);
+    }
+
+    public void ResetUI()
+    {
+        readyText.SetActive(false);
     }
 
 }

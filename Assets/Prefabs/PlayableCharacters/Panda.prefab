@@ -4823,10 +4823,9 @@ GameObject:
   - component: {fileID: 1563609764813925343}
   - component: {fileID: 6532233572737256443}
   - component: {fileID: 7854237559530457513}
-  - component: {fileID: 5942235004697061858}
   m_Layer: 10
   m_Name: blast
-  m_TagString: Untagged
+  m_TagString: Beam
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4921,18 +4920,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 0.9392284}
   m_EdgeRadius: 0
---- !u!114 &5942235004697061858
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8276481583456994552}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31d572bd8786e234f80d5153d45ab599, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &8488265179660566753
 GameObject:
   m_ObjectHideFlags: 0
@@ -4949,9 +4936,9 @@ GameObject:
   - component: {fileID: 3859925727746105307}
   - component: {fileID: 194154244}
   - component: {fileID: 194154245}
-  - component: {fileID: 163661486040158283}
+  - component: {fileID: 8476307736840768064}
   m_Layer: 10
-  m_Name: Mochi-chan
+  m_Name: Panda
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4970,7 +4957,7 @@ Transform:
   m_Children:
   - {fileID: 1563609764813925343}
   - {fileID: 1662727073}
-  - {fileID: 70716840068838922}
+  - {fileID: 4406779059591446998}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5013,8 +5000,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 7
-  m_Sprite: {fileID: 6548021670635184853, guid: acf745d89f2755c43a1e258b864c332e,
-    type: 3}
+  m_Sprite: {fileID: 21300000, guid: 064fba34a17ef1e428f8c3cc7f923dbf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -5059,7 +5045,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thrustFeedback: {fileID: 194154245}
-  _rotationSpeed: 450
+  rotationSpeed: 250
   velocityPerThrust: 10
   thrusterMaxVelocity: 32
   rocketMaxVelocity: 65
@@ -5171,7 +5157,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
   DebugActive: 0
---- !u!60 &163661486040158283
+--- !u!60 &8476307736840768064
 PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5186,9 +5172,9 @@ PolygonCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 5, y: 3.8333333}
+    border: {x: 3.3333335, y: 2.6666667, z: 8.666667, w: 3}
+    pivot: {x: 0.33399737, y: 0.45794603}
+    oldSize: {x: 16, y: 10.666667}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -5196,17 +5182,15 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.73116624, y: 1.7707024}
-      - {x: -1.5750269, y: 1.1333812}
-      - {x: -2.264452, y: 0.14270961}
-      - {x: -2.3614073, y: -0.9807147}
-      - {x: -1.9248224, y: -1.3123536}
-      - {x: 2.0552278, y: -1.3123528}
-      - {x: 2.3740034, y: -0.97106063}
-      - {x: 2.2577252, y: 0.13890588}
-      - {x: 1.402939, y: 1.3355019}
-      - {x: 0.6865876, y: 1.7776923}
---- !u!1001 &6518535571287423398
+    - - {x: 1.2021583, y: 2.3121812}
+      - {x: -1.1097484, y: 2.2673595}
+      - {x: -1.5172716, y: 1.5044786}
+      - {x: -1.1887169, y: -0.090694904}
+      - {x: -1.1916268, y: -1.0387431}
+      - {x: -1.1791598, y: -1.7671324}
+      - {x: 0.5585723, y: -1.8307239}
+      - {x: 1.0901028, y: -1.5019033}
+--- !u!1001 &7468453842492935802
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -5226,12 +5210,12 @@ PrefabInstance:
     - target: {fileID: 6524942937168891820, guid: f39a52c694ced334991d68df7af35ec7,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.018000007
       objectReference: {fileID: 0}
     - target: {fileID: 6524942937168891820, guid: f39a52c694ced334991d68df7af35ec7,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.087
+      value: 0.988
       objectReference: {fileID: 0}
     - target: {fileID: 6524942937168891820, guid: f39a52c694ced334991d68df7af35ec7,
         type: 3}
@@ -5273,11 +5257,19 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 7537393462557443759, guid: f39a52c694ced334991d68df7af35ec7,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: a3d709807cf4e744e93e82521f0829ff,
+        type: 3}
+    m_RemovedComponents:
+    - {fileID: 2469261321624670709, guid: f39a52c694ced334991d68df7af35ec7, type: 3}
+    - {fileID: 87132185592154891, guid: f39a52c694ced334991d68df7af35ec7, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: f39a52c694ced334991d68df7af35ec7, type: 3}
---- !u!4 &70716840068838922 stripped
+--- !u!4 &4406779059591446998 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6524942937168891820, guid: f39a52c694ced334991d68df7af35ec7,
     type: 3}
-  m_PrefabInstance: {fileID: 6518535571287423398}
+  m_PrefabInstance: {fileID: 7468453842492935802}
   m_PrefabAsset: {fileID: 0}
