@@ -481,7 +481,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 48.955303, y: -18.507687, z: 1.0014076}
+  m_LocalPosition: {x: 48.904606, y: -18.507687, z: 1.0014076}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1129859257}
@@ -1028,7 +1028,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   camGroupObj: {fileID: 796864476}
-  playerPrefab: {fileID: 8488265179660566753, guid: 1efbe4cee72ca2643b9d4ddd84b1662c,
+  playerPrefab: {fileID: 8488265179660566753, guid: e01b8766499c1d146b679b4e0bc0002e,
     type: 3}
   spawnPoints: {fileID: 1243826760}
 --- !u!4 &980247133

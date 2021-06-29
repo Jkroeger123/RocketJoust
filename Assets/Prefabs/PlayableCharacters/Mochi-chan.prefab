@@ -4933,10 +4933,11 @@ GameObject:
   - component: {fileID: 8488265179660566752}
   - component: {fileID: 8488265179660566780}
   - component: {fileID: 8488265179660566782}
-  - component: {fileID: 3859925727746105307}
   - component: {fileID: 194154244}
   - component: {fileID: 194154245}
   - component: {fileID: 163661486040158283}
+  - component: {fileID: 4231443603613218921}
+  - component: {fileID: 2368027701225386585}
   m_Layer: 10
   m_Name: Mochi-chan
   m_TagString: Player
@@ -5045,11 +5046,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 048ef5c73fab78b46973b11f985175ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thrustFeedback: {fileID: 194154245}
   rotationSpeed: 250
+  superRotationMultiplier: 1.5
   velocityPerThrust: 10
   thrusterMaxVelocity: 32
-  rocketMaxVelocity: 65
+  thoomMaxVelocity: 65
   thoomTime: 0.5
   thoomSlowdownDuration: 0.3
   blastDuration: 0.025
@@ -5064,18 +5065,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 25ce3e24ed45abe488c1ac908adfbccf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &3859925727746105307
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8488265179660566753}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bde4b9a4ded8c6e4d8a23092517aaf95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &194154244
@@ -5193,6 +5182,40 @@ PolygonCollider2D:
       - {x: 2.2577252, y: 0.13890588}
       - {x: 1.402939, y: 1.3355019}
       - {x: 0.6865876, y: 1.7776923}
+--- !u!114 &4231443603613218921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8488265179660566753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16fdfd7771474faabccdbe692b295c58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thrustFeedback: {fileID: 194154245}
+--- !u!114 &2368027701225386585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8488265179660566753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 048ef5c73fab78b46973b11f985175ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: 250
+  superRotationMultiplier: 1.5
+  velocityPerThrust: 1
+  thrusterMaxVelocity: 10
+  thoomMaxVelocity: 65
+  thoomTime: 0.5
+  thoomSlowdownDuration: 1
+  blastDuration: 0
+  blast: {fileID: 0}
 --- !u!1001 &6518535571287423398
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -7,43 +7,57 @@ using MoreMountains.Feedbacks;
 using TMPro;
 using Unity.Collections;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody2D _rb;
     private PlayerInputController _input;
-
-    public MMFeedbacks thrustFeedback;
     
-    public float rotationSpeed = 250f; 
-    public float velocityPerThrust = 1f, thrusterMaxVelocity = 10f; 
-    public float rocketMaxVelocity = 30f, thoomTime = 0.5f, thoomSlowdownDuration = 1f;
-    public float blastDuration;
     private float maxVelocity;
 
+    [Header("Rotation")]
+    public float rotationSpeed = 250f; 
+    public float superRotationMultiplier = 1.5f;
+    [Header("Thrust")]
+    public float velocityPerThrust = 1f;
+    public float thrusterMaxVelocity = 10f;
+    [Header("Blast")]
+    public float thoomMaxVelocity = 65f;
+    public float thoomTime = 0.5f; 
+    public float thoomSlowdownDuration = 1f;
+    public float blastDuration;
     [NonSerialized]
     public bool isThooming = false;
-
+    
     public GameObject blast;
     
+    
     public static event Action<GameObject> ONDeath;
+    public static event Action<GameObject> ONThrust;
+    public static event Action<GameObject> ONBlast; 
 
     private void Awake()
     {
         _rb = gameObject.GetComponent<Rigidbody2D>();
         _input = gameObject.GetComponent<PlayerInputController>();
-        _input.ONRocketPress += OnRocket;
-        _input.ONThrusterPress += OnThruster;
+        _input.ONRocketPress += OnBlast;
+        _input.ONThrusterPress += OnThrust;
         maxVelocity = thrusterMaxVelocity;
     }
 
     private void Start () {
-        SetBlastVisibility(false);
+        SetBlastActive(false);
     }
-
     
     private void Update()
     {
+        GetRotationInput();
+        _rb.velocity = Vector2.ClampMagnitude(_rb.velocity, maxVelocity);
+    }
+
+    #region Rotation
+    private void GetRotationInput () {
         if (_input.rotateRightSuperPressed)
         {
             RotateRightSuper();
@@ -59,32 +73,14 @@ public class PlayerController : MonoBehaviour
         {
             RotateLeft();
         }
-
-        //clamp velocity to max velocity
-        _rb.velocity = Vector2.ClampMagnitude(_rb.velocity, maxVelocity);
     }
-
-    private void OnThruster()
-    {
-        _rb.velocity += (Vector2)transform.up * velocityPerThrust;
-        thrustFeedback.PlayFeedbacks();
-    }
-
-    private void OnRocket() {
-        if (isThooming) return;
-        isThooming = true;
-        maxVelocity = rocketMaxVelocity;
-        StartCoroutine(ShowBlast());
-        StartCoroutine(Thoom());
-    }
-
+    
     private void RotateRight () {
         _rb.rotation -= rotationSpeed * Time.deltaTime;
     }
 
-    private void RotateRightSuper()
-    {
-        _rb.rotation -= rotationSpeed * 1.5f * Time.deltaTime;
+    private void RotateRightSuper() {
+        _rb.rotation -= rotationSpeed * superRotationMultiplier * Time.deltaTime;
     }
 
     private void RotateLeft () {
@@ -93,36 +89,54 @@ public class PlayerController : MonoBehaviour
 
     private void RotateLeftSuper()
     {
-        _rb.rotation += rotationSpeed * 1.5f * Time.deltaTime;
+        _rb.rotation += rotationSpeed * superRotationMultiplier * Time.deltaTime;
+    }
+    
+    #endregion
+
+    #region Action
+    private void OnThrust()
+    {
+        _rb.velocity += (Vector2)transform.up * velocityPerThrust;
+        ONThrust?.Invoke(gameObject);
     }
 
+    private void OnBlast() {
+        if (isThooming) return;
+        isThooming = true;
+        maxVelocity = thoomMaxVelocity;
+        StartCoroutine(EnableBlast());
+        StartCoroutine(Thoom());
+    }
+
+    private IEnumerator EnableBlast () {
+        SetBlastActive(true);
+        yield return new WaitForSeconds(blastDuration);
+        SetBlastActive(false);
+    }
+    
     private IEnumerator Thoom() {
-        _rb.velocity = transform.up * rocketMaxVelocity;
+        _rb.velocity = transform.up * thoomMaxVelocity;
         yield return new WaitForSeconds(thoomTime);
         Tween tween = DOTween.To(() => 
                 maxVelocity, value => maxVelocity = value, thrusterMaxVelocity, thoomSlowdownDuration)
             .OnComplete(() => isThooming = false);
     }
-
-    private IEnumerator ShowBlast () {
-        SetBlastVisibility(true);
-        yield return new WaitForSeconds(blastDuration);
-        SetBlastVisibility(false);
-    }
-
-    private void SetBlastVisibility (bool b) { 
+    
+    private void SetBlastActive (bool b) { 
         blast.SetActive(b);
     }
-
-    private void OnDestroy () {
-        _input.ONRocketPress -= OnRocket;
-        _input.ONThrusterPress -= OnThruster;
-    }
+    #endregion
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.transform.IsChildOf(transform)) return;
 
         if (other.CompareTag("Beam")) ONDeath?.Invoke(gameObject);
+    }
+    
+    private void OnDestroy () {
+        _input.ONRocketPress -= OnBlast;
+        _input.ONThrusterPress -= OnThrust;
     }
 }
