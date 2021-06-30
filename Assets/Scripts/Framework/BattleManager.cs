@@ -34,7 +34,7 @@ public class BattleManager : MonoBehaviour
             livesLeft.Add(_players[i], 3);
             GameObject spawnPref = Instantiate(playerPrefab, _players[i].transform);
             spawnPref.transform.position = spawnPoints.transform.GetChild(i).position;
-            camGroup.AddMember(spawnPref.transform, 1, 0);
+            camGroup.AddMember(spawnPref.transform.GetChild(2), 1, 0);
         }
 
     }
@@ -51,22 +51,22 @@ public class BattleManager : MonoBehaviour
 
     public void OnDeath (GameObject player) {
         
-        livesLeft[player.transform.parent.gameObject] = livesLeft[player.transform.parent.gameObject] - 1;
+        livesLeft[player.transform.parent.parent.gameObject] = livesLeft[player.transform.parent.parent.gameObject] - 1;
         
         CheckGameOver();
         
         if (livesLeft[player.transform.parent.gameObject] > 0) {
-            StartCoroutine(Respawn(player.transform.parent.gameObject));
+            StartCoroutine(Respawn(player.transform.parent.parent.gameObject));
         }
         
-        Destroy(player);
+        Destroy(player.transform.parent);
     }
 
     private IEnumerator Respawn (GameObject player) {
         yield return new WaitForSeconds(2f);
         GameObject spawnPref = Instantiate(playerPrefab, player.transform);
         spawnPref.transform.position = spawnPoints.transform.GetChild(0).position;
-        camGroup.AddMember(spawnPref.transform, 1, 0);
+        camGroup.AddMember(spawnPref.transform.GetChild(2), 1, 0);
     }
 
 
