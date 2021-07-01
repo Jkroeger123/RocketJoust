@@ -4812,6 +4812,36 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!1 &5226975458676289476
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8649406157909444533}
+  m_Layer: 0
+  m_Name: ItemSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8649406157909444533
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5226975458676289476}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.003, y: 1.97, z: -1.0843275}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8488265179660566781}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8276481583456994552
 GameObject:
   m_ObjectHideFlags: 0
@@ -4937,7 +4967,7 @@ GameObject:
   - component: {fileID: 194154245}
   - component: {fileID: 163661486040158283}
   - component: {fileID: 4231443603613218921}
-  - component: {fileID: 2368027701225386585}
+  - component: {fileID: -8280035460242545647}
   m_Layer: 10
   m_Name: Mochi-chan
   m_TagString: Player
@@ -4959,6 +4989,7 @@ Transform:
   - {fileID: 1563609764813925343}
   - {fileID: 1662727073}
   - {fileID: 70716840068838922}
+  - {fileID: 8649406157909444533}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5195,7 +5226,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thrustFeedback: {fileID: 194154245}
---- !u!114 &2368027701225386585
+--- !u!114 &-8280035460242545647
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5204,18 +5235,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 8488265179660566753}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 048ef5c73fab78b46973b11f985175ef, type: 3}
+  m_Script: {fileID: 11500000, guid: c2b77ec7dd11c89488e603ade790c9c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeed: 250
-  superRotationMultiplier: 1.5
-  velocityPerThrust: 1
-  thrusterMaxVelocity: 10
-  thoomMaxVelocity: 65
-  thoomTime: 0.5
-  thoomSlowdownDuration: 1
-  blastDuration: 0
-  blast: {fileID: 0}
+  activeItem: {fileID: 0}
+  itemSpawner: {fileID: 5226975458676289476}
 --- !u!1001 &6518535571287423398
 PrefabInstance:
   m_ObjectHideFlags: 0

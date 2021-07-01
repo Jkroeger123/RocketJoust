@@ -14,6 +14,7 @@ public class PlayerInputController : MonoBehaviour
     private InputAction rotateLeftSuper;
     private InputAction thrusterPress;
     private InputAction rocketPress;
+    private InputAction useItem;
 
     [NonSerialized]
     public bool rotateRightPressed;
@@ -31,6 +32,7 @@ public class PlayerInputController : MonoBehaviour
 
     public event OnPress ONThrusterPress;
     public event OnPress ONRocketPress;
+    public event OnPress ONUseItem;
     
     private void Awake()
     {
@@ -44,6 +46,7 @@ public class PlayerInputController : MonoBehaviour
         rocketPress = _playerInput.currentActionMap.FindAction("Rocket");
         rotateRightSuper = _playerInput.currentActionMap.FindAction("RotateRightSuper");
         rotateLeftSuper = _playerInput.currentActionMap.FindAction("RotateLeftSuper");
+        useItem = _playerInput.currentActionMap.FindAction("UseItem");
         
         rotateRight.started += context => rotateRightPressed = true;
         rotateRight.canceled += context => rotateRightPressed = false;
@@ -59,6 +62,8 @@ public class PlayerInputController : MonoBehaviour
 
         thrusterPress.performed += context => ONThrusterPress?.Invoke();
         rocketPress.performed += context => ONRocketPress?.Invoke();
+
+        useItem.performed += context => ONUseItem?.Invoke();
     }
 
 
