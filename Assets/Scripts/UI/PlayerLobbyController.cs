@@ -6,12 +6,14 @@ using UnityEngine.InputSystem;
 
 public class PlayerLobbyController : MonoBehaviour
 {
+    
+    public GameObject uiModule;
+    
     public bool isReady;
-    
+
+    private Player _player;
     private GameManager _gameManager;
-    
     private PlayerInput _playerInput;
-    
     private PlayerLobbyUI _lobbyUI;
     
     
@@ -19,24 +21,21 @@ public class PlayerLobbyController : MonoBehaviour
     {
         _playerInput = GetComponentInParent<PlayerInput>();
         _gameManager = GameObject.Find("LobbyManager").GetComponent<GameManager>();
+        _player = transform.parent.GetComponent<Player>();
         
-        _lobbyUI = FindAvailablePlayerSlot();
+        _lobbyUI = CreatePlayerSlot();
         _lobbyUI.gameObject.SetActive(true);
 
         InitializeUIControls();
     }
 
-    private PlayerLobbyUI FindAvailablePlayerSlot()
+    private PlayerLobbyUI CreatePlayerSlot()
     {
-        foreach (Transform playerSlot in GameObject.Find("PlayerSlots").transform)
-        {
-            if (!playerSlot.GetChild(0).gameObject.activeInHierarchy)
-            {
-                return playerSlot.GetChild(0).gameObject.GetComponent<PlayerLobbyUI>();
-            }
-        }
+        GameObject g = Instantiate(uiModule, GameObject.Find("PlayerSlots").transform);
 
-        return null;
+        PlayerLobbyUI ui = g.GetComponent<PlayerLobbyUI>();
+        ui.SetPlayerNumber(_player.PlayerID);
+        return ui;
     }
 
     public void OnMatchStarting() => TerminateUIControls();
@@ -60,7 +59,7 @@ public class PlayerLobbyController : MonoBehaviour
     private void OnLeavePressed(InputAction.CallbackContext context)
     {
         _lobbyUI.ResetUI();
-        _lobbyUI.gameObject.SetActive(false);
+        Destroy(_lobbyUI.gameObject);
         
         TerminateUIControls();
         Destroy(transform.parent.gameObject, 0.3f);   
