@@ -35,7 +35,11 @@ public class PlayerInputController : MonoBehaviour
     private void Awake()
     {
         _playerInput = GetComponentInParent<PlayerInput>();
-        
+        InitializeGameplayControls();
+    }
+
+    public void InitializeGameplayControls()
+    {
         _playerInput.SwitchCurrentActionMap("Gameplay");
         
         rotateRight = _playerInput.currentActionMap.FindAction("RotateRight");
@@ -61,6 +65,22 @@ public class PlayerInputController : MonoBehaviour
         rocketPress.performed += context => ONRocketPress?.Invoke();
     }
 
+    public void InitializeMashControls(Action<InputAction.CallbackContext> callback)
+    {
+        _playerInput.SwitchCurrentActionMap("Mash");
+        
+        InputAction mash = _playerInput.currentActionMap.FindAction("Mash");
 
+        mash.performed += callback;
+    }
+
+    public void DestroyMashControls(Action<InputAction.CallbackContext> callback)
+    {
+        _playerInput.SwitchCurrentActionMap("Mash");
+        
+        InputAction mash = _playerInput.currentActionMap.FindAction("Mash");
+
+        mash.performed -= callback;
+    }
 
 }

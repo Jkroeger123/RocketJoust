@@ -234,6 +234,44 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Mash",
+            "id": "a3f0a10c-93f7-4ecc-bba7-5eda35e93aa7",
+            "actions": [
+                {
+                    "name": "Mash",
+                    "type": "Button",
+                    "id": "f828a6d1-4fb1-4ab1-ae26-2975478c397f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "268103a5-7b82-43f8-9fdd-652679553423",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Mash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0c495011-4cd8-431b-9a32-27bb72abc8b2",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Mash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [
