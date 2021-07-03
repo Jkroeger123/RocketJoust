@@ -354,6 +354,8 @@ MonoBehaviour:
   thrustParticle: {fileID: 672447870050597970, guid: 143b77b83633f0a43bdd7efd16387e02,
     type: 3}
   thrustLocation: {fileID: 1113991753573773971}
+  deathParticle: {fileID: 330353437906517724, guid: b09e94e47a3f98743aebfe708d207ee6,
+    type: 3}
   blastParticle: {fileID: 2683320221260377653}
 --- !u!1001 &6518535571287423398
 PrefabInstance:

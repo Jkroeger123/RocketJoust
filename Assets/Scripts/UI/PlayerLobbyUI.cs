@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,6 +10,7 @@ public class PlayerLobbyUI : MonoBehaviour
 
     public GameObject readyText;
     public Text playerText;
+
     
     public void SetReadyText(bool isReady)
     {
