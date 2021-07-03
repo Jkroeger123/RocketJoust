@@ -24,10 +24,12 @@ public class PlayerItemManager : MonoBehaviour {
     }
 
     private void SetItem (GameObject itemPrefab) {
-        activeItem = itemPrefab;
+        activeItem = Instantiate(itemPrefab, itemSpawner.transform);
+        activeItem.transform.parent = gameObject.transform;
+        activeItem.SetActive(false);
     }
 
     private void UseItem () {
-        activeItem.gameObject.GetComponent<IUseable>().Use(itemSpawner);
+        activeItem.gameObject.GetComponent<IUseable>().Use(gameObject);
     }
 }

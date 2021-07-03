@@ -119,8 +119,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.02, y: 0.01}
-  m_Size: {x: 2.27, y: 7.4}
+  m_Offset: {x: -0.019999921, y: -0.06039834}
+  m_Size: {x: 1.5660177, y: 5.100323}
   m_Direction: 0
 --- !u!114 &-571934575243007290
 MonoBehaviour:
@@ -136,3 +136,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rb: {fileID: 3962090344548926537}
   missileSpeed: 5
+  rotateSpeed: 100
+  angleThreshold: 180

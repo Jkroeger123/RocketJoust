@@ -4,5 +4,5 @@ using UnityEngine;
 
 interface IUseable {
 
-	void Use (GameObject userMissileSpawner);
+	void Use (GameObject user);
 }
