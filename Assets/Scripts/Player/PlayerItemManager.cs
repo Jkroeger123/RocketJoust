@@ -7,7 +7,7 @@ public class PlayerItemManager : MonoBehaviour {
     public GameObject activeItem;
     private PlayerInputController _input;
     public GameObject itemSpawner;
-    
+
     void Start() {
         _input = gameObject.GetComponent<PlayerInputController>();
         _input.ONUseItem += UseItem;
@@ -18,9 +18,10 @@ public class PlayerItemManager : MonoBehaviour {
         
     }
 
-    public void AttemptSetItem (GameObject itemPrefab) {
-        if (activeItem != null) return;
+    public bool CanSetItem (GameObject itemPrefab) {
+        if (activeItem != null) return false;
         SetItem(itemPrefab);
+        return true;
     }
 
     private void SetItem (GameObject itemPrefab) {
@@ -30,6 +31,8 @@ public class PlayerItemManager : MonoBehaviour {
     }
 
     private void UseItem () {
+        if (activeItem == null) return;
         activeItem.gameObject.GetComponent<IUseable>().Use(gameObject);
+        activeItem = null;
     }
 }

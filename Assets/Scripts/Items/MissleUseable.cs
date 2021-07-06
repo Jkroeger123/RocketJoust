@@ -43,6 +43,7 @@ public class MissleUseable : MonoBehaviour, IUseable {
     private void OnCollisionEnter2D (Collision2D other) {
         if (other.gameObject == user) return;
         Destroy(gameObject);
+        //this is where we'll activate the juice
         Debug.Log("Boom!");
     }
 

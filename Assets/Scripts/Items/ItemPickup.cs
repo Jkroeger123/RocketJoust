@@ -10,7 +10,9 @@ public class ItemPickup : MonoBehaviour
 
     private void OnCollisionEnter2D (Collision2D other) {
         if (!other.gameObject.CompareTag("Player")) return;
-        other.gameObject.GetComponent<PlayerItemManager>().AttemptSetItem(itemPrefab);
-        Destroy(gameObject);
+        //calls attempt set item. Also checks if it is possible before destroying pickup
+        if (other.gameObject.GetComponent<PlayerItemManager>().CanSetItem(itemPrefab)) {
+            Destroy(gameObject);
+        }
     }
 }
