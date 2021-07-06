@@ -186,6 +186,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Nav",
+                    "type": "Value",
+                    "id": "154e53e7-e95a-41b6-9207-04288c6cb3ce",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -230,6 +238,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Ready",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "de6736c4-ec54-4840-88cd-a2983e64f25c",
+                    "path": "<Gamepad>/dpad",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Nav",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d868a374-884b-4754-92bf-9dce089fbacf",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Nav",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
