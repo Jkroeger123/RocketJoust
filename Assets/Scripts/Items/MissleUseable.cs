@@ -42,9 +42,13 @@ public class MissleUseable : MonoBehaviour, IUseable {
 
     private void OnCollisionEnter2D (Collision2D other) {
         if (other.gameObject == user) return;
+
+        if (other.gameObject.CompareTag("Player"))
+        {
+            other.gameObject.AddComponent<PlayerMashHandler>().InitializeMash();
+        }
+
         Destroy(gameObject);
-        //this is where we'll activate the juice
-        Debug.Log("Boom!");
     }
 
     private void AcquireTarget () {
@@ -60,8 +64,6 @@ public class MissleUseable : MonoBehaviour, IUseable {
             } else {
                 currentTarget = null;
             }
-
-            Debug.Log(currentTarget, this);
         }
     }
     
