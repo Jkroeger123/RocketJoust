@@ -733,8 +733,7 @@ MonoBehaviour:
     type: 3}
   m_PointAction: {fileID: 0}
   m_MoveAction: {fileID: 0}
-  m_SubmitAction: {fileID: -8719746199549143880, guid: 215d8ce910b6fd94c994a5a1d1360d7d,
-    type: 3}
+  m_SubmitAction: {fileID: 0}
   m_CancelAction: {fileID: 0}
   m_LeftClickAction: {fileID: 0}
   m_MiddleClickAction: {fileID: 0}

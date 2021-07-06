@@ -30,7 +30,7 @@ Transform:
   - {fileID: 1563609764813925343}
   - {fileID: 2683320221260377651}
   m_Father: {fileID: 8488265179660566781}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1113991753573773971
 GameObject:
@@ -60,7 +60,37 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8488265179660566781}
-  m_RootOrder: 2
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7047669104634524570
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5966754151417034746}
+  m_Layer: 0
+  m_Name: ItemSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5966754151417034746
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7047669104634524570}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.003000021, y: 4.65, z: -1.0843275}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8488265179660566781}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8276481583456994552
 GameObject:
@@ -175,6 +205,7 @@ GameObject:
   - component: {fileID: 8488265179660566782}
   - component: {fileID: 163661486040158283}
   - component: {fileID: 4231443603613218921}
+  - component: {fileID: 836329142090310392}
   m_Layer: 10
   m_Name: Mochi-chan
   m_TagString: Player
@@ -193,6 +224,7 @@ Transform:
   m_LocalPosition: {x: 1.0334827, y: -1.4732999, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 5966754151417034746}
   - {fileID: 70716840068838922}
   - {fileID: 7198627007317336257}
   - {fileID: 6312871835254637627}
@@ -356,8 +388,21 @@ MonoBehaviour:
   thrustLocation: {fileID: 1113991753573773971}
   deathParticle: {fileID: 330353437906517724, guid: b09e94e47a3f98743aebfe708d207ee6,
     type: 3}
-  blastParticle: {fileID: 5572718182850788418, guid: 443dcf9a15dc246148876538173e3df4,
-    type: 3}
+  blastParticle: {fileID: 2683320221260377653}
+--- !u!114 &836329142090310392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8488265179660566753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2b77ec7dd11c89488e603ade790c9c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activeItem: {fileID: 0}
+  itemSpawner: {fileID: 7047669104634524570}
 --- !u!1001 &6518535571287423398
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -373,7 +418,7 @@ PrefabInstance:
     - target: {fileID: 6524942937168891820, guid: f39a52c694ced334991d68df7af35ec7,
         type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6524942937168891820, guid: f39a52c694ced334991d68df7af35ec7,
         type: 3}
@@ -521,6 +566,12 @@ PrefabInstance:
 --- !u!4 &2683320221260377651 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5572718182850788420, guid: 443dcf9a15dc246148876538173e3df4,
+    type: 3}
+  m_PrefabInstance: {fileID: 7524200164718187127}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &2683320221260377653 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 5572718182850788418, guid: 443dcf9a15dc246148876538173e3df4,
     type: 3}
   m_PrefabInstance: {fileID: 7524200164718187127}
   m_PrefabAsset: {fileID: 0}

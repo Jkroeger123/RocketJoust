@@ -8,12 +8,13 @@ public class PlayerInputController : MonoBehaviour
 {
     private PlayerInput _playerInput;
 
-    private InputAction rotateRight;
-    private InputAction rotateRightSuper;
-    private InputAction rotateLeft;
-    private InputAction rotateLeftSuper;
-    private InputAction thrusterPress;
-    private InputAction rocketPress;
+    private InputAction _rotateRight;
+    private InputAction _rotateRightSuper;
+    private InputAction _rotateLeft;
+    private InputAction _rotateLeftSuper;
+    private InputAction _thrusterPress;
+    private InputAction _rocketPress;
+    private InputAction _useItem;
 
     [NonSerialized]
     public bool rotateRightPressed;
@@ -31,6 +32,7 @@ public class PlayerInputController : MonoBehaviour
 
     public event OnPress ONThrusterPress;
     public event OnPress ONRocketPress;
+    public event OnPress ONUseItem;
     
     private void Awake()
     {
@@ -42,27 +44,30 @@ public class PlayerInputController : MonoBehaviour
     {
         _playerInput.SwitchCurrentActionMap("Gameplay");
         
-        rotateRight = _playerInput.currentActionMap.FindAction("RotateRight");
-        rotateLeft = _playerInput.currentActionMap.FindAction("RotateLeft");
-        thrusterPress = _playerInput.currentActionMap.FindAction("Thruster");
-        rocketPress = _playerInput.currentActionMap.FindAction("Rocket");
-        rotateRightSuper = _playerInput.currentActionMap.FindAction("RotateRightSuper");
-        rotateLeftSuper = _playerInput.currentActionMap.FindAction("RotateLeftSuper");
+        _rotateRight = _playerInput.currentActionMap.FindAction("RotateRight");
+        _rotateLeft = _playerInput.currentActionMap.FindAction("RotateLeft");
+        _thrusterPress = _playerInput.currentActionMap.FindAction("Thruster");
+        _rocketPress = _playerInput.currentActionMap.FindAction("Rocket");
+        _rotateRightSuper = _playerInput.currentActionMap.FindAction("RotateRightSuper");
+        _rotateLeftSuper = _playerInput.currentActionMap.FindAction("RotateLeftSuper");
+        _useItem = _playerInput.currentActionMap.FindAction("UseItem");
         
-        rotateRight.started += context => rotateRightPressed = true;
-        rotateRight.canceled += context => rotateRightPressed = false;
+        _rotateRight.started += context => rotateRightPressed = true;
+        _rotateRight.canceled += context => rotateRightPressed = false;
         
-        rotateRightSuper.started += context => rotateRightSuperPressed = true;
-        rotateRightSuper.canceled += context => rotateRightSuperPressed = false;
+        _rotateRightSuper.started += context => rotateRightSuperPressed = true;
+        _rotateRightSuper.canceled += context => rotateRightSuperPressed = false;
         
-        rotateLeftSuper.started += context => rotateLeftSuperPressed = true;
-        rotateLeftSuper.canceled += context => rotateLeftSuperPressed = false;
+        _rotateLeftSuper.started += context => rotateLeftSuperPressed = true;
+        _rotateLeftSuper.canceled += context => rotateLeftSuperPressed = false;
         
-        rotateLeft.started += context => rotateLeftPressed = true;
-        rotateLeft.canceled += context => rotateLeftPressed = false;
+        _rotateLeft.started += context => rotateLeftPressed = true;
+        _rotateLeft.canceled += context => rotateLeftPressed = false;
 
-        thrusterPress.performed += context => ONThrusterPress?.Invoke();
-        rocketPress.performed += context => ONRocketPress?.Invoke();
+        _thrusterPress.performed += context => ONThrusterPress?.Invoke();
+        _rocketPress.performed += context => ONRocketPress?.Invoke();
+
+        _useItem.performed += context => ONUseItem?.Invoke();
     }
 
     public void InitializeMashControls(Action<InputAction.CallbackContext> callback)
