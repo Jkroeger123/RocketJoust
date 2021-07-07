@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Numerics;
+using DG.Tweening;
 using UnityEngine;
 using Quaternion = UnityEngine.Quaternion;
 using Vector2 = UnityEngine.Vector2;
@@ -12,6 +13,7 @@ public class MissleUseable : MonoBehaviour, IUseable {
     // potentially implement slowdown and speed up
     // implement deflection
     // implement on-hit effects and fx
+    // Sort target array by distance
 
     public Rigidbody2D _rb;
     public float missileSpeed = 100f;
@@ -24,8 +26,11 @@ public class MissleUseable : MonoBehaviour, IUseable {
 
     private GameObject currentTarget;
 
-    void Start() {
+    void Start()
+    {
+        currentTarget = null;
         AcquireTarget();
+        transform.parent = null;
     }
 
     // Update is called once per frame
@@ -40,7 +45,8 @@ public class MissleUseable : MonoBehaviour, IUseable {
         targets = GameObject.FindGameObjectsWithTag("Player");
     }
 
-    private void OnCollisionEnter2D (Collision2D other) {
+    private void OnCollisionEnter2D(Collision2D other)
+    {
         if (other.gameObject == user) return;
 
         if (other.gameObject.CompareTag("Player"))
@@ -49,6 +55,24 @@ public class MissleUseable : MonoBehaviour, IUseable {
         }
 
         Destroy(gameObject);
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (!other.gameObject.CompareTag("Beam")) return;
+        
+        Destroy(gameObject);
+    }
+
+
+    private void OnRedirect(GameObject redirector)
+    {
+        transform.DORotate(redirector.transform.rotation.eulerAngles, 0.3f, RotateMode.Fast).OnComplete(() =>
+        {
+            
+            user = redirector.transform.parent.parent.gameObject;
+            AcquireTarget();
+        });
     }
 
     private void AcquireTarget () {
@@ -60,9 +84,7 @@ public class MissleUseable : MonoBehaviour, IUseable {
            
             if (angle <= angleThreshold) {
                 currentTarget = target;
-                
-            } else {
-                currentTarget = null;
+                return;
             }
         }
     }

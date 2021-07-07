@@ -15,7 +15,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7198627007317336257
 Transform:
   m_ObjectHideFlags: 0
@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 529867247828865258}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2.05, y: 1, z: 1}
   m_Children:
   - {fileID: 1563609764813925343}
   - {fileID: 2683320221260377651}
@@ -118,8 +118,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8276481583456994552}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.051, y: -9.04, z: 0}
-  m_LocalScale: {x: 4.231159, y: 18.348827, z: 1}
+  m_LocalPosition: {x: -0.03, y: -9.04, z: 0}
+  m_LocalScale: {x: 2.485806, y: 18.348827, z: 1}
   m_Children: []
   m_Father: {fileID: 7198627007317336257}
   m_RootOrder: 0
@@ -315,11 +315,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 048ef5c73fab78b46973b11f985175ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeed: 250
+  rotationSpeed: 310
   superRotationMultiplier: 1.5
   velocityPerThrust: 10
   thrusterMaxVelocity: 32
-  thoomMaxVelocity: 65
+  thoomMaxVelocity: 80
   thoomTime: 0.5
   thoomSlowdownDuration: 0.3
   blastDuration: 0.025
@@ -489,7 +489,7 @@ PrefabInstance:
     - target: {fileID: 5572718182850788418, guid: 443dcf9a15dc246148876538173e3df4,
         type: 3}
       propertyPath: InitialModule.startSize.scalar
-      value: 4.53
+      value: 3.2
       objectReference: {fileID: 0}
     - target: {fileID: 5572718182850788419, guid: 443dcf9a15dc246148876538173e3df4,
         type: 3}
@@ -504,7 +504,7 @@ PrefabInstance:
     - target: {fileID: 5572718182850788420, guid: 443dcf9a15dc246148876538173e3df4,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.175
+      value: 1.62
       objectReference: {fileID: 0}
     - target: {fileID: 5572718182850788420, guid: 443dcf9a15dc246148876538173e3df4,
         type: 3}
@@ -514,12 +514,12 @@ PrefabInstance:
     - target: {fileID: 5572718182850788420, guid: 443dcf9a15dc246148876538173e3df4,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -11.45
+      value: -11.54
       objectReference: {fileID: 0}
     - target: {fileID: 5572718182850788420, guid: 443dcf9a15dc246148876538173e3df4,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 5572718182850788420, guid: 443dcf9a15dc246148876538173e3df4,
         type: 3}
