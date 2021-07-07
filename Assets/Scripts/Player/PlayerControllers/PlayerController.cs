@@ -107,6 +107,7 @@ public class PlayerController : MonoBehaviour
         maxVelocity = thoomMaxVelocity;
         StartCoroutine(EnableBlast());
         StartCoroutine(Thoom());
+        ONBlast?.Invoke(gameObject);
     }
 
     private IEnumerator EnableBlast () {
