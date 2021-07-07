@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
 {
     private Rigidbody2D _rb;
     private PlayerInputController _input;
-    
+    private bool _isInvincible;
     private float maxVelocity;
 
     [Header("Rotation")]
@@ -48,6 +48,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start () {
         SetBlastActive(false);
+        StartCoroutine(PlayerInvincibility());
     }
     
     private void Update()
@@ -97,16 +98,23 @@ public class PlayerController : MonoBehaviour
     #region Action
     private void OnThrust()
     {
+        if (!BattleManager.canMove) return;
+        
         _rb.velocity += (Vector2)transform.up * velocityPerThrust;
         ONThrust?.Invoke(gameObject);
     }
 
     private void OnBlast() {
+        
+        if (!BattleManager.canMove) return;
         if (isThooming) return;
+        
         isThooming = true;
         maxVelocity = thoomMaxVelocity;
+        
         StartCoroutine(EnableBlast());
         StartCoroutine(Thoom());
+        ONBlast?.Invoke(gameObject);
     }
 
     private IEnumerator EnableBlast () {
@@ -128,11 +136,22 @@ public class PlayerController : MonoBehaviour
     }
     #endregion
 
+    private IEnumerator PlayerInvincibility()
+    {
+        _isInvincible = true;
+        yield return new WaitForSeconds(2f);
+        _isInvincible = false;
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.transform.IsChildOf(transform)) return;
-
-        if (other.CompareTag("Beam")) ONDeath?.Invoke(gameObject);
+        
+        if (!other.CompareTag("Beam")) return;
+        
+        if (_isInvincible) return;
+        
+        ONDeath?.Invoke(gameObject);
     }
     
     private void OnDestroy () {

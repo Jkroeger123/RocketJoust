@@ -3,8 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Cinemachine;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 public class BattleManager : MonoBehaviour
@@ -14,6 +16,10 @@ public class BattleManager : MonoBehaviour
     public GameObject playerPrefab;
     
     public GameObject spawnPoints;
+
+    public GameObject countDownText;
+    
+    public static bool canMove;
     
     private List<GameObject> _players;
     private Dictionary<GameObject, int> _livesLeft;
@@ -21,7 +27,11 @@ public class BattleManager : MonoBehaviour
     private GlobalHUDManager _hudManager;
     private CinemachineTargetGroup _camGroup;
 
-    private void Awake() {
+    private void Awake()
+    {
+
+        canMove = false;
+        
         PlayerController.ONDeath += OnDeath;
         
         _livesLeft = new Dictionary<GameObject, int>();
@@ -45,16 +55,44 @@ public class BattleManager : MonoBehaviour
             _camGroup.AddMember(spawnPref.transform, 1, 0);
         }
 
+        Countdown(3, () => canMove = true);
+        
+    }
+
+    private void Countdown(int time, Action callback)
+    {
+        if (time <= 0)
+        {
+            countDownText.GetComponent<Text>().text = "GO";
+
+            countDownText.transform.DOScale(1.5f, 0.4f).OnComplete(() =>
+            {
+                countDownText.transform.DOScale(0, 0.4f).OnComplete(() => countDownText.SetActive(false));
+            });
+            
+            callback();
+            return;
+        }
+
+        countDownText.SetActive(true);
+        countDownText.GetComponent<Text>().text = "" + time;
+        
+        countDownText.transform.DOScale(1.5f, 0.4f).OnComplete(() =>
+        {
+            countDownText.transform.DOScale(1, 0.4f).OnComplete(() =>
+            {
+                Countdown(time - 1, callback);
+            });
+        });
     }
 
     private void CheckGameOver () {
+        
         int left  = _livesLeft.Count(kvp => kvp.Value > 0);
-
-        if (left == 1) {
-            //Game is over
-            StartCoroutine(Restart());
-        }
-
+        if (left != 1) return;
+        
+        GameObject winner = _livesLeft.Single(pair => pair.Value > 0).Key;
+        StartCoroutine(PraiseWinner(winner));
     }
 
     private void OnDeath (GameObject player) {
@@ -73,12 +111,27 @@ public class BattleManager : MonoBehaviour
     }
 
     private IEnumerator Respawn (GameObject player) {
+        
         yield return new WaitForSeconds(2f);
+        
         GameObject spawnPref = Instantiate(playerPrefab, player.transform);
-        spawnPref.transform.position = spawnPoints.transform.GetChild(0).position;
+        spawnPref.transform.position = spawnPoints.transform.GetChild(Random.Range(0, spawnPoints.transform.childCount)).position;
         _camGroup.AddMember(spawnPref.transform, 1, 0);
     }
 
+
+    private IEnumerator PraiseWinner(GameObject player)
+    {
+        
+        countDownText.SetActive(true);
+        countDownText.GetComponent<Text>().text = "P" + player.GetComponent<Player>().PlayerID + " Wins!";
+
+        countDownText.transform.DOScale(1.4f, 0.4f);
+
+        yield return new WaitForSeconds(3f);
+
+        StartCoroutine(Restart());
+    }
 
     private IEnumerator Restart () {
         yield return new WaitForSeconds(1f);
