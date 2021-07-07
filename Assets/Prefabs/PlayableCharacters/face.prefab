@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6524942937168891820}
   - component: {fileID: 7537393462557443759}
   - component: {fileID: 87132185592154891}
+  - component: {fileID: 1252099919668872746}
   m_Layer: 0
   m_Name: face
   m_TagString: Untagged
@@ -92,7 +93,7 @@ Animator:
   m_GameObject: {fileID: 4138866223216560385}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 86522912a7e4b0948bd7780170671536, type: 2}
+  m_Controller: {fileID: 9100000, guid: 414bb1f99e792f44aa14f76039e4c4d2, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -101,3 +102,15 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1252099919668872746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4138866223216560385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f364abe3b90e0924c95ce4a4df392ab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
