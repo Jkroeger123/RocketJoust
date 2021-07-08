@@ -60,19 +60,16 @@ public class MissleUseable : MonoBehaviour, IUseable {
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (!other.gameObject.CompareTag("Beam")) return;
-        
-        Destroy(gameObject);
+        OnRedirect(other.gameObject.transform.parent.gameObject);
     }
 
 
     private void OnRedirect(GameObject redirector)
     {
-        transform.DORotate(redirector.transform.rotation.eulerAngles, 0.3f, RotateMode.Fast).OnComplete(() =>
-        {
-            
-            user = redirector.transform.parent.parent.gameObject;
-            AcquireTarget();
-        });
+        transform.rotation = Quaternion.FromToRotation(Vector3.up, -redirector.transform.up);
+        user = redirector;
+        currentTarget = null;
+        AcquireTarget();
     }
 
     private void AcquireTarget () {
