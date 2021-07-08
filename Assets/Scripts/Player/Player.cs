@@ -8,6 +8,9 @@ public class Player : MonoBehaviour
     public int PlayerID { get; set; }
     public string Name { get; set; }
 
+    [NonSerialized]
+    public GameObject characterPrefab;
+    
     private PlayerHUD _playerHUD;
 
     public void CreatePlayerHUD(GlobalHUDManager globalHUDManager)

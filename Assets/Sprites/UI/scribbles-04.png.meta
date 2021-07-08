@@ -1,7 +1,46 @@
 fileFormatVersion: 2
 guid: d5441086bd1128b4e8f39ae9a5b4ca9d
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -2956652822595673946
+    second: scribbles-04_0
+  - first:
+      213: -7435103737613799587
+    second: scribbles-04_1
+  - first:
+      213: -1840124913765652015
+    second: scribbles-04_2
+  - first:
+      213: 685281753174237345
+    second: scribbles-04_3
+  - first:
+      213: -7500860372323063768
+    second: scribbles-04_4
+  - first:
+      213: -1250649773964450245
+    second: scribbles-04_5
+  - first:
+      213: 6241380459116125861
+    second: scribbles-04_6
+  - first:
+      213: -4467350749248857990
+    second: scribbles-04_7
+  - first:
+      213: -5779927387956284944
+    second: scribbles-04_8
+  - first:
+      213: 984711005562563777
+    second: scribbles-04_9
+  - first:
+      213: 7472874099723634265
+    second: scribbles-04_10
+  - first:
+      213: -5186704371750406126
+    second: scribbles-04_11
+  - first:
+      213: 444753068763517875
+    second: scribbles-04_12
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -40,7 +79,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -71,9 +110,294 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: scribbles-04_0
+      rect:
+        serializedVersion: 2
+        x: 523
+        y: 1110
+        width: 197
+        height: 734
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a067014cebd7f6d0800000000000000
+      internalID: -2956652822595673946
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: scribbles-04_1
+      rect:
+        serializedVersion: 2
+        x: 2268
+        y: 1183
+        width: 1048
+        height: 668
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d5fa9532b8431d890800000000000000
+      internalID: -7435103737613799587
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: scribbles-04_2
+      rect:
+        serializedVersion: 2
+        x: 754
+        y: 285
+        width: 62
+        height: 82
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d9e6ace3209676e0800000000000000
+      internalID: -1840124913765652015
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: scribbles-04_3
+      rect:
+        serializedVersion: 2
+        x: 824
+        y: 287
+        width: 53
+        height: 82
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a0e10daf1c928900800000000000000
+      internalID: 685281753174237345
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: scribbles-04_4
+      rect:
+        serializedVersion: 2
+        x: 1486
+        y: 285
+        width: 63
+        height: 82
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 82821ed8b3797e790800000000000000
+      internalID: -7500860372323063768
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: scribbles-04_5
+      rect:
+        serializedVersion: 2
+        x: 1552
+        y: 287
+        width: 59
+        height: 82
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b362d6428acc4aee0800000000000000
+      internalID: -1250649773964450245
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: scribbles-04_6
+      rect:
+        serializedVersion: 2
+        x: 2222
+        y: 285
+        width: 62
+        height: 82
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ae5ea59576dd9650800000000000000
+      internalID: 6241380459116125861
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: scribbles-04_7
+      rect:
+        serializedVersion: 2
+        x: 2287
+        y: 285
+        width: 58
+        height: 84
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a7852ff9928c002c0800000000000000
+      internalID: -4467350749248857990
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: scribbles-04_8
+      rect:
+        serializedVersion: 2
+        x: 2954
+        y: 285
+        width: 62
+        height: 82
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0f1705df9a299cfa0800000000000000
+      internalID: -5779927387956284944
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: scribbles-04_9
+      rect:
+        serializedVersion: 2
+        x: 3016
+        y: 285
+        width: 64
+        height: 82
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1cc69fc31756aad00800000000000000
+      internalID: 984711005562563777
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: scribbles-04_10
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 1110
+        width: 197
+        height: 734
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9568e35966bf4b760800000000000000
+      internalID: 7472874099723634265
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: scribbles-04_11
+      rect:
+        serializedVersion: 2
+        x: 917
+        y: 1110
+        width: 197
+        height: 734
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 218f9deaadf1508b0800000000000000
+      internalID: -5186704371750406126
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: scribbles-04_12
+      rect:
+        serializedVersion: 2
+        x: 1114
+        y: 1110
+        width: 197
+        height: 734
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b31a644f841c2600800000000000000
+      internalID: 444753068763517875
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

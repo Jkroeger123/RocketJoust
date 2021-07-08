@@ -48,9 +48,10 @@ public class BattleManager : MonoBehaviour
         {
             _livesLeft.Add(_players[i], 3);
 
-            _players[i].GetComponent<Player>().CreatePlayerHUD(_hudManager);
+            Player pl = _players[i].GetComponent<Player>();
+            pl.CreatePlayerHUD(_hudManager);
             
-            GameObject spawnPref = Instantiate(playerPrefab, _players[i].transform);
+            GameObject spawnPref = Instantiate(pl.characterPrefab, _players[i].transform);
             spawnPref.transform.position = spawnPoints.transform.GetChild(i).position;
             _camGroup.AddMember(spawnPref.transform, 1, 0);
         }
