@@ -324,8 +324,9 @@ MonoBehaviour:
   thoomTime: 0.5
   thoomSlowdownDuration: 0.3
   blastDuration: 0.025
-  isThooming: 0
+  blastCooldown: 0.3
   blast: {fileID: 529867247828865258}
+  isThooming: 0
 --- !u!114 &8488265179660566782
 MonoBehaviour:
   m_ObjectHideFlags: 0
