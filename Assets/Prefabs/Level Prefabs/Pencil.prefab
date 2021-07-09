@@ -134,6 +134,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rb: {fileID: 3962090344548926537}
-  missileSpeed: 65
+  missileSpeed: 58
   rotateSpeed: 400
   angleThreshold: 30

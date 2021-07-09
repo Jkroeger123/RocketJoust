@@ -27,7 +27,8 @@ public class PlayerController : MonoBehaviour
     public float thoomTime = 0.5f; 
     public float thoomSlowdownDuration = 1f;
     public float blastDuration;
-    [NonSerialized]
+    
+    [HideInInspector]
     public bool isThooming = false;
     
     public GameObject blast;
@@ -109,11 +110,9 @@ public class PlayerController : MonoBehaviour
         if (!BattleManager.canMove) return;
         if (isThooming) return;
         
-        isThooming = true;
-        maxVelocity = thoomMaxVelocity;
-        
         StartCoroutine(EnableBlast());
         StartCoroutine(Thoom());
+        
         ONBlast?.Invoke(gameObject);
     }
 
@@ -124,8 +123,28 @@ public class PlayerController : MonoBehaviour
     }
     
     private IEnumerator Thoom() {
-        _rb.velocity = transform.up * thoomMaxVelocity;
-        yield return new WaitForSeconds(thoomTime);
+        
+        isThooming = true;
+        maxVelocity = thoomMaxVelocity;
+        
+        _rb.velocity = transform.up * maxVelocity;
+
+        float timer = 0;
+        
+        while (timer <= thoomTime)
+        {
+            timer += Time.deltaTime;
+
+            if (_rb.velocity.magnitude < (maxVelocity - 3f))
+            {
+                maxVelocity = thrusterMaxVelocity;
+                isThooming = false;
+                yield break;
+            }
+
+            yield return null;
+        }
+
         Tween tween = DOTween.To(() => 
                 maxVelocity, value => maxVelocity = value, thrusterMaxVelocity, thoomSlowdownDuration)
             .OnComplete(() => isThooming = false);

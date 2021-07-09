@@ -206,6 +206,7 @@ GameObject:
   - component: {fileID: 163661486040158283}
   - component: {fileID: 4231443603613218921}
   - component: {fileID: 836329142090310392}
+  - component: {fileID: 197041512112053869}
   m_Layer: 10
   m_Name: Mochi-chan
   m_TagString: Player
@@ -323,6 +324,7 @@ MonoBehaviour:
   thoomTime: 0.5
   thoomSlowdownDuration: 0.3
   blastDuration: 0.025
+  isThooming: 0
   blast: {fileID: 529867247828865258}
 --- !u!114 &8488265179660566782
 MonoBehaviour:
@@ -403,6 +405,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   activeItem: {fileID: 0}
   itemSpawner: {fileID: 7047669104634524570}
+--- !u!114 &197041512112053869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8488265179660566753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06a131864cc23de4f8a3148b3354db5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6518535571287423398
 PrefabInstance:
   m_ObjectHideFlags: 0

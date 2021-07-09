@@ -60,7 +60,7 @@ public class MissleUseable : MonoBehaviour, IUseable {
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (!other.gameObject.CompareTag("Beam")) return;
-        OnRedirect(other.gameObject.transform.parent.gameObject);
+        OnRedirect(other.gameObject.transform.parent.parent.gameObject);
     }
 
 

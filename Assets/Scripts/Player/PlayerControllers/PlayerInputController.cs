@@ -40,7 +40,7 @@ public class PlayerInputController : MonoBehaviour
         InitializeGameplayControls();
     }
 
-    public void InitializeGameplayControls()
+    private void InitializeGameplayControls()
     {
         _playerInput.SwitchCurrentActionMap("Gameplay");
         
@@ -77,6 +77,11 @@ public class PlayerInputController : MonoBehaviour
         InputAction mash = _playerInput.currentActionMap.FindAction("Mash");
 
         mash.performed += callback;
+    }
+
+    public void EnableGameplayControls()
+    {
+        _playerInput.SwitchCurrentActionMap("Gameplay");
     }
 
     public void DestroyMashControls(Action<InputAction.CallbackContext> callback)
