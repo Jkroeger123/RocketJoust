@@ -7,7 +7,6 @@ using MoreMountains.Feedbacks;
 using TMPro;
 using Unity.Collections;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class PlayerController : MonoBehaviour
 {
@@ -34,11 +33,11 @@ public class PlayerController : MonoBehaviour
     private bool _isInvincible;
     private float _maxVelocity;
     private float _timer;
-    
+
     private Coroutine _blastRoutine;
     private Tween _blastTween;
-    public static event Action<GameObject> ONDeath;
-    public static event Action<GameObject> ONThrust;
+    
+    public static event Action<GameObject> ONThrust; 
     public static event Action<GameObject> ONBlast; 
 
     private void Awake()
@@ -52,7 +51,6 @@ public class PlayerController : MonoBehaviour
 
     private void Start () {
         SetBlastActive(false);
-        StartCoroutine(PlayerInvincibility());
     }
     
     private void Update()
@@ -164,25 +162,8 @@ public class PlayerController : MonoBehaviour
         blast.SetActive(b);
     }
     #endregion
-
-    private IEnumerator PlayerInvincibility()
-    {
-        _isInvincible = true;
-        yield return new WaitForSeconds(2f);
-        _isInvincible = false;
-    }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.transform.IsChildOf(transform)) return;
-        
-        if (!other.CompareTag("Beam")) return;
-        
-        if (_isInvincible) return;
-        
-        ONDeath?.Invoke(gameObject);
-    }
     
+
     private void OnDestroy () {
         _input.ONRocketPress -= OnBlast;
         _input.ONThrusterPress -= OnThrust;

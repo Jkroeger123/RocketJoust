@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Numerics;
 using DG.Tweening;
+using MoreMountains.Tools;
+using Sirenix.Utilities;
 using UnityEngine;
 using Quaternion = UnityEngine.Quaternion;
 using Vector2 = UnityEngine.Vector2;
@@ -11,9 +13,7 @@ using Vector3 = UnityEngine.Vector3;
 public class MissleUseable : MonoBehaviour, IUseable {
     //TODO
     // potentially implement slowdown and speed up
-    // implement deflection
     // implement on-hit effects and fx
-    // Sort target array by distance
 
     public Rigidbody2D _rb;
     public float missileSpeed = 100f;
@@ -40,9 +40,25 @@ public class MissleUseable : MonoBehaviour, IUseable {
     }
     public void Use (GameObject user) {
         this.user = user;
+        
         gameObject.SetActive(true);
+
+        StartCoroutine(IgnoreCollisionForSeconds(0.5f, GetComponent<Collider2D>(), user.gameObject.GetComponent<Collider2D>()));
+        
         _rb = gameObject.GetComponent<Rigidbody2D>();
+        
         targets = GameObject.FindGameObjectsWithTag("Player");
+        
+        targets.Sort((o, o1) => 
+            Vector2.Distance(o.transform.position, transform.position).
+                CompareTo(Vector2.Distance(o1.transform.position, transform.position)));
+    }
+
+    private IEnumerator IgnoreCollisionForSeconds(float t, Collider2D c1, Collider2D c2)
+    {
+        Physics2D.IgnoreCollision(c1, c2, true);
+        yield return new WaitForSeconds(t);
+        Physics2D.IgnoreCollision(c1, c2, false);
     }
 
     private void OnCollisionEnter2D(Collision2D other)

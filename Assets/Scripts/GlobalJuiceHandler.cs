@@ -10,7 +10,7 @@ public class GlobalJuiceHandler : MonoBehaviour {
     
     private void Start()
     {
-        PlayerController.ONDeath += PlayDeath;
+        PlayerDeathHandler.ONDeath += PlayDeath;
     }
 
     private void PlayDeath(GameObject o)
@@ -20,6 +20,6 @@ public class GlobalJuiceHandler : MonoBehaviour {
 
     private void OnDestroy()
     {
-        PlayerController.ONDeath -= PlayDeath;
+        PlayerDeathHandler.ONDeath -= PlayDeath;
     }
 }

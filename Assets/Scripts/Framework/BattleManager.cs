@@ -32,7 +32,7 @@ public class BattleManager : MonoBehaviour
 
         canMove = false;
         
-        PlayerController.ONDeath += OnDeath;
+        PlayerDeathHandler.ONDeath += OnDeath;
         
         _livesLeft = new Dictionary<GameObject, int>();
 
@@ -149,6 +149,6 @@ public class BattleManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        PlayerController.ONDeath -= OnDeath;
+        PlayerDeathHandler.ONDeath -= OnDeath;
     }
 }

@@ -12,11 +12,6 @@ public class PlayerItemManager : MonoBehaviour {
         _input = gameObject.GetComponent<PlayerInputController>();
         _input.ONUseItem += UseItem;
     }
-    
-    void Update()
-    {
-        
-    }
 
     public bool CanSetItem (GameObject itemPrefab) {
         if (activeItem != null) return false;

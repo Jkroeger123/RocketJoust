@@ -16,7 +16,7 @@ public class PlayerFeedbackHandler : MonoBehaviour
     {
         PlayerController.ONThrust += OnThrust;
         PlayerController.ONBlast += OnBlast;
-        PlayerController.ONDeath += OnDeath;
+        PlayerDeathHandler.ONDeath += OnDeath;
     }
 
     private void OnThrust(GameObject g)
@@ -39,7 +39,7 @@ public class PlayerFeedbackHandler : MonoBehaviour
 
     private void OnDestroy ()
     {
-        PlayerController.ONDeath -= OnDeath;
+        PlayerDeathHandler.ONDeath -= OnDeath;
         PlayerController.ONThrust -= OnThrust;
         PlayerController.ONBlast -= OnBlast;
     }

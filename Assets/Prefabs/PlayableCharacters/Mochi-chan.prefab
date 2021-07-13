@@ -86,7 +86,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7047669104634524570}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.003000021, y: 4.65, z: -1.0843275}
+  m_LocalPosition: {x: -0.05, y: -0.05, z: -1.0843275}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8488265179660566781}
@@ -103,6 +103,7 @@ GameObject:
   - component: {fileID: 1563609764813925343}
   - component: {fileID: 6532233572737256443}
   - component: {fileID: 8790283692894527718}
+  - component: {fileID: 7850570965610756364}
   m_Layer: 10
   m_Name: blast
   m_TagString: Beam
@@ -190,6 +191,18 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.66, y: 0.91}
   m_Direction: 0
+--- !u!114 &7850570965610756364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8276481583456994552}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e9544e97053e8f44b497c8aa5ef6a09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8488265179660566753
 GameObject:
   m_ObjectHideFlags: 0
@@ -207,6 +220,7 @@ GameObject:
   - component: {fileID: 4231443603613218921}
   - component: {fileID: 836329142090310392}
   - component: {fileID: 197041512112053869}
+  - component: {fileID: 641949245237509899}
   m_Layer: 10
   m_Name: Mochi-chan
   m_TagString: Player
@@ -318,13 +332,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationSpeed: 310
   superRotationMultiplier: 1.5
-  velocityPerThrust: 10
-  thrusterMaxVelocity: 32
-  thoomMaxVelocity: 80
-  thoomTime: 0.5
-  thoomSlowdownDuration: 0.3
+  velocityPerThrust: 15
+  thrusterMaxVelocity: 45
+  thoomMaxVelocity: 125
+  thoomTime: 0.2
+  thoomSlowdownDuration: 0.2
   blastDuration: 0.025
-  blastCooldown: 0.3
+  blastCooldown: 0.6
   blast: {fileID: 529867247828865258}
   isThooming: 0
 --- !u!114 &8488265179660566782
@@ -418,6 +432,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06a131864cc23de4f8a3148b3354db5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &641949245237509899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8488265179660566753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef4ff61a72bf0764e89965e743e84463, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  killManager: {fileID: 7850570965610756364}
 --- !u!1001 &6518535571287423398
 PrefabInstance:
   m_ObjectHideFlags: 0
