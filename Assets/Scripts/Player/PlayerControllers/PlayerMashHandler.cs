@@ -35,10 +35,13 @@ public class PlayerMashHandler : MonoBehaviour
     public void InitializeMash()
     {
         GetComponent<PlayerInputController>().InitializeMashControls(OnMashPress);
+    }
+
+    public void FreezePlayer()
+    {
         GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
     }
-
 
     private void Unsubscribe()
     {

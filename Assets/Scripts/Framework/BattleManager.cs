@@ -43,9 +43,15 @@ public class BattleManager : MonoBehaviour
     public void StartMatch(List<GameObject> players)
     {
         _players = new List<GameObject>(players);
+        StartCoroutine(SpawnPlayers());
+    }
 
+    private IEnumerator SpawnPlayers()
+    {
+        
         for (int i = 0; i < _players.Count; i++)
         {
+            yield return new WaitForSeconds(0.5f);
             _livesLeft.Add(_players[i], 3);
 
             Player pl = _players[i].GetComponent<Player>();
@@ -57,7 +63,6 @@ public class BattleManager : MonoBehaviour
         }
 
         Countdown(3, () => canMove = true);
-        
     }
 
     private void Countdown(int time, Action callback)

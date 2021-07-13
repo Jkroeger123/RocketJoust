@@ -23,6 +23,7 @@ public class Gumball : MonoBehaviour
     {
         //Disable movement, Initialize Mash suicide
         player.AddComponent<PlayerMashHandler>().InitializeMash();
+        player.GetComponent<PlayerMashHandler>().FreezePlayer();
         Destroy(gameObject);
     }
 
