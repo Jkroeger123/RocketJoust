@@ -77,20 +77,12 @@ public class PlayerFaceAnimHandler : MonoBehaviour {
     private void OnItemEffectStart (GameObject gameObject) {
         if (gameObject != transform.parent.gameObject) return;
         StopAllCoroutines();
-        StartCoroutine(DeathFace());
+        _animator.Play("FaceDead");
     }
 
     private void OnItemEffectEnd (GameObject gameObject) {
         if (gameObject != transform.parent.gameObject) return;
-        StopCoroutine(DeathFace());
         SetAnimToIdle();
-    }
-
-    private IEnumerator DeathFace () {
-        while (true) {
-            _animator.Play("FaceDead");
-            yield return null;
-        }
     }
 
     private void OnDestroy () {
