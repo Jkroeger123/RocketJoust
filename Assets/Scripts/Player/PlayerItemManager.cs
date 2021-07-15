@@ -8,6 +8,8 @@ public class PlayerItemManager : MonoBehaviour {
     private PlayerInputController _input;
     public GameObject itemSpawner;
 
+    public static event Action<GameObject> ONItemPickup; 
+
     void Start() {
         _input = gameObject.GetComponent<PlayerInputController>();
         _input.ONUseItem += UseItem;
@@ -16,6 +18,7 @@ public class PlayerItemManager : MonoBehaviour {
     public bool CanSetItem (GameObject itemPrefab) {
         if (activeItem != null) return false;
         SetItem(itemPrefab);
+        ONItemPickup?.Invoke(gameObject);
         return true;
     }
 
