@@ -9,7 +9,8 @@ public class PlayerFeedbackHandler : MonoBehaviour
     public GameObject thrustParticle;
     public GameObject thrustLocation;
     public GameObject deathParticle;
-
+    public GameObject playerEntryObject;
+    
     public ParticleSystem blastParticle;
 
     private void Awake()
@@ -17,6 +18,11 @@ public class PlayerFeedbackHandler : MonoBehaviour
         PlayerController.ONThrust += OnThrust;
         PlayerController.ONBlast += OnBlast;
         PlayerDeathHandler.ONDeath += OnDeath;
+    }
+
+    private void Start()
+    {
+        Instantiate(playerEntryObject, transform.position, Quaternion.identity).GetComponent<PlayerEntryHandler>().ExecuteSequence(gameObject);
     }
 
     private void OnThrust(GameObject g)

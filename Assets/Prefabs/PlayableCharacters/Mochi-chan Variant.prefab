@@ -406,6 +406,8 @@ MonoBehaviour:
   thrustLocation: {fileID: 1113991753573773971}
   deathParticle: {fileID: 330353437906517724, guid: b09e94e47a3f98743aebfe708d207ee6,
     type: 3}
+  playerEntryObject: {fileID: 6983961532901739276, guid: 5892cb2586eaf2b45aeb594b9476f745,
+    type: 3}
   blastParticle: {fileID: 2683320221260377653}
 --- !u!114 &836329142090310392
 MonoBehaviour:
@@ -588,6 +590,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Poof
+      objectReference: {fileID: 0}
+    - target: {fileID: 5223726719054984575, guid: b3027803ad75e7c4094f3ee6592d3f53,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b3027803ad75e7c4094f3ee6592d3f53, type: 3}
