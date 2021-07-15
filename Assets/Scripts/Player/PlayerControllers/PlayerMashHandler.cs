@@ -11,6 +11,8 @@ public class PlayerMashHandler : MonoBehaviour
     public float status = 0;
     private float target = 1f;
 
+    public static event Action<GameObject> ONItemEffectStart; 
+    public static event Action<GameObject> ONItemEffectEnd;
     private void Update()
     {
         status = Mathf.Clamp(status - Time.deltaTime, 0, float.PositiveInfinity);
@@ -35,6 +37,7 @@ public class PlayerMashHandler : MonoBehaviour
     public void InitializeMash()
     {
         GetComponent<PlayerInputController>().InitializeMashControls(OnMashPress);
+        ONItemEffectStart?.Invoke(gameObject);
     }
 
     public void FreezePlayer()
@@ -48,5 +51,6 @@ public class PlayerMashHandler : MonoBehaviour
         GetComponent<PlayerInputController>().DestroyMashControls(OnMashPress);
         GetComponent<PlayerInputController>().EnableGameplayControls();
         GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
+        ONItemEffectEnd?.Invoke(gameObject);
     }
 }

@@ -12,13 +12,19 @@ public class PlayerFaceAnimHandler : MonoBehaviour {
     //blink is .15-.2 seconds
     void Start() {
         _animator = gameObject.GetComponent<Animator>();
-        PlayerController.ONBlast += InitiateBlastFace;
-        PlayerItemManager.ONItemPickup += InitiateItemPickupFace;
+        SubscribeToEvents();
         SetAnimToIdle();
     }
 
+    private void SubscribeToEvents () {
+        PlayerController.ONBlast += OnBlast;
+        PlayerItemManager.ONItemPickup += OnItemPickup;
+        PlayerMashHandler.ONItemEffectStart += OnItemEffectStart;
+        PlayerMashHandler.ONItemEffectEnd += OnItemEffectEnd;
+    }
+
     private void SetTimeBetweenBlinks() {
-        float timeBetweenBlinks = Random.Range(1f, 5f);
+        float timeBetweenBlinks = Random.Range(1f, 3f);
         StartCoroutine(WaitForBlink(timeBetweenBlinks));
     }
 
@@ -40,8 +46,10 @@ public class PlayerFaceAnimHandler : MonoBehaviour {
         SetTimeBetweenBlinks();
     }
 
-    private void InitiateBlastFace (GameObject gameObject) {
+    private void OnBlast (GameObject gameObject) {
         if (gameObject != transform.parent.gameObject) return;
+        if (_animator.GetCurrentAnimatorStateInfo(0).IsName("FaceDead")) return;
+        StopAllCoroutines();
         StartCoroutine(BlastFace(gameObject.GetComponent<PlayerController>()));
     }
 
@@ -53,19 +61,40 @@ public class PlayerFaceAnimHandler : MonoBehaviour {
         SetAnimToIdle();
     }
 
-    private void InitiateItemPickupFace (GameObject gameObject) {
+    private void OnItemPickup (GameObject gameObject) {
         if (gameObject != transform.parent.gameObject) return;
+        if (_animator.GetCurrentAnimatorStateInfo(0).IsName("FaceDead")) return;
+        StopAllCoroutines();
         StartCoroutine(TriumphFace());
     }
 
     private IEnumerator TriumphFace () {
         _animator.Play("FaceTriumph");
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1.5f);
         SetAnimToIdle();
     }
 
+    private void OnItemEffectStart (GameObject gameObject) {
+        if (gameObject != transform.parent.gameObject) return;
+        StopAllCoroutines();
+        StartCoroutine(DeathFace());
+    }
+
+    private void OnItemEffectEnd (GameObject gameObject) {
+        if (gameObject != transform.parent.gameObject) return;
+        StopCoroutine(DeathFace());
+        SetAnimToIdle();
+    }
+
+    private IEnumerator DeathFace () {
+        while (true) {
+            _animator.Play("FaceDead");
+            yield return null;
+        }
+    }
+
     private void OnDestroy () {
-        PlayerController.ONBlast -= InitiateBlastFace;
-        PlayerItemManager.ONItemPickup -= InitiateItemPickupFace;
+        PlayerController.ONBlast -= OnBlast;
+        PlayerItemManager.ONItemPickup -= OnItemPickup;
     }
 }

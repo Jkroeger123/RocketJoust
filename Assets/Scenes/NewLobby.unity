@@ -525,7 +525,7 @@ GameObject:
   - component: {fileID: 748939338}
   - component: {fileID: 748939337}
   m_Layer: 5
-  m_Name: Mochi (1)
+  m_Name: BriefcaseSan
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -592,7 +592,7 @@ MonoBehaviour:
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 748939338}
-  characterPrefab: {fileID: 8488265179660566753, guid: 7c0352a5d41c9f7459e8d45d589b7f5e,
+  characterPrefab: {fileID: 8488265179660566753, guid: 103e9a1166748624eb9df80126ad9eeb,
     type: 3}
 --- !u!114 &748939338
 MonoBehaviour:
@@ -613,7 +613,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 6400438932698118328, guid: acf745d89f2755c43a1e258b864c332e,
+  m_Sprite: {fileID: 3683231513632218797, guid: 0ebb341236796284393d403b61fa48a2,
     type: 3}
   m_Type: 0
   m_PreserveAspect: 1
@@ -1405,7 +1405,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1876422020
 RectTransform:
   m_ObjectHideFlags: 0
