@@ -56,8 +56,12 @@ public class MissleUseable : MonoBehaviour, IUseable {
 
     private IEnumerator IgnoreCollisionForSeconds(float t, Collider2D c1, Collider2D c2)
     {
+
+        if (c1 == null || c2 == null) yield break;
         Physics2D.IgnoreCollision(c1, c2, true);
         yield return new WaitForSeconds(t);
+        
+        if(c1 == null || c2 == null) yield break;
         Physics2D.IgnoreCollision(c1, c2, false);
     }
 

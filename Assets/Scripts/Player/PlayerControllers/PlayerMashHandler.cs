@@ -53,4 +53,9 @@ public class PlayerMashHandler : MonoBehaviour
         GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
         ONItemEffectEnd?.Invoke(gameObject);
     }
+
+    private void OnDestroy()
+    {
+        Unsubscribe();
+    }
 }

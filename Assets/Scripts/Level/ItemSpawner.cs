@@ -9,7 +9,7 @@ public class ItemSpawner : MonoBehaviour
     public Vector4 bounds;
     public List<GameObject> items;
     public float spawnRate = 10f;
-    public int maxItems = 5;
+    public int maxItems = 500000000;
 
     private List<GameObject> _currentItems;
     
@@ -29,8 +29,9 @@ public class ItemSpawner : MonoBehaviour
         }
 
         timer -= Time.deltaTime;
-
     }
+
+
 
     private void SpawnItem()
     {

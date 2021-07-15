@@ -120,7 +120,7 @@ public class BattleManager : MonoBehaviour
         
         yield return new WaitForSeconds(2f);
         
-        GameObject spawnPref = Instantiate(playerPrefab, player.transform);
+        GameObject spawnPref = Instantiate(player.GetComponent<Player>().characterPrefab, player.transform);
         spawnPref.transform.position = spawnPoints.transform.GetChild(Random.Range(0, spawnPoints.transform.childCount)).position;
         _camGroup.AddMember(spawnPref.transform, 1, 0);
     }
