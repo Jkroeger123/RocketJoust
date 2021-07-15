@@ -13,6 +13,7 @@ public class PlayerFaceAnimHandler : MonoBehaviour {
     void Start() {
         _animator = gameObject.GetComponent<Animator>();
         PlayerController.ONBlast += InitiateBlastFace;
+        PlayerItemManager.ONItemPickup += InitiateItemPickupFace;
         SetAnimToIdle();
     }
 
@@ -52,7 +53,19 @@ public class PlayerFaceAnimHandler : MonoBehaviour {
         SetAnimToIdle();
     }
 
+    private void InitiateItemPickupFace (GameObject gameObject) {
+        if (gameObject != transform.parent.gameObject) return;
+        StartCoroutine(TriumphFace());
+    }
+
+    private IEnumerator TriumphFace () {
+        _animator.Play("FaceTriumph");
+        yield return new WaitForSeconds(2f);
+        SetAnimToIdle();
+    }
+
     private void OnDestroy () {
         PlayerController.ONBlast -= InitiateBlastFace;
+        PlayerItemManager.ONItemPickup -= InitiateItemPickupFace;
     }
 }
