@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -8,27 +9,26 @@ public class ItemSpawner : MonoBehaviour
 {
     public Vector4 bounds;
     public List<GameObject> items;
-    public float spawnRate = 10f;
-    public int maxItems = 500000000;
+    public float spawnRate = 5f;
+    public int maxItems = 10;
 
-    private List<GameObject> _currentItems;
-    
-    private float timer;
+    private GameObject _itemContainer;
+    private float _timer;
 
     private void Start()
     {
-        _currentItems = new List<GameObject>();
+        _itemContainer = new GameObject("Items");
     }
 
     private void Update()
     {
-        if (timer <= 0 && _currentItems.Count <= maxItems)
+        if (_timer <= 0 && _itemContainer.transform.childCount <= maxItems)
         {
             SpawnItem();
-            timer = spawnRate;
+            _timer = spawnRate;
         }
 
-        timer -= Time.deltaTime;
+        _timer -= Time.deltaTime;
     }
 
 
@@ -37,6 +37,6 @@ public class ItemSpawner : MonoBehaviour
     {
         Vector2 spawnPosition = new Vector2(Random.Range(bounds.x, bounds.y), Random.Range(bounds.z, bounds.w));
         GameObject g = Instantiate(items[Random.Range(0, items.Count)], spawnPosition, Quaternion.identity);
-        _currentItems.Add(g);
+        g.transform.parent = _itemContainer.transform;
     }
 }

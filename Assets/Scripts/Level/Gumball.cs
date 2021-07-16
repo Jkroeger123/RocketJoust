@@ -9,10 +9,10 @@ public class Gumball : MonoBehaviour
 {
     public float speed = 5000f;
     public float stickThreshold = 150f;
-    
+
+    private float _timer = 0.05f;
     private Rigidbody2D _rb;
 
-    
     private void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
@@ -30,6 +30,33 @@ public class Gumball : MonoBehaviour
     private void Update()
     {
         _rb.velocity = Vector2.ClampMagnitude(_rb.velocity, speed);
+
+        if (_rb.velocity.magnitude >= stickThreshold)
+        {
+            if (_timer <= 0)
+            {
+                CreatePhantomImage(gameObject);
+                _timer = 0.05f;
+            }
+        }
+        else
+        {
+            GetComponent<SpriteRenderer>().color = Color.white;
+        }
+
+        _timer -= Time.deltaTime;
+    }
+
+    private void CreatePhantomImage(GameObject item)
+    {
+        GameObject g = new GameObject("PhantomImage");
+        g.transform.position = item.transform.position;
+        g.transform.rotation = item.transform.rotation;
+
+        SpriteRenderer spriteRenderer = g.AddComponent<SpriteRenderer>();
+        spriteRenderer.sprite = item.GetComponent<SpriteRenderer>().sprite;
+
+        g.AddComponent<PhantomImage>();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -45,7 +72,7 @@ public class Gumball : MonoBehaviour
     {
         if (!other.transform.CompareTag("Player")) return;
  
-        if (other.gameObject.GetComponent<Rigidbody2D>().velocity.magnitude + _rb.velocity.magnitude >= stickThreshold)
+        if (other.gameObject.GetComponent<PlayerController>().isThooming || _rb.velocity.magnitude >= stickThreshold)
         {
             StickPlayer(other.gameObject);
         }

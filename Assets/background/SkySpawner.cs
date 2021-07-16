@@ -13,23 +13,22 @@ public class SkySpawner : MonoBehaviour
         _sprites = new List<GameObject>();
         AddSprite();
         AddSprite();
-        StartCoroutine(BackgroundTimer());
+        AddSprite();    
     }
 
-    private IEnumerator BackgroundTimer()
+    private void RemoveBackground(GameObject g)
     {
-        while (true)
-        {
-            AddSprite();
-            yield return new WaitForSeconds(5f);
-        }
+        Destroy(g);
+        AddSprite();
     }
 
     private void AddSprite()
     {
         if (_sprites.Count == 0)
         {
-            _sprites.Add(Instantiate(sprite, transform.position, Quaternion.identity));
+            GameObject obj = Instantiate(sprite, transform.position, Quaternion.identity);
+            obj.GetComponent<SkyMove>().ONRemove += RemoveBackground;
+            _sprites.Add(obj);
             return;
         }
 
@@ -40,6 +39,8 @@ public class SkySpawner : MonoBehaviour
 
         GameObject g = Instantiate(sprite, location, Quaternion.identity);
 
+        g.GetComponent<SkyMove>().ONRemove += RemoveBackground;
+        
         if (_sprites.Count % 2 == 1) g.GetComponent<SpriteRenderer>().flipX = true;
         
         _sprites.Add(g);
