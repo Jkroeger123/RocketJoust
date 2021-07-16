@@ -9,12 +9,14 @@ public class Gumball : MonoBehaviour
 {
     public float speed = 5000f;
     public float stickThreshold = 150f;
-
+    public List<Sprite> sprites;
+    
     private float _timer = 0.05f;
     private Rigidbody2D _rb;
 
     private void Start()
     {
+        GetComponent<SpriteRenderer>().sprite = sprites[Random.Range(0, sprites.Count)];
         _rb = GetComponent<Rigidbody2D>();
         _rb.velocity = new Vector2(Random.Range(0f, 1f), Random.Range(-0, 1f))* (Random.Range(3f,8f));
     }
