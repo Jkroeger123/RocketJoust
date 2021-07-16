@@ -85,7 +85,8 @@ public class PlayerFaceAnimHandler : MonoBehaviour {
         SetAnimToIdle();
     }
 
-    private void OnDestroy () {
+    private void Unsubscribe()
+    {
         StopAllCoroutines();
         PlayerController.ONBlast -= OnBlast;
         PlayerItemManager.ONItemPickup -= OnItemPickup;
@@ -93,8 +94,6 @@ public class PlayerFaceAnimHandler : MonoBehaviour {
         PlayerMashHandler.ONItemEffectEnd -= OnItemEffectEnd;
     }
 
-    private void OnDisable()
-    {
-        StopAllCoroutines();
-    }
+    private void OnDestroy() => Unsubscribe();
+    private void OnDisable() => Unsubscribe();
 }
