@@ -134,5 +134,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7e8b09781dcb864493730160e2ffa40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 700
+  speed: 450
   stickThreshold: 100

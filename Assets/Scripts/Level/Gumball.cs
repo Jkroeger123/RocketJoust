@@ -27,6 +27,10 @@ public class Gumball : MonoBehaviour
         Destroy(gameObject);
     }
 
+    private void Update()
+    {
+        _rb.velocity = Vector2.ClampMagnitude(_rb.velocity, speed);
+    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {

@@ -15,4 +15,4 @@ MonoBehaviour:
   priority: 1
   looping: 0
   length: 0.1
-  intensity: 0.1
+  intensity: 0.075
