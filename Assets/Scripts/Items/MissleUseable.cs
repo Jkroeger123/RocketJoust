@@ -15,6 +15,7 @@ public class MissleUseable : MonoBehaviour, IUseable {
     // potentially implement slowdown and speed up
     // implement on-hit effects and fx
 
+    public GameObject explosionParticle;
     public Rigidbody2D _rb;
     public float missileSpeed = 100f;
     public float rotateSpeed = 5f;
@@ -112,4 +113,7 @@ public class MissleUseable : MonoBehaviour, IUseable {
         float rotateAmount = Vector3.Cross(direction, transform.up).z;
         _rb.angularVelocity = -rotateAmount * rotateSpeed;
     }
+
+    private void OnDestroy() => Instantiate(explosionParticle, transform.position, Quaternion.identity);
+
 }
