@@ -19,21 +19,26 @@ public class PlayerController : MonoBehaviour
     public float thrusterMaxVelocity = 10f;
     
     [Header("Blast")]
+    public int blastCap;
     public float thoomMaxVelocity = 65f;
     public float thoomTime = 0.5f; 
     public float thoomSlowdownDuration = 1f;
     public float blastDuration;
     public float blastCooldown = 0.2f;
     public GameObject blast;
+    public GameObject blastUI;
     
     public bool isThooming = false;
 
+    private BlastUI _blastUI;
+    
     private Rigidbody2D _rb;
     private PlayerInputController _input;
     private bool _isInvincible;
     private float _maxVelocity;
     private float _timer;
-
+    private int _blastCount;
+    
     private Coroutine _blastRoutine;
     private Tween _blastTween;
     
@@ -51,13 +56,23 @@ public class PlayerController : MonoBehaviour
 
     private void Start () {
         SetBlastActive(false);
+        _blastUI = Instantiate(blastUI).transform.GetChild(0).GetComponent<BlastUI>();
+        _blastUI.Initialize(blastCap, gameObject);
     }
     
     private void Update()
     {
         GetRotationInput();
         _rb.velocity = Vector2.ClampMagnitude(_rb.velocity, _maxVelocity);
+        
         _timer -= Time.deltaTime;
+        if (_timer <= 0)
+        {
+            _blastCount = Mathf.Clamp(_blastCount + 1, 0, blastCap);
+            _timer = blastCooldown;
+            _blastUI.UpdateBlastUI(_blastCount, Mathf.Clamp(_timer/blastCooldown, 0, 1));
+        }
+
     }
 
     #region Rotation
@@ -110,7 +125,7 @@ public class PlayerController : MonoBehaviour
     private void OnBlast() {
         
         if (!BattleManager.canMove) return;
-        if (_timer > 0) return;
+        if (_blastCount <= 0) return;
         
         if(_blastRoutine != null) StopCoroutine(_blastRoutine);
         _blastTween?.Kill();
@@ -130,7 +145,7 @@ public class PlayerController : MonoBehaviour
     private IEnumerator Thoom()
     {
 
-        _timer = blastCooldown;
+        _blastCount--;
         
         isThooming = true;
         _maxVelocity = thoomMaxVelocity;

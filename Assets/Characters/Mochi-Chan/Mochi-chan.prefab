@@ -336,6 +336,7 @@ MonoBehaviour:
   superRotationMultiplier: 1.5
   velocityPerThrust: 15
   thrusterMaxVelocity: 45
+  blastCap: 3
   thoomMaxVelocity: 125
   thoomTime: 0.2
   thoomSlowdownDuration: 0.2
