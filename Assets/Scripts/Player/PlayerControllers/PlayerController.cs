@@ -44,15 +44,19 @@ public class PlayerController : MonoBehaviour
     {
         _rb = gameObject.GetComponent<Rigidbody2D>();
         _input = gameObject.GetComponent<PlayerInputController>();
-        _input.ONRocketPress += OnBlast;
-        _input.ONThrusterPress += OnThrust;
         _maxVelocity = thrusterMaxVelocity;
-    }
-
-    private void Start () {
+        Subscribe();
         SetBlastActive(false);
     }
+
+    private void OnEnable() => Subscribe();
     
+    private void Subscribe()
+    {
+        _input.ONRocketPress += OnBlast;
+        _input.ONThrusterPress += OnThrust;
+    }
+
     private void Update()
     {
         GetRotationInput();
@@ -101,14 +105,16 @@ public class PlayerController : MonoBehaviour
     #region Action
     private void OnThrust()
     {
+        if (!isActiveAndEnabled) return;
         if (!BattleManager.canMove) return;
         
         _rb.velocity += (Vector2)transform.up * velocityPerThrust;
         ONThrust?.Invoke(gameObject);
     }
 
-    private void OnBlast() {
-        
+    private void OnBlast()
+    {
+        if (!isActiveAndEnabled) return;
         if (!BattleManager.canMove) return;
         if (_timer > 0) return;
         
@@ -162,10 +168,15 @@ public class PlayerController : MonoBehaviour
         blast.SetActive(b);
     }
     #endregion
-    
 
-    private void OnDestroy () {
+
+    private void Unsubscribe()
+    {
         _input.ONRocketPress -= OnBlast;
         _input.ONThrusterPress -= OnThrust;
     }
+
+    private void OnDestroy () => Unsubscribe();
+    private void OnDisable() => Unsubscribe();
+   
 }

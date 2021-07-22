@@ -6,7 +6,8 @@ using UnityEngine;
 public class PlayerDeathHandler : MonoBehaviour
 {
     public PlayerKillManager killManager;
-
+    public GameObject bubble;
+        
     private GameObject _currentKiller;
     private bool _isInvincible;
     private bool _isParried;
@@ -22,10 +23,23 @@ public class PlayerDeathHandler : MonoBehaviour
     private IEnumerator SetPlayerInvincibility(float t)
     {
         _isInvincible = true;
+        SetBubbleActive(_isInvincible);
+        PlayerController.ONBlast += CheckBubble;
         yield return new WaitForSeconds(t);
+        PlayerController.ONBlast -= CheckBubble;
         _isInvincible = false;
+        SetBubbleActive(_isInvincible);
     }
-    
+
+    private void CheckBubble(GameObject player)
+    {
+        if(player != gameObject) return;
+        
+        PlayerController.ONBlast -= CheckBubble;
+        _isInvincible = false;
+        SetBubbleActive(false);
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.transform.IsChildOf(transform)) return;
@@ -34,7 +48,12 @@ public class PlayerDeathHandler : MonoBehaviour
 
         StartCoroutine(ExecuteDeath(other.transform.parent.parent.gameObject));
     }
-    
+
+    private void SetBubbleActive(bool isActive)
+    {
+        bubble.SetActive(isActive);
+        Physics2D.IgnoreCollision(bubble.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+    }
 
     //Caches the killer and waits a few frames before executing the kill
     //this gives a chance for the player to kill the player creating a parry

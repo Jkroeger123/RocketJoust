@@ -7,7 +7,7 @@ public class PlayerSprites : MonoBehaviour
 {
     public List<Sprite> spriteOptions;
 
-    private void Start()
+    private void Awake()
     {
         int count = spriteOptions.Count;
         int playerNum = transform.parent.GetComponent<Player>().PlayerID;

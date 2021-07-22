@@ -25,7 +25,7 @@ public class BattleManager : MonoBehaviour
     private Dictionary<GameObject, int> _livesLeft;
 
     private GlobalHUDManager _hudManager;
-    private CinemachineTargetGroup _camGroup;
+    private CamGroupController _camGroupController;
 
     private void Awake()
     {
@@ -37,7 +37,7 @@ public class BattleManager : MonoBehaviour
         _livesLeft = new Dictionary<GameObject, int>();
 
         _hudManager = GetComponent<GlobalHUDManager>();
-        _camGroup = camGroupObj.GetComponent<CinemachineTargetGroup>();
+        _camGroupController = camGroupObj.GetComponent<CamGroupController>();
     }
 
     public void StartMatch(List<GameObject> players)
@@ -59,7 +59,7 @@ public class BattleManager : MonoBehaviour
             
             GameObject spawnPref = Instantiate(pl.characterPrefab, _players[i].transform);
             spawnPref.transform.position = spawnPoints.transform.GetChild(i).position;
-            _camGroup.AddMember(spawnPref.transform, 1, 0);
+            _camGroupController.AddObject(spawnPref);
         }
 
         Countdown(3, () => canMove = true);
@@ -102,6 +102,9 @@ public class BattleManager : MonoBehaviour
     }
 
     private void OnDeath (GameObject player) {
+        
+        _camGroupController.SmoothRemove(player);
+        
         GameObject p = player.transform.parent.gameObject;
         
         _livesLeft[p] = _livesLeft[p] - 1;
@@ -122,7 +125,7 @@ public class BattleManager : MonoBehaviour
         
         GameObject spawnPref = Instantiate(player.GetComponent<Player>().characterPrefab, player.transform);
         spawnPref.transform.position = spawnPoints.transform.GetChild(Random.Range(0, spawnPoints.transform.childCount)).position;
-        _camGroup.AddMember(spawnPref.transform, 1, 0);
+        _camGroupController.AddObject(spawnPref);
     }
 
 

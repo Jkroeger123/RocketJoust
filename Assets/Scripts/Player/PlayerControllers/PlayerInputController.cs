@@ -86,6 +86,8 @@ public class PlayerInputController : MonoBehaviour
 
     public void DestroyMashControls(Action<InputAction.CallbackContext> callback)
     {
+        if (!isActiveAndEnabled) return;
+        
         _playerInput.SwitchCurrentActionMap("Mash");
         
         InputAction mash = _playerInput.currentActionMap.FindAction("Mash");

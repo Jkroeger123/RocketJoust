@@ -31,7 +31,7 @@ public class PlayerMashHandler : MonoBehaviour
         status += 0.3f;
 
         Vector3 randDir = new Vector3(Random.Range(0f, 1f), Random.Range(0f, 1f), 0);
-        Tween t = transform.DOPunchPosition(randDir, 0.1f);
+        Tween t = transform.DOPunchPosition(randDir, 0.1f).SetLink(gameObject);
     }
 
     public void InitializeMash()
