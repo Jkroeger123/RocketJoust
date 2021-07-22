@@ -8,6 +8,9 @@ public class PlayerInputController : MonoBehaviour
 {
     private PlayerInput _playerInput;
 
+    //used for caching the action map to go back to after pause finishes
+    private InputActionMap _previousActionMap;
+    
     private InputAction _rotateRight;
     private InputAction _rotateRightSuper;
     private InputAction _rotateLeft;
@@ -15,7 +18,11 @@ public class PlayerInputController : MonoBehaviour
     private InputAction _thrusterPress;
     private InputAction _rocketPress;
     private InputAction _useItem;
+    private InputAction _pause;
 
+    private InputAction _UiPause;
+    private InputAction _leave;
+    
     [NonSerialized]
     public bool rotateRightPressed;
     
@@ -27,21 +34,33 @@ public class PlayerInputController : MonoBehaviour
     
     [NonSerialized] 
     public bool rotateLeftSuperPressed;
+    
 
-    public delegate void OnPress();
-
-    public event OnPress ONThrusterPress;
-    public event OnPress ONRocketPress;
-    public event OnPress ONUseItem;
+    public event Action ONThrusterPress;
+    public event Action ONRocketPress;
+    public event Action ONUseItem;
     
     private void Awake()
     {
         _playerInput = GetComponentInParent<PlayerInput>();
+        
         InitializeGameplayControls();
+        InitializeUI();
+
+        _playerInput.onDeviceLost += OnDeviceLost;
+        PauseMenu.ONPauseSet += OnPauseSet;
     }
+
+    private void Start()
+    {
+        EnableGameplayControls();
+    }
+
+    #region Gameplay
 
     private void InitializeGameplayControls()
     {
+
         _playerInput.SwitchCurrentActionMap("Gameplay");
         
         _rotateRight = _playerInput.currentActionMap.FindAction("RotateRight");
@@ -51,37 +70,87 @@ public class PlayerInputController : MonoBehaviour
         _rotateRightSuper = _playerInput.currentActionMap.FindAction("RotateRightSuper");
         _rotateLeftSuper = _playerInput.currentActionMap.FindAction("RotateLeftSuper");
         _useItem = _playerInput.currentActionMap.FindAction("UseItem");
+        _pause = _playerInput.currentActionMap.FindAction("Pause");
         
-        _rotateRight.started += context => rotateRightPressed = true;
-        _rotateRight.canceled += context => rotateRightPressed = false;
+        _rotateRight.started += RotateRight;
+        _rotateRight.canceled += RotateRightCancel;
         
-        _rotateRightSuper.started += context => rotateRightSuperPressed = true;
-        _rotateRightSuper.canceled += context => rotateRightSuperPressed = false;
+        _rotateRightSuper.started += RotateRightSuper;
+        _rotateRightSuper.canceled += RotateRightSuperCancel;
         
-        _rotateLeftSuper.started += context => rotateLeftSuperPressed = true;
-        _rotateLeftSuper.canceled += context => rotateLeftSuperPressed = false;
+        _rotateLeftSuper.started += RotateLeftSuper;
+        _rotateLeftSuper.canceled += RotateLeftSuperCancel;
         
-        _rotateLeft.started += context => rotateLeftPressed = true;
-        _rotateLeft.canceled += context => rotateLeftPressed = false;
+        _rotateLeft.started += RotateLeft;
+        _rotateLeft.canceled += RotateLeftCancel;
 
-        _thrusterPress.performed += context => ONThrusterPress?.Invoke();
-        _rocketPress.performed += context => ONRocketPress?.Invoke();
+        _thrusterPress.performed += ThrusterPress;
+        _rocketPress.performed += RocketPress;
 
-        _useItem.performed += context => ONUseItem?.Invoke();
+        _useItem.performed += UseItem;
+
+        _pause.performed += PauseInput;
     }
+
+    public void EnableGameplayControls() => _playerInput.SwitchCurrentActionMap("Gameplay");
+    
+    public void DestroyGameplayControls()
+    {
+        
+        _rotateRight.started -= RotateRight;
+        _rotateRight.canceled -= RotateRightCancel;
+        
+        _rotateRightSuper.started -= RotateRightSuper;
+        _rotateRightSuper.canceled -= RotateRightSuperCancel;
+        
+        _rotateLeftSuper.started -= RotateLeftSuper;
+        _rotateLeftSuper.canceled -= RotateLeftSuperCancel;
+        
+        _rotateLeft.started -= RotateLeft;
+        _rotateLeft.canceled -= RotateLeftCancel;
+
+        _thrusterPress.performed -= ThrusterPress;
+        _rocketPress.performed -= RocketPress;
+
+        _useItem.performed -= UseItem;
+
+        _pause.performed -= PauseInput;
+    }
+    
+    #region GameplayFunctions
+
+    private void RotateRight(InputAction.CallbackContext context) => rotateRightPressed = true;
+    private void RotateRightCancel(InputAction.CallbackContext context) => rotateRightPressed = false;
+
+    private void RotateLeft(InputAction.CallbackContext context) => rotateLeftPressed = true;
+    private void RotateLeftCancel(InputAction.CallbackContext context) => rotateLeftPressed = false;
+    
+    private void RotateRightSuper(InputAction.CallbackContext context) => rotateRightSuperPressed = true;
+    private void RotateRightSuperCancel(InputAction.CallbackContext context) => rotateRightSuperPressed = false;
+
+    private void RotateLeftSuper(InputAction.CallbackContext context) => rotateLeftSuperPressed = true;
+    private void RotateLeftSuperCancel(InputAction.CallbackContext context) => rotateLeftSuperPressed = false;
+    
+    private void ThrusterPress(InputAction.CallbackContext context) => ONThrusterPress?.Invoke();
+    private void RocketPress(InputAction.CallbackContext context) => ONRocketPress?.Invoke();
+    
+    private void UseItem(InputAction.CallbackContext context) => ONUseItem?.Invoke();
+    
+    #endregion
+
+    #endregion
+
+    #region Mash
 
     public void InitializeMashControls(Action<InputAction.CallbackContext> callback)
     {
         _playerInput.SwitchCurrentActionMap("Mash");
         
         InputAction mash = _playerInput.currentActionMap.FindAction("Mash");
-
+        InputAction paused = _playerInput.currentActionMap.FindAction("Pause");
+        
+        paused.performed += PauseInput;
         mash.performed += callback;
-    }
-
-    public void EnableGameplayControls()
-    {
-        _playerInput.SwitchCurrentActionMap("Gameplay");
     }
 
     public void DestroyMashControls(Action<InputAction.CallbackContext> callback)
@@ -91,8 +160,60 @@ public class PlayerInputController : MonoBehaviour
         _playerInput.SwitchCurrentActionMap("Mash");
         
         InputAction mash = _playerInput.currentActionMap.FindAction("Mash");
-
+        InputAction paused = _playerInput.currentActionMap.FindAction("Pause");
+        
+        paused.performed -= PauseInput;
         mash.performed -= callback;
     }
 
+    #endregion
+    
+    #region UI
+
+    public void InitializeUI()
+    {
+        _playerInput.SwitchCurrentActionMap("UI");
+        
+        _UiPause = _playerInput.currentActionMap.FindAction("Pause");
+        _UiPause.performed += PauseInput;
+        
+        _leave = _playerInput.currentActionMap.FindAction("Leave");
+        _leave.performed += PauseInput;
+    }
+
+    public void DestroyUIControls()
+    {
+        _UiPause.performed -= PauseInput;
+        _leave.performed -= PauseInput;
+    }
+
+    #endregion
+    
+    
+    private void PauseInput(InputAction.CallbackContext context) 
+        => PauseMenu.isPaused = !PauseMenu.isPaused;
+
+    private void OnPauseSet(bool isSet)
+    {
+        
+        if (isSet)
+        {
+            _previousActionMap = _playerInput.currentActionMap;
+            _playerInput.SwitchCurrentActionMap("UI");
+        }
+        else
+        {
+            _playerInput.currentActionMap = _previousActionMap;
+        }
+    }
+
+    private void OnDeviceLost(PlayerInput lost) => OnPauseSet(true);
+    
+    private void OnDestroy()
+    {
+        DestroyGameplayControls();
+        DestroyUIControls();
+        _playerInput.onDeviceLost -= OnDeviceLost;
+        PauseMenu.ONPauseSet -= OnPauseSet;
+    }
 }

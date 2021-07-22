@@ -23,7 +23,7 @@ public class BlastUI : MonoBehaviour
         }
     }
     
-    private float yOffset = 3f;
+    private float yOffset = 1.75f;
     private RectTransform _transform;
     private Canvas _parentCanvas;
     private bool _isHidden;
@@ -91,15 +91,15 @@ public class BlastUI : MonoBehaviour
 
     private void UpdatePosition()
     {
-        Vector3 worldPos = target.transform.position;
+        Vector3 worldPos = Vector3.Lerp(UiToWorldSpace(transform.position), target.transform.position, 0.5f);
         worldPos.y += yOffset;
         Vector3 uiPos = WorldToUISpace(_parentCanvas, worldPos);
 
         _transform.position = uiPos;
-
     }
 
-    //Utility function
+    //Utility functions
+    
     private Vector3 WorldToUISpace(Canvas parentCanvas, Vector3 worldPos)
     {
         //Convert the world for screen point so that it can be used with ScreenPointToLocalPointInRectangle function
@@ -110,6 +110,11 @@ public class BlastUI : MonoBehaviour
         //Convert the local point to world point
         return parentCanvas.transform.TransformPoint(movePos);
     }
-    
-    
+
+    private Vector3 UiToWorldSpace(Vector3 uiPos)
+    {
+        return Camera.main.ScreenToWorldPoint(uiPos);
+    }
+
+
 }

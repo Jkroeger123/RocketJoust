@@ -137,13 +137,12 @@ public class BattleManager : MonoBehaviour
 
         countDownText.transform.DOScale(1.4f, 0.4f);
 
-        yield return new WaitForSeconds(3f);
-
-        StartCoroutine(Restart());
+        yield return new WaitForSeconds(4f);
+        
+        EndMatch();
     }
 
-    private IEnumerator Restart () {
-        yield return new WaitForSeconds(1f);
+    public void EndMatch() {
 
         foreach (GameObject player in _players)
         {
