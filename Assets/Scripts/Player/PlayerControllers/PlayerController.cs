@@ -58,8 +58,6 @@ public class PlayerController : MonoBehaviour
         SetBlastActive(false);
     }
 
-    private void OnEnable() => Subscribe();
-    
     private void Subscribe()
     {
         _input.ONRocketPress += OnBlast;
@@ -157,7 +155,7 @@ public class PlayerController : MonoBehaviour
 
         _timer = blastCooldown;
         _blastCount--;
-        
+
         StartCoroutine(EnableBlast());
         _blastRoutine = StartCoroutine(Thoom());
         
@@ -212,6 +210,5 @@ public class PlayerController : MonoBehaviour
     }
 
     private void OnDestroy () => Unsubscribe();
-    private void OnDisable() => Unsubscribe();
-   
+
 }
