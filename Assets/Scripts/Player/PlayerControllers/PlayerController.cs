@@ -19,21 +19,26 @@ public class PlayerController : MonoBehaviour
     public float thrusterMaxVelocity = 10f;
     
     [Header("Blast")]
+    public int blastCap;
     public float thoomMaxVelocity = 65f;
     public float thoomTime = 0.5f; 
     public float thoomSlowdownDuration = 1f;
     public float blastDuration;
     public float blastCooldown = 0.2f;
     public GameObject blast;
+    public GameObject blastUI;
     
     public bool isThooming = false;
 
+    private BlastUI _blastUI;
+    
     private Rigidbody2D _rb;
     private PlayerInputController _input;
     private bool _isInvincible;
     private float _maxVelocity;
     private float _timer;
-
+    private int _blastCount;
+    
     private Coroutine _blastRoutine;
     private Tween _blastTween;
     
@@ -42,9 +47,13 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
+        _blastCount = blastCap;
         _rb = gameObject.GetComponent<Rigidbody2D>();
         _input = gameObject.GetComponent<PlayerInputController>();
         _maxVelocity = thrusterMaxVelocity;
+        _blastUI = Instantiate(blastUI).transform.GetChild(0).GetComponent<BlastUI>();
+        _blastUI.Initialize(blastCap, gameObject);
+        _blastUI.IsHidden = true;
         Subscribe();
         SetBlastActive(false);
     }
@@ -61,7 +70,32 @@ public class PlayerController : MonoBehaviour
     {
         GetRotationInput();
         _rb.velocity = Vector2.ClampMagnitude(_rb.velocity, _maxVelocity);
+        UpdateBlastUI();
+    }
+
+    private void UpdateBlastUI()
+    {
+        if (_blastCount != blastCap)
+        {
+            _blastUI.IsHidden = false;
+        }
+        
         _timer -= Time.deltaTime;
+        
+        if (_timer <= 0)
+        {
+            
+            if (_blastCount == blastCap)
+            {
+                _blastUI.IsHidden = true;
+            }
+            
+            _blastCount = Mathf.Clamp(_blastCount + 1, 0, blastCap);
+            _timer = blastCooldown;
+        }
+        
+        _blastUI.UpdateBlastUI(_blastCount, Mathf.Clamp(_timer/blastCooldown, 0, 1));
+        
     }
 
     #region Rotation
@@ -116,11 +150,14 @@ public class PlayerController : MonoBehaviour
     {
         if (!isActiveAndEnabled) return;
         if (!BattleManager.canMove) return;
-        if (_timer > 0) return;
+        if (_blastCount <= 0) return;
         
         if(_blastRoutine != null) StopCoroutine(_blastRoutine);
         _blastTween?.Kill();
 
+        _timer = blastCooldown;
+        _blastCount--;
+        
         StartCoroutine(EnableBlast());
         _blastRoutine = StartCoroutine(Thoom());
         
@@ -136,8 +173,6 @@ public class PlayerController : MonoBehaviour
     private IEnumerator Thoom()
     {
 
-        _timer = blastCooldown;
-        
         isThooming = true;
         _maxVelocity = thoomMaxVelocity;
         

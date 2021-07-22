@@ -437,12 +437,14 @@ MonoBehaviour:
   superRotationMultiplier: 1.5
   velocityPerThrust: 15
   thrusterMaxVelocity: 45
+  blastCap: 3
   thoomMaxVelocity: 125
   thoomTime: 0.2
   thoomSlowdownDuration: 0.2
   blastDuration: 0.025
-  blastCooldown: 0.6
+  blastCooldown: 3
   blast: {fileID: 529867247828865258}
+  blastUI: {fileID: 7004857560720718492, guid: c5d659b258092f14291c23d226f953e8, type: 3}
   isThooming: 0
 --- !u!114 &8488265179660566782
 MonoBehaviour:
