@@ -222,6 +222,7 @@ GameObject:
   - component: {fileID: 197041512112053869}
   - component: {fileID: 641949245237509899}
   - component: {fileID: 7511018954209811307}
+  - component: {fileID: -8158171906324979799}
   m_Layer: 10
   m_Name: Briefcase-san
   m_TagString: Player
@@ -463,6 +464,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   thrustRumble: {fileID: 11400000, guid: fe53657171d5963429250edb6f4cbacf, type: 2}
   blastRumble: {fileID: 11400000, guid: 9df7565fbf61b8f4d91be1f3367cb3c6, type: 2}
+--- !u!114 &-8158171906324979799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8488265179660566753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89bc9b7a8acf38b4e80e359c4b07660c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteOptions:
+  - {fileID: 3861092042763991561, guid: 0ebb341236796284393d403b61fa48a2, type: 3}
+  - {fileID: -5613927537855688670, guid: 0ebb341236796284393d403b61fa48a2, type: 3}
+  - {fileID: -7135404265310675067, guid: 0ebb341236796284393d403b61fa48a2, type: 3}
+  - {fileID: -8571327680485330330, guid: 0ebb341236796284393d403b61fa48a2, type: 3}
 --- !u!1001 &2098343479209569511
 PrefabInstance:
   m_ObjectHideFlags: 0
