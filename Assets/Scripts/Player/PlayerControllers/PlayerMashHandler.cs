@@ -19,7 +19,6 @@ public class PlayerMashHandler : MonoBehaviour
 
         if (status >= target)
         {
-            GetComponent<PlayerInputController>().EnableGameplayControls();
             Unsubscribe();
             Destroy(this);
         }
