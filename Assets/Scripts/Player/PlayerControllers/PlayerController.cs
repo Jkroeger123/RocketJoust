@@ -47,32 +47,51 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
+        _blastCount = blastCap;
         _rb = gameObject.GetComponent<Rigidbody2D>();
         _input = gameObject.GetComponent<PlayerInputController>();
         _input.ONRocketPress += OnBlast;
         _input.ONThrusterPress += OnThrust;
         _maxVelocity = thrusterMaxVelocity;
+        _blastUI = Instantiate(blastUI).transform.GetChild(0).GetComponent<BlastUI>();
+        _blastUI.Initialize(blastCap, gameObject);
+        _blastUI.IsHidden = true;
     }
 
     private void Start () {
         SetBlastActive(false);
-        _blastUI = Instantiate(blastUI).transform.GetChild(0).GetComponent<BlastUI>();
-        _blastUI.Initialize(blastCap, gameObject);
     }
     
     private void Update()
     {
         GetRotationInput();
         _rb.velocity = Vector2.ClampMagnitude(_rb.velocity, _maxVelocity);
+        UpdateBlastUI();
+    }
+
+    private void UpdateBlastUI()
+    {
+        if (_blastCount != blastCap)
+        {
+            _blastUI.IsHidden = false;
+        }
         
         _timer -= Time.deltaTime;
+        
         if (_timer <= 0)
         {
+            
+            if (_blastCount == blastCap)
+            {
+                _blastUI.IsHidden = true;
+            }
+            
             _blastCount = Mathf.Clamp(_blastCount + 1, 0, blastCap);
             _timer = blastCooldown;
-            _blastUI.UpdateBlastUI(_blastCount, Mathf.Clamp(_timer/blastCooldown, 0, 1));
         }
-
+        
+        _blastUI.UpdateBlastUI(_blastCount, Mathf.Clamp(_timer/blastCooldown, 0, 1));
+        
     }
 
     #region Rotation
@@ -130,6 +149,9 @@ public class PlayerController : MonoBehaviour
         if(_blastRoutine != null) StopCoroutine(_blastRoutine);
         _blastTween?.Kill();
 
+        _timer = blastCooldown;
+        _blastCount--;
+        
         StartCoroutine(EnableBlast());
         _blastRoutine = StartCoroutine(Thoom());
         
@@ -145,8 +167,6 @@ public class PlayerController : MonoBehaviour
     private IEnumerator Thoom()
     {
 
-        _blastCount--;
-        
         isThooming = true;
         _maxVelocity = thoomMaxVelocity;
         

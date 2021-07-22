@@ -343,6 +343,7 @@ MonoBehaviour:
   blastDuration: 0.025
   blastCooldown: 0.6
   blast: {fileID: 529867247828865258}
+  blastUI: {fileID: 7004857560720718492, guid: c5d659b258092f14291c23d226f953e8, type: 3}
   isThooming: 0
 --- !u!114 &8488265179660566782
 MonoBehaviour:

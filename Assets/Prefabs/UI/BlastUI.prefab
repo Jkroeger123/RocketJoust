@@ -172,7 +172,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf627ca96e7f27c4fb0906257a2c713e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  readyColor: {r: 0.33580533, g: 0.8396226, b: 0.20990565, a: 1}
+  notReadyColor: {r: 0.9150943, g: 0.366901, b: 0.366901, a: 1}
   blastElement: {fileID: 8997443683861006145, guid: a21c37b7a70800440964f6d8a4a6c4e2,
     type: 3}
   target: {fileID: 0}
-  yOffset: 0.3
