@@ -6,23 +6,28 @@ using UnityEngine.EventSystems;
 
 public class PauseMenu : MonoBehaviour
 {
-    public static bool isPaused = false;
+
+    public static PauseMenu Instance;
     
-    public static event Action<bool> ONPauseSet;
-    
+    public bool isPaused = false;
+    public event Action<bool> ONPauseSet;
     public GameObject pauseUI;
-    
-    private bool _pauseBuffer; //status of pause the previous frame to detect change;
-    
-    private void Update()
+
+
+    private void Awake()
     {
-
-        if (_pauseBuffer == isPaused)
-        {
-            _pauseBuffer = isPaused;
-            return;
+        if (Instance != null) {
+            Destroy(gameObject);
+        }else{
+            Instance = this;
         }
-
+    }
+    
+    
+    public void TogglePause()
+    {
+        isPaused = !isPaused;
+        
         if (isPaused)
         {
             Pause();
@@ -31,18 +36,16 @@ public class PauseMenu : MonoBehaviour
         {
             Resume();
         }
-
-        _pauseBuffer = isPaused;
     }
 
-    public void Resume()
+    private void Resume()
     {
         Time.timeScale = 1f;
         pauseUI.SetActive(false);
         ONPauseSet?.Invoke(false);
     }
 
-    public void Pause()
+    private void Pause()
     {
         Time.timeScale = 0f;
         pauseUI.SetActive(true);
@@ -53,8 +56,7 @@ public class PauseMenu : MonoBehaviour
 
     public void EndMatch()
     {
-        isPaused = false;
-        Resume();
+        if (isPaused) TogglePause();
         GetComponent<BattleManager>().EndMatch();
     }
 

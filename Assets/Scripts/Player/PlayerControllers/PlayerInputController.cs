@@ -46,9 +46,10 @@ public class PlayerInputController : MonoBehaviour
         
         InitializeGameplayControls();
         InitializeUI();
-
+        EnableGameplayControls();
+        
         _playerInput.onDeviceLost += OnDeviceLost;
-        PauseMenu.ONPauseSet += OnPauseSet;
+        PauseMenu.Instance.ONPauseSet += OnPauseSet;
     }
 
     private void Start()
@@ -191,7 +192,7 @@ public class PlayerInputController : MonoBehaviour
     
     
     private void PauseInput(InputAction.CallbackContext context) 
-        => PauseMenu.isPaused = !PauseMenu.isPaused;
+        => PauseMenu.Instance.TogglePause();
 
     private void OnPauseSet(bool isSet)
     {
@@ -207,13 +208,16 @@ public class PlayerInputController : MonoBehaviour
         }
     }
 
-    private void OnDeviceLost(PlayerInput lost) => OnPauseSet(true);
-    
+    private void OnDeviceLost(PlayerInput lost)
+    {
+        if(!PauseMenu.Instance.isPaused) PauseMenu.Instance.TogglePause();
+    }
+
     private void OnDestroy()
     {
         DestroyGameplayControls();
         DestroyUIControls();
         _playerInput.onDeviceLost -= OnDeviceLost;
-        PauseMenu.ONPauseSet -= OnPauseSet;
+        PauseMenu.Instance.ONPauseSet -= OnPauseSet;
     }
 }
