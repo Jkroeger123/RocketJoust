@@ -31,6 +31,16 @@ public class GameManager : MonoBehaviour
         _players.Add(input.gameObject);
         AssignPlayerID(input.gameObject);
         Instantiate(playerLobbyPrefab, input.gameObject.transform);
+        
+        //Reorder the ui if necessary
+        _players.Sort((g, o) 
+            => g.GetComponent<Player>().PlayerID.CompareTo(o.GetComponent<Player>().PlayerID));
+
+        for (int i = 0; i < _players.Count; i++)
+        {
+            _players[i].transform.GetChild(0).GetComponent<PlayerLobbyController>()
+                .SetSiblingIndex(i);
+        }
     }
 
     private void AssignPlayerID(GameObject player)

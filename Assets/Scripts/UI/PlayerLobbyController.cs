@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -17,7 +18,8 @@ public class PlayerLobbyController : MonoBehaviour
     
     [NonSerialized]
     public bool isReady;
-    
+
+    private int _siblingIndex;
     private Player _player;
     private GameManager _gameManager;
     private PlayerInput _playerInput;
@@ -35,6 +37,7 @@ public class PlayerLobbyController : MonoBehaviour
         
         _lobbyUI = CreatePlayerSlot();
         _lobbyUI.gameObject.SetActive(true);
+        _lobbyUI.transform.SetSiblingIndex(_siblingIndex);
         
         SelectCharacter(GameObject.Find("CharacterSlotArea").transform.GetChild(0).gameObject);
         
@@ -69,6 +72,8 @@ public class PlayerLobbyController : MonoBehaviour
         
         return ui;
     }
+    
+    public void SetSiblingIndex (int i) => _siblingIndex = i;
 
     public void OnMatchStarting() => TerminateUIControls();
 
