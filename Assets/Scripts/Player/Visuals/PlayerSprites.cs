@@ -11,7 +11,7 @@ public class PlayerSprites : MonoBehaviour
     {
         int count = spriteOptions.Count;
         int playerNum = transform.parent.GetComponent<Player>().PlayerID;
-        int i = playerNum % count;
+        int i = (playerNum-1) % count;
         GetComponent<SpriteRenderer>().sprite = spriteOptions[i];
     }
 }

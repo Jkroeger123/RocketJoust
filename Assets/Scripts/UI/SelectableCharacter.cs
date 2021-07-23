@@ -6,4 +6,6 @@ using UnityEngine.UI;
 public class SelectableCharacter : Selectable
 {
     public GameObject characterPrefab;
+    public GameObject charImg;
+    public List<Sprite> colorOptions;
 }

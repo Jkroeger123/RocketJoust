@@ -81,7 +81,7 @@ public class GameManager : MonoBehaviour
         //Launch The countdown here
         StartCoroutine(LaunchMatch());
     }
-
+    
     private IEnumerator LaunchMatch()
     {
         GetComponent<PlayerInputManager>().DisableJoining();

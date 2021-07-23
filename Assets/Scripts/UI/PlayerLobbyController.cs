@@ -53,7 +53,12 @@ public class PlayerLobbyController : MonoBehaviour
         
         //Place the selector as a child of the character slot
         _selector.transform.SetParent(character.transform.GetChild(0));
-        _lobbyUI.SetCharacterImage(character.GetComponent<Image>().sprite);
+
+        List<Sprite> colorOptions = _currentSelection.GetComponent<SelectableCharacter>().colorOptions;
+        
+        Sprite spriteDisplay =  colorOptions[(_player.PlayerID-1) % colorOptions.Count];
+        
+        _lobbyUI.UpdateCharacterDisplay(_currentSelection.GetComponent<SelectableCharacter>().charImg, spriteDisplay);
     }
 
     private PlayerLobbyUI CreatePlayerSlot()

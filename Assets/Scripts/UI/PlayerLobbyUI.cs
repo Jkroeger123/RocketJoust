@@ -27,6 +27,13 @@ public class PlayerLobbyUI : MonoBehaviour
         playerText.text = "P" + n;
     }
 
+    public void UpdateCharacterDisplay(GameObject displayPrefab, Sprite img)
+    {
+        Destroy(transform.GetChild(0).gameObject);
+        Instantiate(displayPrefab, transform).transform.SetSiblingIndex(0);
+        SetCharacterImage(img);
+    }
+
     public void SetCharacterImage(Sprite img)
     {
         transform.GetChild(0).GetComponent<Image>().sprite = img;
