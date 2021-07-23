@@ -21,6 +21,8 @@ public class BattleManager : MonoBehaviour
     
     public static bool canMove;
     
+    public Image transitionImage;
+    
     private List<GameObject> _players;
     private Dictionary<GameObject, int> _livesLeft;
 
@@ -42,6 +44,8 @@ public class BattleManager : MonoBehaviour
 
     public void StartMatch(List<GameObject> players)
     {
+        transitionImage.fillAmount = 1f;
+        DOTween.To(() => transitionImage.fillAmount, (x) => transitionImage.fillAmount = x, 0f, 0.3f);
         _players = new List<GameObject>(players);
         StartCoroutine(SpawnPlayers());
     }

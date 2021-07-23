@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -9,8 +10,10 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public GameObject playerLobbyPrefab;
-
+    public Image transitionImage;
+    
     public Text countDown;
+    public Text joinText;
     
     private List<GameObject> _players;
 
@@ -85,6 +88,8 @@ public class GameManager : MonoBehaviour
     private IEnumerator LaunchMatch()
     {
         GetComponent<PlayerInputManager>().DisableJoining();
+        
+        joinText.gameObject.SetActive(false);
         countDown.gameObject.SetActive(true);
 
         //DisablePlayer Input
@@ -109,8 +114,9 @@ public class GameManager : MonoBehaviour
         {
             Destroy(player.transform.GetChild(0).gameObject);
         }
-        
-        SceneManager.LoadScene("SampleScene", LoadSceneMode.Single);
+
+        DOTween.To(() => transitionImage.fillAmount, (x) => transitionImage.fillAmount = x, 1f, 0.3f)
+            .OnComplete(() => SceneManager.LoadScene("SampleScene", LoadSceneMode.Single));
     }
 
     private void OnBattleLoaded(Scene scene, LoadSceneMode mode) {
