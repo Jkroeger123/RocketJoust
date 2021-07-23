@@ -677,7 +677,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 1847
+    m_Bits: 14135
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -2093,7 +2093,7 @@ MonoBehaviour:
   - {fileID: 3513666910401294507, guid: 13149577928d68444b561a0de61bb953, type: 3}
   - {fileID: 2468138919303002185, guid: ab220836a6ecdfc4197f36aae82d7400, type: 3}
   spawnRate: 5
-  maxItems: 6
+  maxItems: 5
 --- !u!4 &1174862273
 Transform:
   m_ObjectHideFlags: 0

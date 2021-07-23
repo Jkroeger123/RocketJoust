@@ -22,7 +22,7 @@ public class ItemSpawner : MonoBehaviour
 
     private void Update()
     {
-        if (_timer <= 0 && _itemContainer.transform.childCount <= maxItems)
+        if (_timer <= 0 && _itemContainer.transform.childCount < maxItems)
         {
             SpawnItem();
             _timer = spawnRate;

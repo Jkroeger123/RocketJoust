@@ -16,7 +16,7 @@ public class Player : MonoBehaviour
     public void CreatePlayerHUD(GlobalHUDManager globalHUDManager)
     {
         _playerHUD = globalHUDManager.CreatePlayerHUD();
-        _playerHUD.playerIDText.text = "P" + PlayerID;
+        _playerHUD.SetID(PlayerID);
     }
 
     public void DecrementHealth()

@@ -17,9 +17,6 @@ public class CamGroupController : MonoBehaviour
 
     public void AddObject(GameObject obj)
     {
-        //Interrupt any smooth remove
-        if(_smoothTween != null) _smoothTween.Kill();
-        
         _camGroup.AddMember(obj.transform, 1, 0);
     }
 
@@ -46,8 +43,8 @@ public class CamGroupController : MonoBehaviour
         
         _smoothTween = DOTween.To(
             () => _camGroup.m_Targets[_camGroup.FindMember(standIn.transform)].weight,
-            (x) => _camGroup.m_Targets[_camGroup.FindMember(standIn.transform)].weight = x, 0, 1f)
-            .OnKill(() => RemoveObject(standIn)).OnComplete(() => RemoveObject(standIn)).SetEase(Ease.Linear);
+            (x) => _camGroup.m_Targets[_camGroup.FindMember(standIn.transform)].weight = x, 0, 3f)
+            .OnKill(() => RemoveObject(standIn)).OnComplete(() => RemoveObject(standIn)).SetEase(Ease.InOutCubic);
     }
 
 }

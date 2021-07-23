@@ -15,6 +15,7 @@ public class MissleUseable : MonoBehaviour, IUseable {
     // potentially implement slowdown and speed up
     // implement on-hit effects and fx
 
+    public GameObject eraserPrefab;
     public GameObject explosionParticle;
     public Rigidbody2D _rb;
     public float missileSpeed = 100f;
@@ -29,6 +30,8 @@ public class MissleUseable : MonoBehaviour, IUseable {
 
     void Start()
     {
+        GameObject o = Instantiate(eraserPrefab, transform.GetChild(1).position, transform.rotation);
+        o.transform.position = new Vector3(transform.position.x, transform.position.y, 0f);
         currentTarget = null;
         AcquireTarget();
         transform.parent = null;
@@ -68,6 +71,8 @@ public class MissleUseable : MonoBehaviour, IUseable {
 
     private void OnCollisionEnter2D(Collision2D other)
     {
+        if (other.gameObject.CompareTag("Chunk")) return;
+        
         if (other.gameObject == user) return;
 
         if (other.gameObject.CompareTag("Player"))

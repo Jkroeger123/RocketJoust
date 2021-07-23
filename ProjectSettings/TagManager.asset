@@ -7,6 +7,7 @@ TagManager:
   - BattleManager
   - Projectile
   - Beam
+  - Chunk
   layers:
   - Default
   - TransparentFX
@@ -20,8 +21,8 @@ TagManager:
   - Cam
   - Player
   - DistortionParticle
-  - 
-  - 
+  - Chunk
+  - Items
   - 
   - 
   - 

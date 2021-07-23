@@ -40,9 +40,7 @@ public class SkySpawner : MonoBehaviour
         GameObject g = Instantiate(sprite, location, Quaternion.identity);
 
         g.GetComponent<SkyMove>().ONRemove += RemoveBackground;
-        
-        if (_sprites.Count % 2 == 1) g.GetComponent<SpriteRenderer>().flipX = true;
-        
+
         _sprites.Add(g);
     }
 }

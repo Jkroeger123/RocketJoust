@@ -11,12 +11,10 @@ public class PlayerFeedbackHandler : MonoBehaviour
     public GameObject deathParticle;
     public GameObject playerEntryObject;
     
-    public ParticleSystem blastParticle;
 
     private void Awake()
     {
         PlayerController.ONThrust += OnThrust;
-        PlayerController.ONBlast += OnBlast;
         PlayerDeathHandler.ONDeath += OnDeath;
     }
 
@@ -31,12 +29,6 @@ public class PlayerFeedbackHandler : MonoBehaviour
         Instantiate(thrustParticle, thrustLocation.transform.position, transform.rotation);
     }
 
-    private void OnBlast(GameObject g)
-    {
-        if (g != gameObject) return;
-        blastParticle.Play();
-    }
-
     private void OnDeath(GameObject g)
     {
         if (g != gameObject) return;
@@ -47,6 +39,5 @@ public class PlayerFeedbackHandler : MonoBehaviour
     {
         PlayerDeathHandler.ONDeath -= OnDeath;
         PlayerController.ONThrust -= OnThrust;
-        PlayerController.ONBlast -= OnBlast;
     }
 }
