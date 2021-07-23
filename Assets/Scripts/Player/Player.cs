@@ -19,6 +19,8 @@ public class Player : MonoBehaviour
         _playerHUD.SetID(PlayerID);
     }
 
+    public PlayerHUD GetPlayerHUD() => _playerHUD;
+
     public void DecrementHealth()
     {
         if (_playerHUD == null) return;

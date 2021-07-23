@@ -24,6 +24,8 @@ public class PlayerItemManager : MonoBehaviour {
         SetItem(itemPrefab);
         _pickedUpItem = pickedUpItem;
         
+        transform.parent.GetComponent<Player>().GetPlayerHUD().SetItemSprite(_pickedUpItem.GetComponent<SpriteRenderer>().sprite);
+        
         ONItemPickup?.Invoke(gameObject);
         return true;
     }
@@ -38,6 +40,8 @@ public class PlayerItemManager : MonoBehaviour {
         if (activeItem == null) return;
         
         Destroy(_pickedUpItem);
+        transform.parent.GetComponent<Player>().GetPlayerHUD().RemoveItem();
+
         activeItem.gameObject.GetComponent<IUseable>().Use(gameObject);
         activeItem = null;
     }
