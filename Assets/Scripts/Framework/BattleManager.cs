@@ -40,6 +40,10 @@ public class BattleManager : MonoBehaviour
         _camGroup = camGroupObj.GetComponent<CinemachineTargetGroup>();
     }
 
+    public CinemachineTargetGroup GetCamGroup () {
+        return _camGroup;
+    }
+
     public void StartMatch(List<GameObject> players)
     {
         _players = new List<GameObject>(players);

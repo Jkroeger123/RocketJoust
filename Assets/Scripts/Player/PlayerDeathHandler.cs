@@ -7,6 +7,8 @@ public class PlayerDeathHandler : MonoBehaviour
 {
     public PlayerKillManager killManager;
 
+    public GameObject deadPlayer;
+
     private GameObject _currentKiller;
     private bool _isInvincible;
     private bool _isParried;
@@ -47,8 +49,8 @@ public class PlayerDeathHandler : MonoBehaviour
 
         _currentKiller = null;
 
-        if (!_isParried)
-        {
+        if (!_isParried) {
+            Instantiate(deadPlayer, gameObject.transform.position, gameObject.transform.rotation).GetComponent<PlayerDeathAnimHandler>().OnDeath(killer);
             ONDeath?.Invoke(gameObject); 
         }
 
