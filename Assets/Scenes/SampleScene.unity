@@ -2110,10 +2110,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bounds: {x: -13, y: 115, z: -55, w: 13}
   items:
-  - {fileID: 3513666910401294507, guid: 13149577928d68444b561a0de61bb953, type: 3}
-  - {fileID: 2468138919303002185, guid: ab220836a6ecdfc4197f36aae82d7400, type: 3}
-  spawnRate: 5
-  maxItems: 5
+  - prefab: {fileID: 2468138919303002185, guid: ab220836a6ecdfc4197f36aae82d7400,
+      type: 3}
+    maxPerPlayer: 2
+  - prefab: {fileID: 3513666910401294507, guid: 13149577928d68444b561a0de61bb953,
+      type: 3}
+    maxPerPlayer: 1
+  minSpawnRate: 5
+  maxSpawnRate: 10
 --- !u!4 &1174862273
 Transform:
   m_ObjectHideFlags: 0

@@ -4,9 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerItemManager : MonoBehaviour {
-    public GameObject activeItem;
-    private PlayerInputController _input;
+    
     public GameObject itemSpawner;
+    public GameObject activeItem;
+
+    private GameObject _pickedUpItem;
+    private PlayerInputController _input;
 
     public static event Action<GameObject> ONItemPickup; 
 
@@ -15,9 +18,12 @@ public class PlayerItemManager : MonoBehaviour {
         _input.ONUseItem += UseItem;
     }
 
-    public bool CanSetItem (GameObject itemPrefab) {
+    public bool CanSetItem (GameObject itemPrefab, GameObject pickedUpItem) {
         if (activeItem != null) return false;
+        
         SetItem(itemPrefab);
+        _pickedUpItem = pickedUpItem;
+        
         ONItemPickup?.Invoke(gameObject);
         return true;
     }
@@ -30,6 +36,8 @@ public class PlayerItemManager : MonoBehaviour {
 
     private void UseItem () {
         if (activeItem == null) return;
+        
+        Destroy(_pickedUpItem);
         activeItem.gameObject.GetComponent<IUseable>().Use(gameObject);
         activeItem = null;
     }

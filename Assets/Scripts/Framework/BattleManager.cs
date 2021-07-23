@@ -158,6 +158,8 @@ public class BattleManager : MonoBehaviour
         SceneManager.LoadScene("NewLobby");
     }
 
+    public List<GameObject> GetPlayers() => _players;
+    
     private void OnDestroy()
     {
         PlayerDeathHandler.ONDeath -= OnDeath;
