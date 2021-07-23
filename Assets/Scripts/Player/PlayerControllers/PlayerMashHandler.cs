@@ -20,6 +20,7 @@ public class PlayerMashHandler : MonoBehaviour
         if (status >= target)
         {
             Unsubscribe();
+            GetComponent<PlayerInputController>().EnableGameplayControls();
             Destroy(this);
         }
 
@@ -48,7 +49,6 @@ public class PlayerMashHandler : MonoBehaviour
     private void Unsubscribe()
     {
         GetComponent<PlayerInputController>().DestroyMashControls(OnMashPress);
-        GetComponent<PlayerInputController>().EnableGameplayControls();
         GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
         ONItemEffectEnd?.Invoke(gameObject);
     }

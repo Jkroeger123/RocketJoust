@@ -42,11 +42,6 @@ public class PlayerDeathAnimHandler : MonoBehaviour
         _rb.velocity = -killer.transform.up*pinballSpeed;
     }
 
-    public void SetFace(Sprite sprite)
-    {
-        transform.Find("face").GetComponent<SpriteRenderer>().sprite = sprite;
-    }
-
     public void SetBody(Sprite sprite)
     {
         GetComponent<SpriteRenderer>().sprite = sprite;

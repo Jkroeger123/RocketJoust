@@ -20,7 +20,7 @@ public class PlayerInputController : MonoBehaviour
     private InputAction _useItem;
     private InputAction _pause;
 
-    private InputAction _UiPause;
+    private InputAction _uiPause;
     private InputAction _leave;
     
     [NonSerialized]
@@ -157,6 +157,8 @@ public class PlayerInputController : MonoBehaviour
     public void DestroyMashControls(Action<InputAction.CallbackContext> callback)
     {
         if (!isActiveAndEnabled) return;
+
+        InputActionMap map = _playerInput.currentActionMap;
         
         _playerInput.SwitchCurrentActionMap("Mash");
         
@@ -165,6 +167,8 @@ public class PlayerInputController : MonoBehaviour
         
         paused.performed -= PauseInput;
         mash.performed -= callback;
+
+        _playerInput.currentActionMap = map;
     }
 
     #endregion
@@ -175,8 +179,8 @@ public class PlayerInputController : MonoBehaviour
     {
         _playerInput.SwitchCurrentActionMap("UI");
         
-        _UiPause = _playerInput.currentActionMap.FindAction("Pause");
-        _UiPause.performed += PauseInput;
+        _uiPause = _playerInput.currentActionMap.FindAction("Pause");
+        _uiPause.performed += PauseInput;
         
         _leave = _playerInput.currentActionMap.FindAction("Leave");
         _leave.performed += PauseInput;
@@ -184,7 +188,7 @@ public class PlayerInputController : MonoBehaviour
 
     public void DestroyUIControls()
     {
-        _UiPause.performed -= PauseInput;
+        _uiPause.performed -= PauseInput;
         _leave.performed -= PauseInput;
     }
 

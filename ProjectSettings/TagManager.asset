@@ -8,6 +8,7 @@ TagManager:
   - Projectile
   - Beam
   - Chunk
+  - bubble
   layers:
   - Default
   - TransparentFX

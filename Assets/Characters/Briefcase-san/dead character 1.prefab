@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 5997383160152705553}
   m_Layer: 10
   m_Name: dead character 1
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -378,7 +378,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -2624413391016279276, guid: 139f7945cfedfd1479ea95a19c443112,
+      objectReference: {fileID: -3595212868988225666, guid: 0ebb341236796284393d403b61fa48a2,
         type: 3}
     m_RemovedComponents:
     - {fileID: 2469261321624670709, guid: f39a52c694ced334991d68df7af35ec7, type: 3}

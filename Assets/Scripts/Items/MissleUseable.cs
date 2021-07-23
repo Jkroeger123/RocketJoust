@@ -71,6 +71,7 @@ public class MissleUseable : MonoBehaviour, IUseable {
 
     private void OnCollisionEnter2D(Collision2D other)
     {
+
         if (other.gameObject.CompareTag("Chunk")) return;
         
         if (other.gameObject == user) return;
@@ -80,6 +81,7 @@ public class MissleUseable : MonoBehaviour, IUseable {
             other.gameObject.AddComponent<PlayerMashHandler>().InitializeMash();
         }
 
+        Instantiate(explosionParticle, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
 
@@ -118,7 +120,5 @@ public class MissleUseable : MonoBehaviour, IUseable {
         float rotateAmount = Vector3.Cross(direction, transform.up).z;
         _rb.angularVelocity = -rotateAmount * rotateSpeed;
     }
-
-    private void OnDestroy() => Instantiate(explosionParticle, transform.position, Quaternion.identity);
 
 }

@@ -76,8 +76,7 @@ public class PlayerDeathHandler : MonoBehaviour
 
             pd.id = transform.parent.GetComponent<Player>().PlayerID;
             pd.SetBody(GetComponent<SpriteRenderer>().sprite);
-            pd.SetFace(transform.Find("face").GetComponent<SpriteRenderer>().sprite);
-            
+
             ONDeath?.Invoke(gameObject); 
         }
 
