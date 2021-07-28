@@ -47,6 +47,11 @@ public class PlayerMashHandler : MonoBehaviour
 
     private void OnMashPress(InputAction.CallbackContext context)
     {
+        if (!gameObject)
+        {
+            print("JAmeE");
+        }
+
         status += 0.3f;
 
         Vector3 randDir = new Vector3(Random.Range(0f, 1f), Random.Range(0f, 1f), 0);
