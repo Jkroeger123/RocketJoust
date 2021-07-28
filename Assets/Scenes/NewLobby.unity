@@ -631,8 +631,8 @@ MonoBehaviour:
   colorOptions:
   - {fileID: 3861092042763991561, guid: 0ebb341236796284393d403b61fa48a2, type: 3}
   - {fileID: -5613927537855688670, guid: 0ebb341236796284393d403b61fa48a2, type: 3}
-  - {fileID: -7135404265310675067, guid: 0ebb341236796284393d403b61fa48a2, type: 3}
   - {fileID: -8571327680485330330, guid: 0ebb341236796284393d403b61fa48a2, type: 3}
+  - {fileID: -7135404265310675067, guid: 0ebb341236796284393d403b61fa48a2, type: 3}
 --- !u!114 &748939338
 MonoBehaviour:
   m_ObjectHideFlags: 0

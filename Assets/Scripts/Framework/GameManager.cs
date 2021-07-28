@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
     //Psedu bit mask for storing which IDs are used
     private bool[] _playerIDMask;
     
-    private void Start()
+    private void Awake()
     {
         SceneManager.sceneLoaded += OnBattleLoaded;
         _playerIDMask = new bool[10];
@@ -93,11 +93,11 @@ public class GameManager : MonoBehaviour
         countDown.gameObject.SetActive(true);
 
         //DisablePlayer Input
-        int curID = 1;
+       // int curID = 1;
         
         foreach (GameObject player in _players)
         {
-            player.GetComponent<Player>().PlayerID = curID++;
+            //player.GetComponent<Player>().PlayerID = curID++;
             PlayerLobbyController playLob = player.transform.GetChild(0).GetComponent<PlayerLobbyController>();
             playLob.OnMatchStarting();
         }

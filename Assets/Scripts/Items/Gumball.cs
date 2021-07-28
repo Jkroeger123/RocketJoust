@@ -24,7 +24,9 @@ public class Gumball : MonoBehaviour
     private void StickPlayer(GameObject player)
     {
         //Disable movement, Initialize Mash suicide
-        player.AddComponent<PlayerMashHandler>().InitializeMash();
+        PlayerMashHandler mash = player.AddComponent<PlayerMashHandler>();
+        mash.InitializeMash();
+        mash.ShowGum();
         Destroy(gameObject);
     }
 

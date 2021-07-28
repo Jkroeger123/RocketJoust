@@ -31,7 +31,7 @@ public class BattleManager : MonoBehaviour
 
     private void Awake()
     {
-
+        
         canMove = false;
         
         PlayerDeathHandler.ONDeath += OnDeath;
@@ -39,15 +39,24 @@ public class BattleManager : MonoBehaviour
         _livesLeft = new Dictionary<GameObject, int>();
 
         _hudManager = GetComponent<GlobalHUDManager>();
+        _hudManager.HideHUD();
+        
         _camGroupController = camGroupObj.GetComponent<CamGroupController>();
     }
 
     public void StartMatch(List<GameObject> players)
     {
-        transitionImage.fillAmount = 1f;
-        DOTween.To(() => transitionImage.fillAmount, (x) => transitionImage.fillAmount = x, 0f, 0.3f);
         _players = new List<GameObject>(players);
-        StartCoroutine(SpawnPlayers());
+        transitionImage.fillAmount = 1f;
+        
+        //Setup CameraWeights for smooth transition
+        for (int i = 0; i < _players.Count; i++)
+        {
+            _camGroupController.AddObject(spawnPoints.transform.GetChild(i).gameObject);
+        }
+        
+        DOTween.To(() => transitionImage.fillAmount, (x) => transitionImage.fillAmount = x, 0f, 0.3f)
+            .OnComplete(() => StartCoroutine(SpawnPlayers()));
     }
 
     private IEnumerator SpawnPlayers()
@@ -55,7 +64,6 @@ public class BattleManager : MonoBehaviour
         
         for (int i = 0; i < _players.Count; i++)
         {
-            yield return new WaitForSeconds(0.5f);
             _livesLeft.Add(_players[i], 3);
 
             Player pl = _players[i].GetComponent<Player>();
@@ -63,9 +71,16 @@ public class BattleManager : MonoBehaviour
             
             GameObject spawnPref = Instantiate(pl.characterPrefab, _players[i].transform);
             spawnPref.transform.position = spawnPoints.transform.GetChild(i).position;
+            
+            _camGroupController.RemoveObject(spawnPoints.transform.GetChild(i).gameObject);
             _camGroupController.AddObject(spawnPref);
         }
 
+        yield return new WaitForSeconds(0.5f);
+        
+        //ShowHud
+        _hudManager.ShowHUD();
+        
         Countdown(3, () => canMove = true);
     }
 
@@ -150,7 +165,11 @@ public class BattleManager : MonoBehaviour
 
         foreach (GameObject player in _players)
         {
-            Destroy(player);
+            Destroy(player);    
+            /*foreach (Transform child in player.transform)
+                {
+                    Destroy(child.gameObject);
+                }*/
         }
         
         Destroy(GameObject.Find("LobbyManager").gameObject);

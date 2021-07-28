@@ -13,6 +13,11 @@ public class PlayerItemManager : MonoBehaviour {
 
     public static event Action<GameObject> ONItemPickup; 
 
+    private void Awake()
+    {
+        PlayerDeathHandler.ONDeath += OnDeath;
+    }
+    
     void Start() {
         _input = gameObject.GetComponent<PlayerInputController>();
         _input.ONUseItem += UseItem;
@@ -44,5 +49,16 @@ public class PlayerItemManager : MonoBehaviour {
 
         activeItem.gameObject.GetComponent<IUseable>().Use(gameObject);
         activeItem = null;
+    }
+    
+    private void OnDeath(GameObject o)
+    {
+        if (o != gameObject) return;
+        transform.parent.GetComponent<Player>().GetPlayerHUD().RemoveItem();
+    }
+    
+    private void OnDestroy()
+    {
+        PlayerDeathHandler.ONDeath -= OnDeath; 
     }
 }

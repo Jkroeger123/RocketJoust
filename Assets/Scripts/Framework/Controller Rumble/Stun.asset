@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ea53282aa18eaa948ab112d67f63efd8, type: 3}
-  m_Name: Blast
+  m_Name: Stun
   m_EditorClassIdentifier: 
-  priority: 1
-  length: 0.2
-  intensity: 1
-  repeatCount: 0
-  timeBetweenRepeats: 0
+  priority: 2
+  length: 0.05
+  intensity: 0.6
+  repeatCount: 1
+  timeBetweenRepeats: 0.05

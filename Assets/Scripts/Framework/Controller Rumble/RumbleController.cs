@@ -9,7 +9,8 @@ public class RumbleController : MonoBehaviour
 {
     [SerializeField] RumblePattern thrustRumble;
     [SerializeField] RumblePattern blastRumble;
-
+    [SerializeField] RumblePattern stunRumble;
+    
     private RumblePattern _activePattern;
     private Coroutine _currentRumble;
     private PlayerInput _playerInput;
@@ -21,6 +22,7 @@ public class RumbleController : MonoBehaviour
         _playerGamepad = GetPlayerGamepad();
         PlayerController.ONBlast += ONBlast;
         PlayerController.ONThrust += ONThrust;
+        PlayerMashHandler.ONItemEffectStart += OnGumBall;
     }
 
     private void Rumble(RumblePattern pattern) 
@@ -46,7 +48,7 @@ public class RumbleController : MonoBehaviour
 
         if (_activePattern == null)
         {
-            _currentRumble = StartCoroutine(PlayRumble(pattern));
+            _currentRumble = StartCoroutine(PlayRumble(pattern, pattern.repeatCount));
             _activePattern = pattern;
             return _currentRumble;
         }
@@ -56,29 +58,32 @@ public class RumbleController : MonoBehaviour
 
         //if the new pattern does have a higher priority, stop the old pattern and start the new one
         StopAllCoroutines();
-        _currentRumble = StartCoroutine(PlayRumble(pattern));
+        _currentRumble = StartCoroutine(PlayRumble(pattern, pattern.repeatCount));
         _activePattern = pattern;
         return _currentRumble;
     }
     
 
     //This runs the actual rumble pattern, currently this only supports constant and looping
-    private IEnumerator PlayRumble(RumblePattern pattern)
+    private IEnumerator PlayRumble(RumblePattern pattern, int repeatCount)
     {
         //If a gamepad is not connected, do not run the coroutine
         if (_playerGamepad == null) yield break;
 
         _playerGamepad.SetMotorSpeeds(pattern.intensity, pattern.intensity);
+        
         yield return new WaitForSecondsRealtime(pattern.length);
-
+        
+        _playerGamepad.SetMotorSpeeds(0f, 0f);
+        
         //If the pattern is set to looping, start another coroutine.
-        if (pattern.looping)
+        if (repeatCount != 0)
         {
-            _currentRumble = StartCoroutine(PlayRumble(pattern));
+            yield return new WaitForSeconds(pattern.timeBetweenRepeats);
+            _currentRumble = StartCoroutine(PlayRumble(pattern, pattern.repeatCount - 1));
         }
         else
         {
-            _playerGamepad.SetMotorSpeeds(0f, 0f);
             _activePattern = null;
         }
     }
@@ -103,20 +108,25 @@ public class RumbleController : MonoBehaviour
         Rumble(thrustRumble);
     }
 
+    private void OnGumBall(GameObject obj)
+    {
+        if (obj != gameObject) return;
+        Rumble(stunRumble);
+    }
+
     private void Unsubscribe()
     {
         PlayerController.ONBlast -= ONBlast;
         PlayerController.ONThrust -= ONThrust;
+        PlayerMashHandler.ONItemEffectStart -= OnGumBall;
     }
 
     private void OnDestroy()
     {
-        if (_playerGamepad != null) _playerGamepad.SetMotorSpeeds(0f, 0f);
+        StopRumble();
         Unsubscribe();
     }
 
-    private void OnDisable()
-    {
-        if (_playerGamepad != null) _playerGamepad.SetMotorSpeeds(0f, 0f);
-    }
+    private void OnDisable() => StopRumble();
+    
 }

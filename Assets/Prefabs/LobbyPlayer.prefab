@@ -48,8 +48,8 @@ MonoBehaviour:
   bubbleOptions:
   - {fileID: 5496655720689450104, guid: bbd7415eb6bde62418024ccdae26b3bb, type: 3}
   - {fileID: 7850245789017446618, guid: bbd7415eb6bde62418024ccdae26b3bb, type: 3}
-  - {fileID: -3793705783889886968, guid: bbd7415eb6bde62418024ccdae26b3bb, type: 3}
   - {fileID: -2045340464360717150, guid: bbd7415eb6bde62418024ccdae26b3bb, type: 3}
+  - {fileID: -3793705783889886968, guid: bbd7415eb6bde62418024ccdae26b3bb, type: 3}
   selectorPrefab: {fileID: 4013836687355944763, guid: 9602494fe4ec92747ae19e87db82d54d,
     type: 3}
   selectorColors:

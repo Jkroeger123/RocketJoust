@@ -9,6 +9,7 @@ TagManager:
   - Beam
   - Chunk
   - bubble
+  - gum
   layers:
   - Default
   - TransparentFX
