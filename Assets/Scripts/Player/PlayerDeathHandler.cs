@@ -64,7 +64,7 @@ public class PlayerDeathHandler : MonoBehaviour
     {
         _currentKiller = killer;
 
-        yield return new WaitForSeconds(0.05f);
+        yield return new WaitForSeconds(0.0f);
 
         _currentKiller = null;
 

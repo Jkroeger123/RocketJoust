@@ -41,7 +41,7 @@ public class PlayerFeedbackHandler : MonoBehaviour
     private void OnDeath(GameObject g)
     {
         if (g != gameObject) return;
-        Instantiate(deathParticle, transform.position, Quaternion.LookRotation(g.transform.position));
+        Instantiate(deathParticle, transform.position, Quaternion.identity);
     }
 
     private void OnDestroy ()

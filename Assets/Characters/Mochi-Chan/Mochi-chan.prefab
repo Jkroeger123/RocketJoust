@@ -25,13 +25,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1344132902}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: 0.027235951, w: 0.999629}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8488265179660566781}
   m_RootOrder: 8
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 3.121}
 --- !u!198 &1344132903
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -2162,7 +2162,7 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-    inWorldSpace: 0
+    inWorldSpace: 1
   InheritVelocityModule:
     enabled: 0
     m_Mode: 0
@@ -5152,7 +5152,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4511501661863177913}
   - component: {fileID: 3039929244221523488}
-  - component: {fileID: 5076002312098524900}
+  - component: {fileID: 3062600013047840094}
   m_Layer: 0
   m_Name: HitEffects
   m_TagString: Untagged
@@ -5187,10 +5187,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Feedbacks:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 3062600013047840094}
   InitializationMode: 2
   SafeMode: 3
   Direction: 0
@@ -5221,7 +5218,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
   DebugActive: 0
---- !u!114 &5076002312098524900
+--- !u!114 &3062600013047840094
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5230,11 +5227,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 7215050651923864811}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d83ae645c92af634f89036dd5302f84a, type: 3}
+  m_Script: {fileID: 11500000, guid: d958a52145b19904aa2a5bcb3849eafb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Active: 1
-  Label: Flicker
+  Label: Scale
   Chance: 100
   Timing:
     TimescaleMode: 0
@@ -5254,12 +5251,117 @@ MonoBehaviour:
     Quantized: 0
     TargetBPM: 120
   DebugActive: 0
-  BoundRenderer: {fileID: 8488265179660566754}
   Mode: 0
-  PropertyName: _Tint
-  FlickerDuration: 0.04
-  FlickerOctave: 0.04
-  FlickerColor: {r: 0.990566, g: 0.087965935, b: 0, a: 0}
+  TimeScale: 0
+  AnimateScaleTarget: {fileID: 8488265179660566781}
+  AnimateScaleDuration: 0.2
+  RemapCurveZero: 1
+  RemapCurveOne: 1.1
+  Offset: 0
+  AnimateX: 1
+  AnimateScaleX:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.3
+      value: 1.5
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  AnimateY: 1
+  AnimateScaleY:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.3
+      value: 1.5
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  AnimateZ: 0
+  AnimateScaleZ:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.3
+      value: 1.5
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  AllowAdditivePlays: 1
+  DestinationScale: {x: 0.5, y: 0.5, z: 0.5}
 --- !u!1 &8276481583456994552
 GameObject:
   m_ObjectHideFlags: 0
@@ -5694,7 +5796,7 @@ MonoBehaviour:
   thoomMaxVelocity: 125
   thoomTime: 0.2
   thoomSlowdownDuration: 0.2
-  blastDuration: 0.025
+  blastDuration: 0.05
   blastCooldown: 3
   blast: {fileID: 529867247828865258}
   blastUI: {fileID: 7004857560720718492, guid: c5d659b258092f14291c23d226f953e8, type: 3}
@@ -5761,7 +5863,7 @@ MonoBehaviour:
   thrustParticle: {fileID: 8701858195303790609, guid: 914ec6b6faa4bd84a9950fb339b4b3aa,
     type: 3}
   thrustLocation: {fileID: 1113991753573773971}
-  deathParticle: {fileID: 330353437906517724, guid: b09e94e47a3f98743aebfe708d207ee6,
+  deathParticle: {fileID: 7965151822436081429, guid: 3977e2dcf45cb7c4488024633e2a263b,
     type: 3}
   playerEntryObject: {fileID: 6983961532901739276, guid: 5892cb2586eaf2b45aeb594b9476f745,
     type: 3}

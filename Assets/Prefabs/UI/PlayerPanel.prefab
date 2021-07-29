@@ -165,6 +165,7 @@ GameObject:
   - component: {fileID: 2244195624419655125}
   - component: {fileID: 2244195624419655126}
   - component: {fileID: 1705200558196908136}
+  - component: {fileID: 2249818136272681648}
   m_Layer: 5
   m_Name: PlayerPanel
   m_TagString: Untagged
@@ -252,6 +253,18 @@ MonoBehaviour:
   - {fileID: 4892767851384598941, guid: 1175da662e3921340b31a51e54a7f3f6, type: 3}
   - {fileID: -2966950932615248493, guid: 1175da662e3921340b31a51e54a7f3f6, type: 3}
   - {fileID: -4620391877182969407, guid: 1175da662e3921340b31a51e54a7f3f6, type: 3}
+--- !u!225 &2249818136272681648
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2244195624419655120}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &2244195624654924348
 GameObject:
   m_ObjectHideFlags: 0

@@ -31,7 +31,9 @@ public class PlayerController : MonoBehaviour
     public bool isThooming = false;
 
     private BlastUI _blastUI;
-    
+
+    private bool _canRotate = true;
+
     private Rigidbody2D _rb;
     private PlayerInputController _input;
     private bool _isInvincible;
@@ -97,7 +99,11 @@ public class PlayerController : MonoBehaviour
     }
 
     #region Rotation
-    private void GetRotationInput () {
+    private void GetRotationInput ()
+    {
+
+        if (!_canRotate) return;
+        
         if (_input.rotateRightSuperPressed)
         {
             RotateRightSuper();
@@ -151,6 +157,7 @@ public class PlayerController : MonoBehaviour
         if (_blastCount <= 0) return;
         
         if(_blastRoutine != null) StopCoroutine(_blastRoutine);
+        _canRotate = true;
         _blastTween?.Kill();
 
         _timer = blastCooldown;
@@ -172,6 +179,7 @@ public class PlayerController : MonoBehaviour
     {
 
         isThooming = true;
+        _canRotate = false;
         _maxVelocity = thoomMaxVelocity;
         
         _rb.velocity = transform.up * _maxVelocity;
@@ -186,12 +194,14 @@ public class PlayerController : MonoBehaviour
             {
                 _maxVelocity = thrusterMaxVelocity;
                 isThooming = false;
+                _canRotate = true;
                 yield break;
             }
 
             yield return null;
         }
 
+        _canRotate = true;
         _blastTween = DOTween.To(() => 
                 _maxVelocity, value => _maxVelocity = value, thrusterMaxVelocity, thoomSlowdownDuration)
             .OnComplete(() => isThooming = false);

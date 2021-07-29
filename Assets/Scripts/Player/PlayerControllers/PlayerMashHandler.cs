@@ -47,15 +47,7 @@ public class PlayerMashHandler : MonoBehaviour
 
     private void OnMashPress(InputAction.CallbackContext context)
     {
-        if (!gameObject)
-        {
-            print("JAmeE");
-        }
-
         status += 0.3f;
-
-        Vector3 randDir = new Vector3(Random.Range(0f, 1f), Random.Range(0f, 1f), 0);
-        //Tween t = transform.DOPunchPosition(randDir, 0.1f).SetLink(gameObject);
         _hitEffect.GetComponent<MMFeedbacks>().PlayFeedbacks();
     }
 
@@ -78,17 +70,12 @@ public class PlayerMashHandler : MonoBehaviour
                 _gumObject.GetComponent<SpriteRenderer>().color = Color.white;
             });
     }
-
-    public void FreezePlayer()
-    {
-        GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-        GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
-    }
+    
 
     private void Unsubscribe()
     {
         GetComponent<PlayerInputController>().DestroyMashControls(OnMashPress);
-        GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
+        GetComponent<PlayerInputController>().EnableGameplayControls();
         ONItemEffectEnd?.Invoke(gameObject);
     }
 

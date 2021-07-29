@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Cinemachine;
 using DG.Tweening;
+using MoreMountains.Feedbacks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -20,6 +21,8 @@ public class BattleManager : MonoBehaviour
     public GameObject countDownText;
     
     public static bool canMove;
+
+    public GameObject vCam;
     
     public Image transitionImage;
     
@@ -117,6 +120,23 @@ public class BattleManager : MonoBehaviour
         if (left != 1) return;
         
         GameObject winner = _livesLeft.Single(pair => pair.Value > 0).Key;
+        StartCoroutine(EndSlowdown(winner));
+    }
+
+    private IEnumerator EndSlowdown(GameObject winner)
+    {
+        Time.timeScale = 0.3f;
+        Time.fixedDeltaTime = 0.02f * (1 / Time.timeScale);
+        GameObject.Find("Camera").GetComponent<MMTimeManager>().NormalTimescale = Time.timeScale;
+        
+        yield return new WaitForSecondsRealtime(2f);
+        
+        Time.timeScale = 1f;
+        Time.fixedDeltaTime = 0.02f * (1 / Time.timeScale);
+        GameObject.Find("Camera").GetComponent<MMTimeManager>().NormalTimescale = Time.timeScale;
+        
+        yield return new WaitForSeconds(1f);
+
         StartCoroutine(PraiseWinner(winner));
     }
 
@@ -150,7 +170,6 @@ public class BattleManager : MonoBehaviour
 
     private IEnumerator PraiseWinner(GameObject player)
     {
-        
         countDownText.SetActive(true);
         countDownText.GetComponent<Text>().text = "P" + player.GetComponent<Player>().PlayerID + " Wins!";
 

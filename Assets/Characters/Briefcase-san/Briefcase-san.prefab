@@ -178,9 +178,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1434241184269919515}
   - component: {fileID: 7785295054201576725}
-  - component: {fileID: 2959813406782061208}
-  - component: {fileID: 2706293204532895844}
-  - component: {fileID: 435249616}
   - component: {fileID: 6203135336249314786}
   m_Layer: 0
   m_Name: HitEffects
@@ -216,9 +213,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Feedbacks:
-  - {fileID: 2959813406782061208}
-  - {fileID: 2706293204532895844}
-  - {fileID: 435249616}
   - {fileID: 6203135336249314786}
   InitializationMode: 2
   SafeMode: 3
@@ -250,120 +244,6 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
   DebugActive: 0
---- !u!114 &2959813406782061208
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4515016452577028383}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d83ae645c92af634f89036dd5302f84a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Active: 0
-  Label: Flicker
-  Chance: 100
-  Timing:
-    TimescaleMode: 0
-    InitialDelay: 0
-    CooldownDuration: 0
-    NumberOfRepeats: 0
-    RepeatForever: 0
-    DelayBetweenRepeats: 1
-    MMFeedbacksDirectionCondition: 0
-    PlayDirection: 0
-    ConstantIntensity: 0
-    UseIntensityInterval: 0
-    IntensityIntervalMin: 0
-    IntensityIntervalMax: 0
-    Sequence: {fileID: 0}
-    TrackID: 0
-    Quantized: 0
-    TargetBPM: 120
-  DebugActive: 0
-  BoundRenderer: {fileID: 8488265179660566754}
-  Mode: 0
-  PropertyName: _Tint
-  FlickerDuration: 0.08
-  FlickerOctave: 0.07
-  FlickerColor: {r: 1, g: 0.010436682, b: 0, a: 1}
---- !u!114 &2706293204532895844
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4515016452577028383}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c27131831afa28b499cb120fc9059997, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Active: 0
-  Label: Particles Play
-  Chance: 100
-  Timing:
-    TimescaleMode: 0
-    InitialDelay: 0
-    CooldownDuration: 0
-    NumberOfRepeats: 0
-    RepeatForever: 0
-    DelayBetweenRepeats: 1
-    MMFeedbacksDirectionCondition: 0
-    PlayDirection: 0
-    ConstantIntensity: 0
-    UseIntensityInterval: 0
-    IntensityIntervalMin: 0
-    IntensityIntervalMax: 0
-    Sequence: {fileID: 0}
-    TrackID: 0
-    Quantized: 0
-    TargetBPM: 120
-  DebugActive: 0
-  BoundParticleSystem: {fileID: 0}
-  MoveToPosition: 0
-  RandomParticleSystems: []
---- !u!114 &435249616
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4515016452577028383}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d83ae645c92af634f89036dd5302f84a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Active: 0
-  Label: Flicker
-  Chance: 100
-  Timing:
-    TimescaleMode: 0
-    InitialDelay: 0
-    CooldownDuration: 0
-    NumberOfRepeats: 0
-    RepeatForever: 0
-    DelayBetweenRepeats: 1
-    MMFeedbacksDirectionCondition: 0
-    PlayDirection: 0
-    ConstantIntensity: 0
-    UseIntensityInterval: 0
-    IntensityIntervalMin: 0
-    IntensityIntervalMax: 0
-    Sequence: {fileID: 0}
-    TrackID: 0
-    Quantized: 0
-    TargetBPM: 120
-  DebugActive: 0
-  BoundRenderer: {fileID: 0}
-  Mode: 0
-  PropertyName: _Tint
-  FlickerDuration: 0.2
-  FlickerOctave: 0.04
-  FlickerColor: {r: 0, g: 0, b: 1, a: 0.18431373}
 --- !u!114 &6203135336249314786
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1113,7 +993,7 @@ MonoBehaviour:
   thoomMaxVelocity: 125
   thoomTime: 0.2
   thoomSlowdownDuration: 0.2
-  blastDuration: 0.025
+  blastDuration: 0.05
   blastCooldown: 3
   blast: {fileID: 5536990661607735933}
   blastUI: {fileID: 7004857560720718492, guid: c5d659b258092f14291c23d226f953e8, type: 3}
@@ -1180,7 +1060,7 @@ MonoBehaviour:
   thrustParticle: {fileID: 672447870050597970, guid: 143b77b83633f0a43bdd7efd16387e02,
     type: 3}
   thrustLocation: {fileID: 1113991753573773971}
-  deathParticle: {fileID: 330353437906517724, guid: b09e94e47a3f98743aebfe708d207ee6,
+  deathParticle: {fileID: 7965151822436081429, guid: 3977e2dcf45cb7c4488024633e2a263b,
     type: 3}
   playerEntryObject: {fileID: 6983961532901739276, guid: 5892cb2586eaf2b45aeb594b9476f745,
     type: 3}
