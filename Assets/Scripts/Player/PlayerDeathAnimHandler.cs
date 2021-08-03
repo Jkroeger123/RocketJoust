@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using Cinemachine;
+using MoreMountains.Feedbacks;
 using UnityEngine;
 
 public class PlayerDeathAnimHandler : MonoBehaviour
@@ -14,11 +15,16 @@ public class PlayerDeathAnimHandler : MonoBehaviour
     public float _detonationTimer;
     public float spinVelocity;
 
+    public static event Action OnExplosion;
+    
+    private GameObject _deathFeedback;
+    
     public int id;
     
     private BattleManager _battleManager;
     
     private void Awake() {
+        _deathFeedback = GameObject.Find("DeathExplosion");
         _battleManager = FindObjectOfType<BattleManager>().GetComponent<BattleManager>();
         _battleManager.camGroupObj.GetComponent<CamGroupController>().AddObject(gameObject);
         _rb = GetComponent<Rigidbody2D>();
@@ -34,6 +40,8 @@ public class PlayerDeathAnimHandler : MonoBehaviour
             _battleManager.camGroupObj.GetComponent<CamGroupController>().SmoothRemove(gameObject);
             GetComponent<PlayerChunkSpawner>().SpawnChunks(id);
             Instantiate(deathParticle, transform.position, transform.rotation);
+            _deathFeedback.GetComponent<MMFeedbacks>().PlayFeedbacks();
+            OnExplosion?.Invoke();
             Destroy(gameObject);
         }
     }

@@ -129,7 +129,7 @@ public class BattleManager : MonoBehaviour
         Time.fixedDeltaTime = 0.02f * (1 / Time.timeScale);
         GameObject.Find("Camera").GetComponent<MMTimeManager>().NormalTimescale = Time.timeScale;
         
-        yield return new WaitForSecondsRealtime(2f);
+        yield return new WaitForSeconds(0.4f);
         
         Time.timeScale = 1f;
         Time.fixedDeltaTime = 0.02f * (1 / Time.timeScale);
