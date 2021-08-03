@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3260331187936359501}
   - component: {fileID: 1962028902898277265}
   - component: {fileID: 3850302110781165271}
+  - component: {fileID: 2187846443749203165}
   m_Layer: 10
   m_Name: blast
   m_TagString: Beam
@@ -27,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 684660510812571516}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.02, y: -9.71, z: 0}
+  m_LocalPosition: {x: -0.039, y: -9.71, z: 0}
   m_LocalScale: {x: 0.41177872, y: 0.8441464, z: 0.8441464}
   m_Children: []
   m_Father: {fileID: 719290254797577548}
@@ -122,8 +123,8 @@ PolygonCollider2D:
     m_Paths:
     - - {x: 2.2977247, y: 5.495908}
       - {x: 2.0012853, y: 8.140519}
-      - {x: 1.7404557, y: 10.023647}
-      - {x: 0.72136503, y: 10.82674}
+      - {x: 1.7404557, y: 10.336694}
+      - {x: 1.1562421, y: 10.848593}
       - {x: -0.38931757, y: 10.82674}
       - {x: -1.1666667, y: 10.834925}
       - {x: -1.7417406, y: 10.325148}
@@ -138,6 +139,27 @@ PolygonCollider2D:
       - {x: 0.5750743, y: -11.522058}
       - {x: 2.167952, y: -1.3112776}
       - {x: 2.297726, y: 0.14461084}
+--- !u!50 &2187846443749203165
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 684660510812571516}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 0
 --- !u!1 &1113991753573773971
 GameObject:
   m_ObjectHideFlags: 0
@@ -1035,16 +1057,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.73116624, y: 1.7707024}
-      - {x: -1.5750269, y: 1.1333812}
-      - {x: -2.264452, y: 0.14270961}
-      - {x: -2.3614073, y: -0.9807147}
-      - {x: -1.9248224, y: -1.3123536}
-      - {x: 2.0552278, y: -1.3123528}
-      - {x: 2.3740034, y: -0.97106063}
-      - {x: 2.2577252, y: 0.13890588}
-      - {x: 1.402939, y: 1.3355019}
-      - {x: 0.6865876, y: 1.7776923}
+    - - {x: 2.43208, y: -1.1794763}
+      - {x: 2.3913252, y: 1.6578575}
+      - {x: -2.379181, y: 1.6505789}
+      - {x: -2.3941872, y: -1.1937832}
 --- !u!114 &4231443603613218921
 MonoBehaviour:
   m_ObjectHideFlags: 0

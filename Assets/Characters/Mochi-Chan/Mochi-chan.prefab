@@ -5374,6 +5374,7 @@ GameObject:
   - component: {fileID: 6532233572737256443}
   - component: {fileID: 7850570965610756364}
   - component: {fileID: 9076301277473424459}
+  - component: {fileID: 8684876304235177329}
   m_Layer: 10
   m_Name: blast
   m_TagString: Beam
@@ -5389,7 +5390,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8276481583456994552}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.02, y: -9.71, z: 0}
+  m_LocalPosition: {x: -0.042, y: -9.71, z: 0}
   m_LocalScale: {x: 0.41177872, y: 0.8441464, z: 0.8441464}
   m_Children: []
   m_Father: {fileID: 7198627007317336257}
@@ -5485,10 +5486,10 @@ PolygonCollider2D:
     - - {x: 2.2977247, y: 5.495908}
       - {x: 2.0012853, y: 8.140519}
       - {x: 1.7404557, y: 10.023647}
-      - {x: 0.72136503, y: 10.82674}
+      - {x: 1.0215135, y: 10.846348}
       - {x: -0.38931757, y: 10.82674}
       - {x: -1.1666667, y: 10.834925}
-      - {x: -1.7417406, y: 10.325148}
+      - {x: -1.7867625, y: 10.109462}
       - {x: -1.9834814, y: 7.4558897}
       - {x: -2.3346193, y: 6.0964074}
       - {x: -2.3346188, y: 0.42973995}
@@ -5500,6 +5501,27 @@ PolygonCollider2D:
       - {x: 0.5750743, y: -11.522058}
       - {x: 2.167952, y: -1.3112776}
       - {x: 2.297726, y: 0.14461084}
+--- !u!50 &8684876304235177329
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8276481583456994552}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 0
 --- !u!1 &8292460620902932924
 GameObject:
   m_ObjectHideFlags: 0
