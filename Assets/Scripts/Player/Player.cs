@@ -11,21 +11,21 @@ public class Player : MonoBehaviour
     [NonSerialized]
     public GameObject characterPrefab;
     
-    private PlayerHUD _playerHUD;
+    public PlayerHUD playerHUD;
 
     public void CreatePlayerHUD(GlobalHUDManager globalHUDManager)
     {
-        _playerHUD = globalHUDManager.CreatePlayerHUD();
-        _playerHUD.SetID(PlayerID);
+        playerHUD = globalHUDManager.CreatePlayerHUD();
+        playerHUD.SetID(PlayerID);
     }
 
-    public PlayerHUD GetPlayerHUD() => _playerHUD;
+    public PlayerHUD GetPlayerHUD() => playerHUD;
 
     public void DecrementHealth()
     {
-        if (_playerHUD == null) return;
+        if (playerHUD == null) return;
         
-        _playerHUD.RemoveLife();
+        playerHUD.RemoveLife();
     }
 
 }

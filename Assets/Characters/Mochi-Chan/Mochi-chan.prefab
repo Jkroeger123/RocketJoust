@@ -5964,6 +5964,7 @@ MonoBehaviour:
   - {fileID: 4469110275212682786, guid: 74b28b0515b5f5e42a5c601b15cf0bfe, type: 3}
   - {fileID: 5913141649604122505, guid: 74b28b0515b5f5e42a5c601b15cf0bfe, type: 3}
   - {fileID: 7803495588752843461, guid: 74b28b0515b5f5e42a5c601b15cf0bfe, type: 3}
+  hudFace: {fileID: 6728078740956168734, guid: 139f7945cfedfd1479ea95a19c443112, type: 3}
 --- !u!1001 &2098343479209569511
 PrefabInstance:
   m_ObjectHideFlags: 0
