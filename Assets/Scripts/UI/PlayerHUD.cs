@@ -32,6 +32,7 @@ public class PlayerHUD : MonoBehaviour
     public void SetPlayerFace(Sprite sprite)
     {
         transform.Find("PlayerIMG").GetChild(0).GetComponent<Image>().sprite = sprite;
+        transform.Find("PlayerIMG").GetChild(0).GetComponent<Image>().SetNativeSize();
     }
 
     public void SetItemSprite(Sprite sprite)

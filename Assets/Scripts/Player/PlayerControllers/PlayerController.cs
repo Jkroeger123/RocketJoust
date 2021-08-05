@@ -171,7 +171,9 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator EnableBlast () {
         SetBlastActive(true);
+        _canRotate = false;
         yield return new WaitForSeconds(blastDuration);
+        _canRotate = true;
         SetBlastActive(false);
     }
     
@@ -179,7 +181,6 @@ public class PlayerController : MonoBehaviour
     {
 
         isThooming = true;
-        _canRotate = false;
         _maxVelocity = thoomMaxVelocity;
         
         _rb.velocity = transform.up * _maxVelocity;
@@ -194,14 +195,12 @@ public class PlayerController : MonoBehaviour
             {
                 _maxVelocity = thrusterMaxVelocity;
                 isThooming = false;
-                _canRotate = true;
                 yield break;
             }
 
             yield return null;
         }
-
-        _canRotate = true;
+            
         _blastTween = DOTween.To(() => 
                 _maxVelocity, value => _maxVelocity = value, thrusterMaxVelocity, thoomSlowdownDuration)
             .OnComplete(() => isThooming = false);

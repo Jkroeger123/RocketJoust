@@ -1,25 +1,13 @@
 fileFormatVersion: 2
-guid: 90dd624e4b640ba48a802ecb55ca4072
+guid: 163b0e6c2b0248b4a8ef8cb17ab62824
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 753773165888239154
-    second: Notebook Paper-01_0
+      213: -2622232207854432694
+    second: Notebook Paper-01-highlighted_1
   - first:
-      213: -7841975948528811046
-    second: Notebook Paper-01_2
-  - first:
-      213: 5640542016895581531
-    second: Notebook Paper-01_4
-  - first:
-      213: 455119906135654645
-    second: Notebook Paper-01_10
-  - first:
-      213: -4193772065105185008
-    second: Notebook Paper-01_16
-  - first:
-      213: 6044495997008405957
-    second: Notebook Paper-01_20
+      213: -2581034584945245821
+    second: Notebook Paper-01-highlighted_6
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -63,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 50
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -105,13 +93,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Notebook Paper-01_0
+      name: Notebook Paper-01-highlighted_1
       rect:
         serializedVersion: 2
-        x: 254
-        y: 257
-        width: 3374
-        height: 4078
+        x: 725
+        y: 3308
+        width: 2059
+        height: 574
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -119,19 +107,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2367df163b0f57a00800000000000000
-      internalID: 753773165888239154
+      spriteID: a4e8f3c33b5fb9bd0800000000000000
+      internalID: -2622232207854432694
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Notebook Paper-01_2
+      name: Notebook Paper-01-highlighted_6
       rect:
         serializedVersion: 2
-        x: 4192
-        y: 3376
-        width: 1811
+        x: 1479
+        y: 2277
+        width: 1993
         height: 576
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -140,92 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ad388c26c64bb2390800000000000000
-      internalID: -7841975948528811046
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Notebook Paper-01_4
-      rect:
-        serializedVersion: 2
-        x: 4307
-        y: 2553
-        width: 1722
-        height: 362
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b5df9b9541b374e40800000000000000
-      internalID: 5640542016895581531
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Notebook Paper-01_10
-      rect:
-        serializedVersion: 2
-        x: 4568
-        y: 1792
-        width: 1007
-        height: 202
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5f0cc6fa429e05600800000000000000
-      internalID: 455119906135654645
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Notebook Paper-01_16
-      rect:
-        serializedVersion: 2
-        x: 4736
-        y: 1269
-        width: 670
-        height: 202
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 017f27eb68abcc5c0800000000000000
-      internalID: -4193772065105185008
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Notebook Paper-01_20
-      rect:
-        serializedVersion: 2
-        x: 4805
-        y: 709
-        width: 597
-        height: 239
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5c5e4fb851d52e350800000000000000
-      internalID: 6044495997008405957
+      spriteID: 381475b48b25e2cd0800000000000000
+      internalID: -2581034584945245821
       vertices: []
       indices: 
       edges: []

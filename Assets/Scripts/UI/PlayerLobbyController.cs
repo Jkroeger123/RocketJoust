@@ -14,7 +14,7 @@ public class PlayerLobbyController : MonoBehaviour
     
     [Header("Selector")]
     public GameObject selectorPrefab;
-    public List<Color> selectorColors;
+    public List<Sprite> selectorSprites;
     
     [NonSerialized]
     public bool isReady;
@@ -73,7 +73,7 @@ public class PlayerLobbyController : MonoBehaviour
         
         //Create Character selector with correct color
         _selector = Instantiate(selectorPrefab);
-        _selector.GetComponent<Image>().color = selectorColors[(_player.PlayerID - 1) % selectorColors.Count];
+        _selector.GetComponent<Image>().sprite = selectorSprites[(_player.PlayerID - 1) % selectorSprites.Count];
         
         return ui;
     }
