@@ -24,6 +24,17 @@ public class PlayerHUD : MonoBehaviour
         SetPanel(hudColors[(id-1) % hudColors.Count]);
     }
 
+    public void SetPlayerSprite(Sprite sprite)
+    {
+        transform.Find("PlayerIMG").GetComponent<Image>().sprite = sprite;
+    }
+
+    public void SetPlayerFace(Sprite sprite)
+    {
+        transform.Find("PlayerIMG").GetChild(0).GetComponent<Image>().sprite = sprite;
+        transform.Find("PlayerIMG").GetChild(0).GetComponent<Image>().SetNativeSize();
+    }
+
     public void SetItemSprite(Sprite sprite)
     {
         itemIndicator.SetActive(true);

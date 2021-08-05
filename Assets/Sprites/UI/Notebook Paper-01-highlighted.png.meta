@@ -1,16 +1,13 @@
 fileFormatVersion: 2
-guid: e43d8ce1b31f7bb408730bccac6d504c
+guid: 163b0e6c2b0248b4a8ef8cb17ab62824
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3040969465773586650
-    second: Character Box-02_0
+      213: -2622232207854432694
+    second: Notebook Paper-01-highlighted_1
   - first:
-      213: -6489779624878001997
-    second: Character Box-02_1
-  - first:
-      213: 8690575024453145758
-    second: Character Box-02_10
+      213: -2581034584945245821
+    second: Notebook Paper-01-highlighted_6
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -96,13 +93,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Character Box-02_0
+      name: Notebook Paper-01-highlighted_1
       rect:
         serializedVersion: 2
-        x: 118
-        y: 908
-        width: 549
-        height: 79
+        x: 725
+        y: 3308
+        width: 2059
+        height: 574
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -110,20 +107,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ad87e3c0e91b33a20800000000000000
-      internalID: 3040969465773586650
+      spriteID: a4e8f3c33b5fb9bd0800000000000000
+      internalID: -2622232207854432694
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character Box-02_10
+      name: Notebook Paper-01-highlighted_6
       rect:
         serializedVersion: 2
-        x: 50
-        y: 124
-        width: 2273
-        height: 764
+        x: 1479
+        y: 2277
+        width: 1993
+        height: 576
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -131,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e94596aa0ff1b9870800000000000000
-      internalID: 8690575024453145758
+      spriteID: 381475b48b25e2cd0800000000000000
+      internalID: -2581034584945245821
       vertices: []
       indices: 
       edges: []
