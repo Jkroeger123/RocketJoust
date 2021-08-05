@@ -2341,8 +2341,8 @@ MonoBehaviour:
   - prefab: {fileID: 3513666910401294507, guid: 13149577928d68444b561a0de61bb953,
       type: 3}
     maxPerPlayer: 2
-  minSpawnRate: 5
-  maxSpawnRate: 10
+  minSpawnRate: 1
+  maxSpawnRate: 5
 --- !u!4 &1174862273
 Transform:
   m_ObjectHideFlags: 0

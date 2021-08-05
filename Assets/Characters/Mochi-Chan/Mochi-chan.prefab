@@ -5819,7 +5819,7 @@ MonoBehaviour:
   thoomTime: 0.2
   thoomSlowdownDuration: 0.2
   blastDuration: 0.05
-  blastCooldown: 3
+  blastCooldown: 2.5
   blast: {fileID: 529867247828865258}
   blastUI: {fileID: 7004857560720718492, guid: c5d659b258092f14291c23d226f953e8, type: 3}
   isThooming: 0
