@@ -82,6 +82,10 @@ public class MissleUseable : MonoBehaviour, IUseable {
         }
 
         Instantiate(explosionParticle, transform.position, Quaternion.identity);
+        
+        Destroy(transform.GetChild(1).gameObject, 3f);
+        transform.GetChild(1).parent = null;
+        
         Destroy(gameObject);
     }
 
