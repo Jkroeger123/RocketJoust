@@ -26,7 +26,8 @@ public class PlayerLobbyController : MonoBehaviour
     private PlayerLobbyUI _lobbyUI;
     private GameObject _currentSelection;
     private GameObject _selector;
-
+    private bool _isMatchStarting;
+    
     public static event Action OnNav, OnReady, OnJoin;
     
     private void Start()
@@ -80,7 +81,19 @@ public class PlayerLobbyController : MonoBehaviour
     
     public void SetSiblingIndex (int i) => _siblingIndex = i;
 
-    public void OnMatchStarting() => TerminateUIControls();
+    public void OnMatchStarting()
+    {
+        _isMatchStarting = true;
+        TerminateUIControls();
+        _playerInput.currentActionMap.FindAction("Leave").performed += CancelMatchStart;
+    }
+
+    public void OnMatchStartCancel()
+    {
+        _isMatchStarting = false;
+        _playerInput.currentActionMap.FindAction("Leave").performed -= CancelMatchStart;
+        InitializeUIControls();
+    }
 
     private void InitializeUIControls()
     {
@@ -99,6 +112,13 @@ public class PlayerLobbyController : MonoBehaviour
 
     
     #region UIControls
+
+    private void CancelMatchStart(InputAction.CallbackContext context)
+    {
+        isReady = !isReady;
+        _lobbyUI.SetReadyText(isReady);
+        _gameManager.CheckPlayersReady();
+    }
 
     private void OnLeavePressed(InputAction.CallbackContext context)
     {
@@ -169,5 +189,10 @@ public class PlayerLobbyController : MonoBehaviour
     }
 
     #endregion
-    
+
+    private void OnDestroy()
+    {
+        if (!_isMatchStarting) return;
+        _playerInput.currentActionMap.FindAction("Leave").performed -= CancelMatchStart;
+    }
 }

@@ -17,8 +17,12 @@ public class GameManager : MonoBehaviour
     
     private List<GameObject> _players;
 
+    private Coroutine _startRoutine;
+    
     //Psedu bit mask for storing which IDs are used
     private bool[] _playerIDMask;
+    private bool _isStartingMatch;
+    private bool _isAwake;
     
     private void Awake()
     {
@@ -26,23 +30,31 @@ public class GameManager : MonoBehaviour
         _playerIDMask = new bool[10];
         _players = new List<GameObject>();
         DontDestroyOnLoad(gameObject);
+        _isAwake = true;
     }
 
-    public void OnPlayerJoined(PlayerInput input)
+    public void OnPlayerJoined(PlayerInput playerInput)
     {
-        DontDestroyOnLoad(input.gameObject);
-        _players.Add(input.gameObject);
-        AssignPlayerID(input.gameObject);
-        Instantiate(playerLobbyPrefab, input.gameObject.transform);
+        StartCoroutine(JoinOnceAwake(playerInput));
         
-        //Reorder the ui if necessary
-        _players.Sort((g, o) 
-            => g.GetComponent<Player>().PlayerID.CompareTo(o.GetComponent<Player>().PlayerID));
-
-        for (int i = 0; i < _players.Count; i++)
+        IEnumerator JoinOnceAwake(PlayerInput input)
         {
-            _players[i].transform.GetChild(0).GetComponent<PlayerLobbyController>()
-                .SetSiblingIndex(i);
+            while (!_isAwake) yield return null;
+        
+            DontDestroyOnLoad(input.gameObject);
+            _players.Add(input.gameObject);
+            AssignPlayerID(input.gameObject);
+            Instantiate(playerLobbyPrefab, input.gameObject.transform);
+        
+            //Reorder the ui if necessary
+            _players.Sort((g, o) 
+                => g.GetComponent<Player>().PlayerID.CompareTo(o.GetComponent<Player>().PlayerID));
+
+            for (int i = 0; i < _players.Count; i++)
+            {
+                _players[i].transform.GetChild(0).GetComponent<PlayerLobbyController>()
+                    .SetSiblingIndex(i);
+            }
         }
     }
 
@@ -69,6 +81,10 @@ public class GameManager : MonoBehaviour
     {
         ClearPlayerID(input.gameObject);
         _players.Remove(input.gameObject);
+        if (_players.Count == 0)
+        {
+            SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
+        }
     }
 
     public void CheckPlayersReady()
@@ -78,26 +94,44 @@ public class GameManager : MonoBehaviour
         foreach (GameObject p in _players)
         {
             PlayerLobbyController playLob = p.transform.GetChild(0).GetComponent<PlayerLobbyController>();
-            if(!playLob.isReady) return;
+            if (playLob.isReady) continue;
+            
+            if (_isStartingMatch) CancelMatchStart();
+            return;
         }
 
         //Launch The countdown here
-        StartCoroutine(LaunchMatch());
+        _startRoutine = StartCoroutine(LaunchMatch());
     }
-    
+
+    private void CancelMatchStart()
+    {
+        StopCoroutine(_startRoutine);
+        _isStartingMatch = false;
+        GetComponent<PlayerInputManager>().EnableJoining();
+        
+        joinText.gameObject.SetActive(true);
+        countDown.gameObject.SetActive(false);
+        
+        //Enable Player Input
+        foreach (GameObject player in _players)
+        {
+            PlayerLobbyController playLob = player.transform.GetChild(0).GetComponent<PlayerLobbyController>();
+            playLob.OnMatchStartCancel();
+        }
+    }
+
     private IEnumerator LaunchMatch()
     {
+        _isStartingMatch = true;
         GetComponent<PlayerInputManager>().DisableJoining();
         
         joinText.gameObject.SetActive(false);
         countDown.gameObject.SetActive(true);
 
         //DisablePlayer Input
-       // int curID = 1;
-        
         foreach (GameObject player in _players)
         {
-            //player.GetComponent<Player>().PlayerID = curID++;
             PlayerLobbyController playLob = player.transform.GetChild(0).GetComponent<PlayerLobbyController>();
             playLob.OnMatchStarting();
         }
@@ -114,13 +148,16 @@ public class GameManager : MonoBehaviour
         {
             Destroy(player.transform.GetChild(0).gameObject);
         }
-
+        
         DOTween.To(() => transitionImage.fillAmount, (x) => transitionImage.fillAmount = x, 1f, 0.3f)
             .OnComplete(() => SceneManager.LoadScene("SampleScene", LoadSceneMode.Single));
     }
 
     private void OnBattleLoaded(Scene scene, LoadSceneMode mode) {
-        if (scene.name == "NewLobby") return;
+        
+        if(scene.name == "MainMenu") Destroy(gameObject);
+        
+        if (scene.name != "SampleScene") return;
         //Find the Battle Manager and Initialize the game
         GameObject.FindWithTag("BattleManager").GetComponent<BattleManager>().StartMatch(_players);
     }

@@ -7,6 +7,7 @@ using UnityEngine;
 [ExecuteAlways]
 public class GridSizer : MonoBehaviour
 {
+    public Canvas c;
     public float size = 4f;
     private GridLayoutGroup _layoutGroup;
 
@@ -15,13 +16,15 @@ public class GridSizer : MonoBehaviour
     private void Start()
     {
         _layoutGroup = GetComponent<GridLayoutGroup>();
+        _cellSize = size * c.scaleFactor;
+        _layoutGroup.cellSize = new Vector2(_cellSize, _cellSize);
     }
 
     private void Update()
     {
         if (transform.childCount == 0) return;
         
-        _cellSize = size / transform.childCount;
+        _cellSize = size * c.scaleFactor;
         _layoutGroup.cellSize = new Vector2(_cellSize, _cellSize);
     }
 }

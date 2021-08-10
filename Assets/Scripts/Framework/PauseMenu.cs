@@ -58,8 +58,10 @@ public class PauseMenu : MonoBehaviour
         _timeManager.NormalTimescale = Time.timeScale;
         
         pauseUI.SetActive(true);
+        pauseUI.transform.GetChild(0).GetChild(1).gameObject.SetActive(true);
+        pauseUI.transform.GetChild(0).GetChild(2).gameObject.SetActive(false);
         EventSystem.current.GetComponent<EventSystem>()
-            .SetSelectedGameObject(pauseUI.transform.GetChild(0).GetChild(1).gameObject);
+            .SetSelectedGameObject(pauseUI.transform.GetChild(0).GetChild(1).GetChild(0).gameObject);
         ONPauseSet?.Invoke(true);
     }
 

@@ -184,11 +184,11 @@ public class BattleManager : MonoBehaviour
 
         foreach (GameObject player in _players)
         {
-            Destroy(player);    
-            /*foreach (Transform child in player.transform)
-                {
+            //Destroy(player);    
+            foreach (Transform child in player.transform)
+            {
                     Destroy(child.gameObject);
-                }*/
+            }
         }
         
         Destroy(GameObject.Find("LobbyManager").gameObject);
